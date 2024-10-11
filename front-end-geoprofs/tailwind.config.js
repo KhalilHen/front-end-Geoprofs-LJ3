@@ -10,6 +10,14 @@ export default {
   },
   plugins: [daisyui],
   daisyui: {
-    themes: ['light'],
+    themes: [
+      {
+        myTheme: {
+          "btn-primary":"#20B5FF",
+          "btn-secondary":"#FFFFFF",
+          "btn-warning":"#FF0000"
+        }
+      }
+    ],
   }
 }

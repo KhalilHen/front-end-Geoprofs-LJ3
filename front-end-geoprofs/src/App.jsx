@@ -1,15 +1,14 @@
-import { useState } from 'react'
+// import HeaderNormal from "./components/HeaderNormal";
 import './App.css'
+import HeaderManager from "./components/HeaderManager";
+import FrontPage from "./components/FrontPage";
 
 function App() {
 
   return (
     <>
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
-
-    <button className="btn btn-primary">Primary</button>
+      <HeaderManager />
+      <FrontPage/>
     </>
   )
 }
