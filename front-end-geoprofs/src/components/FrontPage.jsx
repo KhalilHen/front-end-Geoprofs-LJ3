@@ -2,28 +2,49 @@ import CalanderRow from "./CalanderRow";
 import React, { useState } from 'react';
 import moment from 'moment';
 
+import 'flowbite/dist/flowbite.min.css';
+
 function FrontPage() {
 
     const [date, setDate] = useState(new Date());
     const [weekNumber, setWeekNumber] = useState(moment().isoWeek());
+    const [weekDates, setWeekDates] = useState([7]);
   
     const PickDate = (event) => {
       const selectedDate = new Date(event.target.value);
       setDate(selectedDate);
       setWeekNumber(moment(selectedDate).isoWeek());
+      getSelectedWeekDates(selectedDate);
     };
   
     const NextWeek = () => {
       const newDate = moment(date).add(7, 'days').toDate();
       setDate(newDate);
       setWeekNumber(moment(newDate).isoWeek());
+      getSelectedWeekDates(newDate);
     };
   
     const LastWeek = () => {
       const newDate = moment(date).subtract(7, 'days').toDate();
       setDate(newDate);
       setWeekNumber(moment(newDate).isoWeek());
+      getSelectedWeekDates(newDate);
     };
+
+    const getSelectedWeekDates = (selectedDate) => {
+        const weekDates= []; 
+      
+        for (var i = 1; i <= 7; i++) {
+          weekDates.push(moment(selectedDate).day(i)); 
+        }
+
+        weekDates.forEach(function(date){ console.log(date.format("L"));});
+      
+        return weekDates; 
+      }
+      
+
+
     return (
     <div className="w-full h-[calc(100vh-140px)] flex">
         <div className="w-4/5 h-full">
@@ -39,9 +60,9 @@ function FrontPage() {
                             <div className="h-1/2 w-full flex flex-col-reverse ">
                                 <p className="text-2xl text-center">Week {weekNumber}</p>
                             </div>
-                            <div className="h-1/2 w-full flex flex-col-reverse">
+                            <div className="h-1/2 w-full flex flex-col-reverse datepicker" >
                                 <input 
-                                    className="w-full h-[30px] border-solid border-[#A7A7A7] border-t-[1px]" 
+                                    className="w-full h-[30px] border-solid border-[#A7A7A7] border-[0px] border-t-[1px]" 
                                     type="date" 
                                     value={moment(date).format('YYYY-MM-DD')}
                                     onChange={PickDate}
