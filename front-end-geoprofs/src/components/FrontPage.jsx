@@ -44,19 +44,12 @@ function FrontPage() {
     }
       
     const ConvertMoment = (date) => {
-        const today  = moment();
-
         if(date){
            const newDate = date.format("DD-MM"); 
            return newDate;
         }
         else{
-            if(today){
-                getSelectedWeekDates(today);
-            }
-            else{
-                return	"Failed to Load";
-            }
+            getSelectedWeekDates(moment());
         }
     };
 
@@ -73,11 +66,11 @@ function FrontPage() {
                         </div>
                         <div className="h-full w-[calc(100%/7)] flex flex-col">
                             <div className="h-1/2 w-full flex flex-col-reverse ">
-                                <p className="text-2xl text-center">Week {weekNumber}</p>
+                                <p className="text-2xl text-center">{"week " + weekNumber}</p>
                             </div>
                             <div className="h-1/2 w-full flex flex-col-reverse datepicker" >
                                 <input 
-                                    className="w-full h-[30px] border-solid border-[#A7A7A7] border-[0px] border-t-[1px]" 
+                                    className="w-full h-[30px] border-solid border-[#A7A7A7] border-[0px] border-t-[1px] text-center" 
                                     type="date" 
                                     value={moment(date).format('YYYY-MM-DD')}
                                     onChange={PickDate}

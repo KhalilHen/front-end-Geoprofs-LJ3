@@ -1,8 +1,10 @@
 function HeaderNormal() {
 
     return (
-      <header>
-        
+      <header className="bg-[#EBEBEB] w-full h-[140px] p-[20px]">
+        <div ></div>
+        <div></div>
+        <div></div>
       </header>
     )
   }

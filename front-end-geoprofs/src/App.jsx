@@ -3,13 +3,18 @@ import './App.css'
 import HeaderManager from "./components/HeaderManager";
 import FrontPage from "./components/FrontPage";
 
-function App() {
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+function App() {
   return (
-    <>
+    <BrowserRouter>
       <HeaderManager />
-      <FrontPage/>
-    </>
+      <main>
+        <Routes>
+          <Route path="/" element={<FrontPage/>}/>
+        </Routes>
+      </main>
+    </BrowserRouter>
   )
 }
 
