@@ -1,9 +1,28 @@
 import Logo from '../images/GeoprofsLogo.png';
 
+import backgroundImage1 from '../images/backgroundImage1.jpg';
+import backgroundImage2 from '../images/backgroundImage2.jpg';
+import backgroundImage3 from '../images/backgroundImage3.jpg';
+
+import React, { useState, useEffect } from 'react';
+
 function HeaderNormal() {
+    const [backgroundImage, setBackgroundImage] = useState(backgroundImage1);
+    const colors = [backgroundImage1, backgroundImage2, backgroundImage3];
+    let currentIndex = 0;
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            currentIndex = (currentIndex + 1) % colors.length; // Cycle through colors
+            setBackgroundImage(colors[currentIndex]);
+            
+        }, 6000); // Change color every 5 seconds
+
+        return () => clearInterval(interval); // Cleanup interval on component unmount
+    }, []);
 
     return (
-      <div className="w-full h-full content-center flex flex-wrap justify-center">
+      <div style={{backgroundImage: "url(" + backgroundImage + ")"}} className="bg-center bg-no-repeat bg-cover background-image duration-[2s] w-full h-full content-center flex flex-wrap justify-center">
         <div className="bg-[#fff] w-[300px] h-[500px] border-solid border-[#A7A7A7] border-[1px]">
             <div className="w-full h-[150px] content-center flex flex-wrap justify-center">
                 <img className="w-[90%]" src={Logo} alt="" />
@@ -25,4 +44,3 @@ function HeaderNormal() {
   }
   
   export default HeaderNormal
-  
