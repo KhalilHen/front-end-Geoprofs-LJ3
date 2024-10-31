@@ -10,6 +10,7 @@ function App() {
     <BrowserRouter>
         <Routes>
           <Route path="/" element={<Login/>}/>
+          <Route path="/Calander" element={<FrontPage/>}/>
         </Routes>
     </BrowserRouter>
   )
