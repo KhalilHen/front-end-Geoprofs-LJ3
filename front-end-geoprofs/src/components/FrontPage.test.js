@@ -1,21 +1,31 @@
 // FrontPage.test.js
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
+import '@testing-library/jest-dom'; // Import jest-dom for additional matchers
 import FrontPage from './FrontPage';
 
 describe('FrontPage Component', () => {
     test('renders the component with default elements', () => {
         render(<FrontPage />);
 
-        // TODO:
-        // 1. Use `screen.getByText` to check if the week display (e.g., "week") is present.
-        expect(screen.getByText("week")).toBeInTheDocument();
-        // 2. Use `screen.getByText` to check if the "Vorige Week" button is present.
+        expect(screen.getByText(/week \d+/)).toBeInTheDocument();
+
         expect(screen.getByText("Vorige Week")).toBeInTheDocument();
-        // 3. Use `screen.getByText` to check if the "Volgende Week" button is present.
         expect(screen.getByText("Volgende Week")).toBeInTheDocument();
-        // 4. Use `screen.getByRole` to check if the date input element (type="date") is present.
-        expect(screen.getByRole('textbox')).toBeInTheDocument();
+
+        expect(screen.getByTestId('date-input')).toBeInTheDocument();
+    });
+});
+
+describe('FrontPage Component - Date Selection', () => {
+    test('updates week number when a new date is selected', () => {
+        render(<FrontPage />);
+
+        const dateInput = screen.getByRole('textbox', { name: /date/i });
+
+        // TODO:
+        // 1. Simulate changing the date to "2024-11-01" using `fireEvent.change`.
+        // 2. Calculate the week number for this date using `moment('2024-11-01').isoWeek()`.
+        // 3. Use `expect(...).toHaveTextContent(...)` to check that the displayed week number matches.
     });
 });
