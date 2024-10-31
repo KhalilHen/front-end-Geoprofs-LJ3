@@ -6,7 +6,7 @@ import moment from 'moment';
 import FrontPage from './FrontPage';
 
 describe('Calendar Component', () => {
-    test('renders the component with default elements', () => {
+    test('show the component with default elements', () => {
         render(<FrontPage />);
 
         expect(screen.getByText(/week \d+/)).toBeInTheDocument();
@@ -18,7 +18,7 @@ describe('Calendar Component', () => {
     });
 });
 
-describe('FrontPage Component - Date Selection', () => {
+describe('calendar Component - Date Selection', () => {
     test('updates week number when a new date is selected', () => {
         render(<FrontPage />);
         const dateInput = screen.getByTestId('date-input');
@@ -31,11 +31,11 @@ describe('FrontPage Component - Date Selection', () => {
     });
 });
 
-describe('FrontPage Component - Next Week Navigation', () => {
+describe('calendar Component - Next Week Navigation', () => {
     test('advances to the next week on button click', () => {
         render(<FrontPage />);
 
-        const initialWeekNumber = parseInt(screen.getByText(/week/i, { selector: 'p.text-2xl.text-center' }).textContent.split(" ")[1], 10);
+        const initialWeekNumber = parseInt(screen.getByTestId('date-input').textContent.split(" ")[1], 10);
         const nextWeekButton = screen.getByText(/Volgende Week/i);
 
         // TODO:
@@ -43,8 +43,10 @@ describe('FrontPage Component - Next Week Navigation', () => {
         fireEvent.click(  nextWeekButton, new MouseEvent('click', {}),);
 
         // 2. Check if the displayed week number has incremented by 1 from `initialWeekNumber`.
-        const updatedWeekNumber = parseInt(screen.getByText(/week/i).textContent.split(" ")[1], 10);
+        const updatedWeekNumber = parseInt(screen.getByTestId('date-input').textContent.split(" ")[1], 10);
         expect(updatedWeekNumber).toBe(initialWeekNumber + 1);
     });
 });
+
+
 
