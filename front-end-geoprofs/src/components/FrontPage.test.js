@@ -18,7 +18,7 @@ describe('Calendar Component', () => {
     });
 });
 
-describe('calendar Component - Date Selection', () => {
+describe('Calendar Component - Date Selection', () => {
     test('updates week number when a new date is selected', () => {
         render(<FrontPage />);
         const dateInput = screen.getByTestId('date-input');
@@ -31,22 +31,32 @@ describe('calendar Component - Date Selection', () => {
     });
 });
 
-describe('calendar Component - Next Week Navigation', () => {
+describe('Calendar Component - Next Week Navigation', () => {
     test('advances to the next week on button click', () => {
         render(<FrontPage />);
 
         const initialWeekNumber = parseInt(screen.getByTestId('date-input').textContent.split(" ")[1], 10);
         const nextWeekButton = screen.getByText(/Volgende Week/i);
 
-        // TODO:
-        // 1. Click the "Next Week" button using `fireEvent.click`.
         fireEvent.click(  nextWeekButton, new MouseEvent('click', {}),);
 
-        // 2. Check if the displayed week number has incremented by 1 from `initialWeekNumber`.
         const updatedWeekNumber = parseInt(screen.getByTestId('date-input').textContent.split(" ")[1], 10);
         expect(updatedWeekNumber).toBe(initialWeekNumber + 1);
     });
 });
 
+describe('Calendar Component - Last Week Navigation', () => {
+    test('goes to the previous week on button click', () => {
+        render(<FrontPage />);
+
+        const initialWeekNumber = parseInt(screen.getByTestId('date-input').textContent.split(" ")[1], 10);
+        const lastWeekButton = screen.getByText(/Vorige Week/i);
+
+        fireEvent.click(  lastWeekButton, new MouseEvent('click', {}),);
+
+        const updatedWeekNumber = parseInt(screen.getByTestId('date-input').textContent.split(" ")[1], 10);
+        expect(updatedWeekNumber).toBe(initialWeekNumber + 1);
+    });
+});
 
 
