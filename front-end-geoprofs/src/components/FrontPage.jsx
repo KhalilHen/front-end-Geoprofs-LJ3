@@ -69,9 +69,10 @@ function FrontPage() {
                                 <p className="text-2xl text-center">{"week " + weekNumber}</p>
                             </div>
                             <div className="h-1/2 w-full flex flex-col-reverse datepicker" >
-                                <input 
-                                    className="w-full h-[30px] border-solid border-[#A7A7A7] border-[0px] border-t-[1px] text-center" 
-                                    type="date" 
+                                <input
+                                    data-testid="date-input"
+                                    className="w-full h-[30px] border-solid border-[#A7A7A7] border-[0px] border-t-[1px] text-center"
+                                    type="date"
                                     value={moment(date).format('YYYY-MM-DD')}
                                     onChange={PickDate}
                                 />
