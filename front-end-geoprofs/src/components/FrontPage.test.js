@@ -35,12 +35,12 @@ describe('Calendar Component - Next Week Navigation', () => {
     test('advances to the next week on button click', () => {
         render(<FrontPage />);
 
-        const initialWeekNumber = parseInt(screen.getByTestId('date-input').textContent.split(" ")[1], 10);
+        const initialWeekNumber = parseInt(screen.getByTestId('week-output').textContent.split(" ")[1], 10);
         const nextWeekButton = screen.getByText(/Volgende Week/i);
 
         fireEvent.click(  nextWeekButton, new MouseEvent('click', {}),);
 
-        const updatedWeekNumber = parseInt(screen.getByTestId('date-input').textContent.split(" ")[1], 10);
+        const updatedWeekNumber = parseInt(screen.getByTestId('week-output').textContent.split(" ")[1], 10);
         expect(updatedWeekNumber).toBe(initialWeekNumber + 1);
     });
 });
@@ -49,14 +49,18 @@ describe('Calendar Component - Last Week Navigation', () => {
     test('goes to the previous week on button click', () => {
         render(<FrontPage />);
 
-        const initialWeekNumber = parseInt(screen.getByTestId('date-input').textContent.split(" ")[1], 10);
+        const initialWeekNumber = parseInt(screen.getByTestId('week-output').textContent.split(" ")[1], 10);
         const lastWeekButton = screen.getByText(/Vorige Week/i);
 
         fireEvent.click(  lastWeekButton, new MouseEvent('click', {}),);
 
-        const updatedWeekNumber = parseInt(screen.getByTestId('date-input').textContent.split(" ")[1], 10);
-        expect(updatedWeekNumber).toBe(initialWeekNumber + 1);
+        const updatedWeekNumber = parseInt(screen.getByTestId('week-output').textContent.split(" ")[1], 10);
+        expect(updatedWeekNumber).toBe(initialWeekNumber - 1);
     });
 });
 
 
+// TODO:
+// 1. Use `jest.mock` to create a simple mock for "CalanderRow".
+// 2. Set the mock to return a "<div>Calendar Row</div>" so we can test the FrontPage in isolation.
+// 3. run the previous tests again to ensure they work with the mocked data.

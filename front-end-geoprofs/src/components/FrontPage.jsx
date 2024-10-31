@@ -66,7 +66,7 @@ function FrontPage() {
                         </div>
                         <div className="h-full w-[calc(100%/7)] flex flex-col">
                             <div className="h-1/2 w-full flex flex-col-reverse ">
-                                <p className="text-2xl text-center">{"week " + weekNumber}</p>
+                                <p className="text-2xl text-center" data-testid="week-output" >{"week " + weekNumber}</p>
                             </div>
                             <div className="h-1/2 w-full flex flex-col-reverse datepicker" >
                                 <input
