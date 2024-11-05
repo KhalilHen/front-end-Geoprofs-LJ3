@@ -2,6 +2,8 @@ import CalanderRow from "./CalanderRow";
 import React, { useState } from 'react';
 import moment from 'moment';
 import HeaderNormal from './HeaderNormal'
+import { Link } from "react-router-dom";
+import schedule_white from "../images/icons/schedule_white.png"
 
 
 function FrontPage() {
@@ -120,10 +122,14 @@ function FrontPage() {
                                 </div>
                             </div>
                             <div className="h-full w-[calc((100%/14)*3)] flex flex-col-reverse">
-                            <button onClick={NextWeek} className="w-full h-[30px] bg-[#20B5FF] rounded-tr-[15px] text-white">Volgende Week</button>
+                                <button onClick={NextWeek} className="w-full h-[30px] bg-[#20B5FF] rounded-tr-[15px] text-white">Volgende Week</button>
                             </div>
-                            <div className="h-full w-[calc((100%/14)*3)]"></div>
-
+                            <div className="flex justify-center align-center flex h-full w-[calc((100%/14)*3)]">
+                                <Link className="justify-between rounded-full flex w-[90%] h-[40px] bg-[#20B5FF]" to="/">
+                                    <p className="align-middle text-center p-[8px] text-[#ffffff]">Verlof Aanvragen</p>
+                                    <img src={schedule_white} alt="" />
+                                </Link>
+                            </div>
                         </div>
                     </div>
                     <div className="w-full h-1/2 flex">
