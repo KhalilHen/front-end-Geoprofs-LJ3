@@ -1,7 +1,9 @@
 import CalanderRow from "./CalanderRow";
 import React, { useState } from 'react';
 import moment from 'moment';
-import HeaderManager from "./HeaderManager";
+import HeaderNormal from './HeaderNormal'
+import { Link } from "react-router-dom";
+import schedule_white from "../images/icons/schedule_white.png"
 
 
 function FrontPage() {
@@ -9,6 +11,10 @@ function FrontPage() {
     const [date, setDate] = useState(new Date());
     const [weekNumber, setWeekNumber] = useState(moment().isoWeek());
     const [weekDates, setWeekDates] = useState([]);
+
+    const [hideOrShowDepartmentsTab, setHideOrShowDepartmentsTab] = useState("0px");
+    const [hideOrShowSectionsTab, setHideOrShowSectionsTab] = useState("0px");
+    const [hideOrShowProjectsTab, setHideOrShowProjectsTab] = useState("0px");
   
     const PickDate = (event) => {
       const selectedDate = new Date(event.target.value);
@@ -54,9 +60,44 @@ function FrontPage() {
         }
     };
 
+
+    const HandleDepartmentsTab = () => {
+        if(hideOrShowDepartmentsTab == "0px"){
+            setHideOrShowDepartmentsTab("200px")
+            return;
+        }
+        else{
+            setHideOrShowDepartmentsTab("0px")
+            return;
+        }
+      };
+
+      const HandleSectionsTab = () => {
+        if(hideOrShowSectionsTab == "0px"){
+            setHideOrShowSectionsTab("200px")
+            return;
+        }
+        else{
+            setHideOrShowSectionsTab("0px")
+            return;
+        }
+      };
+
+      const HandleProjectsTab = () => {
+        if(hideOrShowProjectsTab == "0px"){
+            setHideOrShowProjectsTab("200px")
+            return;
+        }
+        else{
+            setHideOrShowProjectsTab("0px")
+            return;
+        }
+      };
+    
+
     return (
     <>
-        <HeaderManager/>
+        <HeaderNormal/>
         <div className="w-full h-[calc(100vh-140px)] flex">
             <div className="w-4/5 h-full">
                 <div className="w-full h-[200px]">
@@ -81,10 +122,14 @@ function FrontPage() {
                                 </div>
                             </div>
                             <div className="h-full w-[calc((100%/14)*3)] flex flex-col-reverse">
-                            <button onClick={NextWeek} className="w-full h-[30px] bg-[#20B5FF] rounded-tr-[15px] text-white">Volgende Week</button>
+                                <button onClick={NextWeek} className="w-full h-[30px] bg-[#20B5FF] rounded-tr-[15px] text-white">Volgende Week</button>
                             </div>
-                            <div className="h-full w-[calc((100%/14)*3)]"></div>
-
+                            <div className="flex justify-center align-center flex h-full w-[calc((100%/14)*3)]">
+                                <Link className="justify-between rounded-full flex w-[90%] h-[40px] bg-[#20B5FF]" to="/">
+                                    <p className="align-middle text-center p-[8px] text-[#ffffff]">Verlof Aanvragen</p>
+                                    <img src={schedule_white} alt="" />
+                                </Link>
+                            </div>
                         </div>
                     </div>
                     <div className="w-full h-1/2 flex">
@@ -142,17 +187,26 @@ function FrontPage() {
                     <CalanderRow/>
                     <CalanderRow/>
                     <CalanderRow/>
-
-                    
                 </div>
             </div>
             <div className="w-1/5 h-full bg-[#00FF00]">
-            <div className="w-full h-[100px] bg-[#FF00FF]"></div>
+                <div className="w-full h-[100px] bg-[#FF00FF]">
+                </div>
+                <h1>Departments</h1>
+                <div style={{height: hideOrShowDepartmentsTab}} className="duration-[0.5s] w-[100%] bg-[#ff0000]"></div>
+                <button onClick={HandleDepartmentsTab}className="h-[100px] w-[100%] h-[50px] bg-[#ffffff]"></button>
+                
+                <h1>Sections</h1>
+                <div style={{height: hideOrShowSectionsTab}} className="duration-[0.5s] w-[100%] bg-[#ff0000]"></div>
+                <button onClick={HandleSectionsTab}className="h-[100px] w-[100%] h-[50px] bg-[#ffffff]"></button>
+
+                <h1>Projects</h1>
+                <div style={{height: hideOrShowProjectsTab}} className="duration-[0.5s] w-[100%] bg-[#ff0000]"></div>
+                <button onClick={HandleProjectsTab}className="h-[100px] w-[100%] h-[50px] bg-[#ffffff]"></button>
             </div>
         </div>
     </>
     )
   }
   
-  export default FrontPage
-  
+  export default FrontPage 
