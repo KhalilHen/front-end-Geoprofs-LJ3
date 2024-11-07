@@ -22,3 +22,11 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# cypress 
+# Cypress artifacts
+cypress/videos/
+cypress/screenshots/
+cypress.env.json
+cypress/reports/
+
