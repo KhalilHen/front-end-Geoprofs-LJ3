@@ -37,7 +37,7 @@ function HeaderNormal() {
                 <input placeholder="Wachtwoord" className="w-4/5 h-[40px] border-solid border-[#A7A7A7] border-[1px] p-[10px]" type="password" />
             </div>
             <div className="w-full h-[150px] content-center flex flex-wrap justify-center">
-                <Link className="w-4/5 h-[40px] border-solid border-[#A7A7A7] border-[1px] p-[10px] rounded-full flex justify-center" to="/Calander">Log In</Link>
+                <Link className="w-4/5 h-[40px] border-solid border-[#A7A7A7] border-[1px] p-[10px] rounded-full flex justify-center" to="/front-page">Log In</Link>
             </div>
         </div>
       </div>
