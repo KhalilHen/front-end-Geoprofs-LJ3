@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Option from './Option';
 import LeaveRequest from './LeaveRequest';
+import HeaderNormal from './HeaderNormal';
 
 function InboxPage(){
 
@@ -71,31 +72,49 @@ function InboxPage(){
     ];
 
     return(
-    <div class="flex flex-row">
-        <div class="flex-1">
-            Your Open Requests
-            <div>
-                {leaveOpenRequests.map(leaveRequest => {            
-                    return(
-                        <div class="flex colum">
-                            <LeaveRequest name={leaveRequest.userName} id={leaveRequest.userId}/>
-                        </div>
-                    )
-                })}
+    <>  
+        <HeaderNormal/>
+        <div class="flex flex-row">
+            <div class="flex-1">
+                Your Open Requests
+                <div>
+                    {leaveOpenRequests.map(leaveRequest => {            
+                        return(
+                            <div class="flex colum">
+                                <LeaveRequest name={leaveRequest.userName} id={leaveRequest.userId}/>
+                            </div>
+                        )
+                    })}
+                </div>
             </div>
-        </div>
 
-        <div class="flex-1">
-            History
-            <select name="category" id="category" onChange={handleChangeCategory}>
-                <Option name="noChosen" id="-1"/>
-                <Option name="0" id="0"/>
-                <Option name="1" id="1"/>
-                <Option name="2" id="2"/>
-            </select>
-            <div>
-                {leaveRequestsHistory.map(leaveRequest => {
-                    if (filter == -1 || filter == leaveRequest.categoryId){
+            <div class="flex-1">
+                History
+                <select name="category" id="category" onChange={handleChangeCategory}>
+                    <Option name="noChosen" id="-1"/>
+                    <Option name="0" id="0"/>
+                    <Option name="1" id="1"/>
+                    <Option name="2" id="2"/>
+                </select>
+                <div>
+                    {leaveRequestsHistory.map(leaveRequest => {
+                        if (filter == -1 || filter == leaveRequest.categoryId){
+                            return(
+                                <div class="flex colum">
+                                    <LeaveRequest name={leaveRequest.userName} id={leaveRequest.userId}/>
+                                </div>
+                            )
+                        }
+                    })}
+                </div>
+            </div>
+
+
+            <div class="flex-1">
+                Leave Requests
+                <input type="text" id="search" name="search" onChange={handleChangeName}></input>
+                {leaveRequestsMain.map(leaveRequest => {
+                    if (search == "" || leaveRequest.userName.toLowerCase().includes(search.toLocaleLowerCase())){
                         return(
                             <div class="flex colum">
                                 <LeaveRequest name={leaveRequest.userName} id={leaveRequest.userId}/>
@@ -105,22 +124,7 @@ function InboxPage(){
                 })}
             </div>
         </div>
-
-
-        <div class="flex-1">
-            Leave Requests
-            <input type="text" id="search" name="search" onChange={handleChangeName}></input>
-            {leaveRequestsMain.map(leaveRequest => {
-                if (search == "" || leaveRequest.userName.toLowerCase().includes(search.toLocaleLowerCase())){
-                    return(
-                        <div class="flex colum">
-                            <LeaveRequest name={leaveRequest.userName} id={leaveRequest.userId}/>
-                        </div>
-                    )
-                }
-            })}
-        </div>
-    </div>
+    </>
     )
 }
 

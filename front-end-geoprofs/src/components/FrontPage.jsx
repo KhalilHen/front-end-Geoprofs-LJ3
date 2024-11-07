@@ -17,24 +17,24 @@ function FrontPage() {
     const [hideOrShowProjectsTab, setHideOrShowProjectsTab] = useState("0px");
   
     const PickDate = (event) => {
-      const selectedDate = new Date(event.target.value);
-      setDate(selectedDate);
-      setWeekNumber(moment(selectedDate).isoWeek());
-      getSelectedWeekDates(selectedDate);
+        const selectedDate = new Date(event.target.value);
+        setDate(selectedDate);
+        setWeekNumber(moment(selectedDate).isoWeek());
+        getSelectedWeekDates(selectedDate);
     };
   
     const NextWeek = () => {
-      const newDate = moment(date).add(7, 'days').toDate();
-      setDate(newDate);
-      setWeekNumber(moment(newDate).isoWeek());
-      getSelectedWeekDates(newDate);
+        const newDate = moment(date).add(7, 'days').toDate();
+        setDate(newDate);
+        setWeekNumber(moment(newDate).isoWeek());
+        getSelectedWeekDates(newDate);
     };
   
     const LastWeek = () => {
-      const newDate = moment(date).subtract(7, 'days').toDate();
-      setDate(newDate);
-      setWeekNumber(moment(newDate).isoWeek());
-      getSelectedWeekDates(newDate);
+        const newDate = moment(date).subtract(7, 'days').toDate();
+        setDate(newDate);
+        setWeekNumber(moment(newDate).isoWeek());
+        getSelectedWeekDates(newDate);
     };
 
     const getSelectedWeekDates = (selectedDate) => {
@@ -70,9 +70,9 @@ function FrontPage() {
             setHideOrShowDepartmentsTab("0px")
             return;
         }
-      };
+    };
 
-      const HandleSectionsTab = () => {
+    const HandleSectionsTab = () => {
         if(hideOrShowSectionsTab == "0px"){
             setHideOrShowSectionsTab("200px")
             return;
@@ -81,9 +81,9 @@ function FrontPage() {
             setHideOrShowSectionsTab("0px")
             return;
         }
-      };
+    };
 
-      const HandleProjectsTab = () => {
+    const HandleProjectsTab = () => {
         if(hideOrShowProjectsTab == "0px"){
             setHideOrShowProjectsTab("200px")
             return;
@@ -92,7 +92,7 @@ function FrontPage() {
             setHideOrShowProjectsTab("0px")
             return;
         }
-      };
+    };
     
 
     return (
