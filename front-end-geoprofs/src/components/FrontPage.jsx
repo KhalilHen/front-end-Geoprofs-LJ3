@@ -97,28 +97,30 @@ function FrontPage() {
 
     return (
     <>
-        <HeaderNormal/>
-        <div className="w-full h-[calc(100vh-140px)] flex">
-            <div className="w-4/5 h-full">
-                <div className="w-full h-[200px]">
-                    <div className="w-full h-1/2 flex">
-                        <div className="w-1/4 h-ful"></div>
-                        <div className="w-3/4 h-full flex">
-                            <div className="h-full w-[calc((100%/14)*3)]"></div>
-                            <div className="h-full w-[calc((100%/14)*3)] flex flex-col-reverse">
-                                <button onClick={LastWeek} className="w-full h-[30px] bg-[#20B5FF] rounded-tl-[15px] text-white">Vorige Week</button>
+    <HeaderNormal/>
+    <div className="w-full h-[calc(100vh-140px)] flex">
+        <div className="w-4/5 h-full">
+            <div className="w-full h-[200px]">
+                <div className="w-full h-1/2 flex">
+                    <div className="w-1/4 h-ful"></div>
+                    <div className="w-3/4 h-full flex">
+                        <div className="h-full w-[calc((100%/14)*3)]"></div>
+                        <div className="h-full w-[calc((100%/14)*3)] flex flex-col-reverse">
+                            <button onClick={LastWeek} className="w-full h-[30px] bg-[#20B5FF] rounded-tl-[15px] text-white">Vorige Week</button>
+                        </div>
+                        <div className="h-full w-[calc(100%/7)] flex flex-col">
+                            <div className="h-1/2 w-full flex flex-col-reverse ">
+                                <p className="text-2xl text-center" data-testid="week-output" >{"week " + weekNumber}</p>
                             </div>
-                            <div className="h-full w-[calc(100%/7)] flex flex-col">
-                                <div className="h-1/2 w-full flex flex-col-reverse ">
-                                    <p className="text-2xl text-center">{"week " + weekNumber}</p>
-                                </div>
-                                <div className="h-1/2 w-full flex flex-col-reverse datepicker" >
-                                    <input 
-                                        className="w-full h-[30px] border-solid border-[#A7A7A7] border-[0px] border-t-[1px] text-center" 
-                                        type="date" 
-                                        value={moment(date).format('YYYY-MM-DD')}
-                                        onChange={PickDate}
-                                    />
+                            <div className="h-1/2 w-full flex flex-col-reverse datepicker" >
+                                <input
+                                    data-testid="date-input"
+                                    className="w-full h-[30px] border-solid border-[#A7A7A7] border-[0px] border-t-[1px] text-center"
+                                    type="date"
+                                    value={moment(date).format('YYYY-MM-DD')}
+                                    onChange={PickDate}
+                                />
+
                                 </div>
                             </div>
                             <div className="h-full w-[calc((100%/14)*3)] flex flex-col-reverse">
