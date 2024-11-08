@@ -21,12 +21,23 @@ function LeaveRequestPage(){
         new Date().getDay(),
     ));
 
+    const [startTime, setStartTime] = useState("00:00");
+
     function handleChangeCategory(e){
         setCategory(e.target.value);
     };
 
     const startPickDate = (e) => {
-;
+        const selectedDate = new Date(e.target.value);
+        console.log(selectedDate);
+        console.log(selectedDate.getFullYear() + " " + (selectedDate.getMonth()+1) + " " + selectedDate.getDay());
+        setStartDate(new Date(
+            selectedDate.getFullYear(),
+            selectedDate.getMonth(),
+            selectedDate.getDate(),
+            startDate.getHours(),
+            startDate.getMinutes(),
+        ));
     };
 
     const endPickDate = (e) => {
@@ -34,7 +45,14 @@ function LeaveRequestPage(){
     };
 
     const changeStarttime = (e) => {
-
+        setStartTime(e.target.value);
+        setStartDate(new Date(
+            startDate.getFullYear(),
+            startDate.getMonth(),
+            startDate.getDate(),
+            (e.target.value[0]+""+e.target.value[1]),
+            (e.target.value[3]+""+e.target.value[4]),
+        ));
     };
 
     return(
@@ -64,7 +82,7 @@ function LeaveRequestPage(){
                     />
                 </div>
                 <div>
-                    {/* <input type="time" onChange={changeStarttime} value={startDate.getHours()+":"+startDate.getMinutes()}/> */}
+                    <input type="time" onChange={changeStarttime} value={startTime}/>
                 </div>
             </div>
         </>
