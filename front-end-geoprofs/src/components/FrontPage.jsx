@@ -2,6 +2,7 @@ import CalanderRow from "./CalanderRow";
 import React, { useState } from 'react';
 import moment from 'moment';
 import HeaderNormal from './HeaderNormal'
+import HeaderManager from './HeaderManager'
 import { Link } from "react-router-dom";
 import schedule_white from "../images/icons/schedule_white.png"
 
@@ -97,7 +98,7 @@ function FrontPage() {
 
     return (
     <>
-        <HeaderNormal/>
+        <HeaderManager/>
         <div className="w-full h-[calc(100vh-140px)] flex">
             <div className="w-4/5 h-full">
                 <div className="w-full h-[200px]">
