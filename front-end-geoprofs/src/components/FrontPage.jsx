@@ -63,7 +63,7 @@ function FrontPage() {
 
     const HandleDepartmentsTab = () => {
         if(hideOrShowDepartmentsTab == "0px"){
-            setHideOrShowDepartmentsTab("200px")
+            setHideOrShowDepartmentsTab("auto")
             return;
         }
         else{
@@ -74,7 +74,7 @@ function FrontPage() {
 
       const HandleSectionsTab = () => {
         if(hideOrShowSectionsTab == "0px"){
-            setHideOrShowSectionsTab("200px")
+            setHideOrShowSectionsTab("auto")
             return;
         }
         else{
@@ -85,7 +85,7 @@ function FrontPage() {
 
       const HandleProjectsTab = () => {
         if(hideOrShowProjectsTab == "0px"){
-            setHideOrShowProjectsTab("200px")
+            setHideOrShowProjectsTab("auto")
             return;
         }
         else{
@@ -120,7 +120,6 @@ function FrontPage() {
                                     value={moment(date).format('YYYY-MM-DD')}
                                     onChange={PickDate}
                                 />
-
                                 </div>
                             </div>
                             <div className="h-full w-[calc((100%/14)*3)] flex flex-col-reverse">
@@ -195,15 +194,66 @@ function FrontPage() {
                 <div className="w-full h-[100px] bg-[#FF00FF]">
                 </div>
                 <h1>Departments</h1>
-                <div style={{height: hideOrShowDepartmentsTab}} className="duration-[0.5s] w-[100%] bg-[#ff0000]"></div>
+                <div style={{height: hideOrShowDepartmentsTab}} className="w-[100%] bg-[#ff0000] overflow-hidden">
+                    <div className="w-full h-[20px] flex">
+                        <input type="checkbox" name="" id="" />
+                        <p>1</p>
+                    </div>
+                    <div className="w-full h-[20px] flex">
+                        <input type="checkbox" name="" id="" />
+                        <p>2</p>
+                    </div>
+                    <div className="w-full h-[20px] flex">
+                        <input type="checkbox" name="" id="" />
+                        <p>3</p>
+                    </div>
+                    <div className="w-full h-[20px] flex">
+                        <input type="checkbox" name="" id="" />
+                        <p>4</p>
+                    </div>
+                </div>
                 <button onClick={HandleDepartmentsTab}className="h-[100px] w-[100%] h-[50px] bg-[#ffffff]"></button>
                 
                 <h1>Sections</h1>
-                <div style={{height: hideOrShowSectionsTab}} className="duration-[0.5s] w-[100%] bg-[#ff0000]"></div>
+                <div style={{height: hideOrShowSectionsTab}} className="w-[100%] bg-[#ff0000] overflow-hidden">
+                    <div className="w-full h-[20px] flex">
+                        <input type="checkbox" name="" id="" />
+                        <p>1</p>
+                    </div>
+                    <div className="w-full h-[20px] flex">
+                        <input type="checkbox" name="" id="" />
+                        <p>2</p>
+                    </div>
+                    <div className="w-full h-[20px] flex">
+                        <input type="checkbox" name="" id="" />
+                        <p>3</p>
+                    </div>
+                    <div className="w-full h-[20px] flex">
+                        <input type="checkbox" name="" id="" />
+                        <p>4</p>
+                    </div>
+                </div>
                 <button onClick={HandleSectionsTab}className="h-[100px] w-[100%] h-[50px] bg-[#ffffff]"></button>
 
                 <h1>Projects</h1>
-                <div style={{height: hideOrShowProjectsTab}} className="duration-[0.5s] w-[100%] bg-[#ff0000]"></div>
+                <div style={{height: hideOrShowProjectsTab}} className="w-[100%] bg-[#ff0000] overflow-hidden">
+                    <div className="w-full h-[20px] flex">
+                        <input type="checkbox" name="" id="" />
+                        <p>1</p>
+                    </div>
+                    <div className="w-full h-[20px] flex">
+                        <input type="checkbox" name="" id="" />
+                        <p>2</p>
+                    </div>
+                    <div className="w-full h-[20px] flex">
+                        <input type="checkbox" name="" id="" />
+                        <p>3</p>
+                    </div>
+                    <div className="w-full h-[20px] flex">
+                        <input type="checkbox" name="" id="" />
+                        <p>4</p>
+                    </div>
+                </div>
                 <button onClick={HandleProjectsTab}className="h-[100px] w-[100%] h-[50px] bg-[#ffffff]"></button>
             </div>
         </div>
