@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 import HeaderNormal from './HeaderNormal';
 import Option from './Option';
 import moment from 'moment';
@@ -10,34 +11,18 @@ function LeaveRequestPage(){
     const id = queryParams.get('id'); //id of user
 
     const [Category, setCategory] = useState(-1); //Category id
-    const [startDate, setStartDate] = useState(new Date(
-        new Date().getFullYear(),
-        new Date().getMonth(),
-        new Date().getDay(),
-    ));
-    const [endDate, setEndDate] = useState(new Date(
-        new Date().getFullYear(),
-        new Date().getMonth(),
-        new Date().getDay(),
-    ));
-
-    const [startTime, setStartTime] = useState("00:00");
+    const [startDate, setStartDate] = useState(moment().startOf("day"));
+    const [endDate, setEndDate] = useState(moment().startOf("day"));
 
     function handleChangeCategory(e){
         setCategory(e.target.value);
     };
 
     const startPickDate = (e) => {
-        const selectedDate = new Date(e.target.value);
-        console.log(selectedDate);
-        console.log(selectedDate.getFullYear() + " " + (selectedDate.getMonth()+1) + " " + selectedDate.getDay());
-        setStartDate(new Date(
-            selectedDate.getFullYear(),
-            selectedDate.getMonth(),
-            selectedDate.getDate(),
-            startDate.getHours(),
-            startDate.getMinutes(),
-        ));
+        const time = e.target.value;
+        const [year , month , day] = time.split("-");
+        const tempStartDate = moment(startDate).year(year).month(month-1).date(day);
+        setStartDate(tempStartDate);
     };
 
     const endPickDate = (e) => {
@@ -45,14 +30,10 @@ function LeaveRequestPage(){
     };
 
     const changeStarttime = (e) => {
-        setStartTime(e.target.value);
-        setStartDate(new Date(
-            startDate.getFullYear(),
-            startDate.getMonth(),
-            startDate.getDate(),
-            (e.target.value[0]+""+e.target.value[1]),
-            (e.target.value[3]+""+e.target.value[4]),
-        ));
+        const time = e.target.value;
+        const [hour , minute] = time.split(":");
+        const tempStartDate = moment(startDate).hour(hour).minute(minute);
+        setStartDate(tempStartDate);
     };
 
     return(
@@ -82,8 +63,9 @@ function LeaveRequestPage(){
                     />
                 </div>
                 <div>
-                    <input type="time" onChange={changeStarttime} value={startTime}/>
+                    <input type="time" onChange={changeStarttime} value={startDate.format('HH:mm')}/>
                 </div>
+                {startDate.format('DD-MM-YYYY HH:mm')}
             </div>
         </>
     )
