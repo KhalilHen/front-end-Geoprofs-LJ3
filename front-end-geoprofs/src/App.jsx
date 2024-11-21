@@ -14,7 +14,7 @@ function App() {
           <Route path="/" element={<Login/>}/>
           <Route path="/front-page" element={<FrontPage/>}/>
           <Route path="/inbox-page" element={<InboxPage/>}/>
-          <Route path="/leave-request-approve" element={<LeaveRequestPage/>}/>
+          <Route path="/leave-request" element={<LeaveRequestPage/>}/>
         </Routes>
     </BrowserRouter>
   )
