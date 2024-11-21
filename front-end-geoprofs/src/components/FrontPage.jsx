@@ -98,6 +98,7 @@ function FrontPage() {
 
     return (
     <>
+        {/* <HeaderNormal/> */}
         <HeaderManager/>
         <div className="w-full h-[calc(100vh-140px)] flex">
             <div className="w-4/5 h-full">
