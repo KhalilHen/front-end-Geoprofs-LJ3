@@ -1,6 +1,6 @@
 function LeaveRequest (props){
     return(
-        <a href={"/leave-request-approve?id="+props.id}>
+        <a href={"/leave-request?id="+props.id}>
             {props.name} Leave Request
         </a>
     )

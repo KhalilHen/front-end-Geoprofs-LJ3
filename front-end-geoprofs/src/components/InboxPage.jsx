@@ -80,7 +80,7 @@ function InboxPage(){
                 <div>
                     {leaveOpenRequests.map(leaveRequest => {            
                         return(
-                            <div class="flex colum">
+                            <div class="flex">
                                 <LeaveRequest name={leaveRequest.userName} id={leaveRequest.userId}/>
                             </div>
                         )
@@ -100,7 +100,7 @@ function InboxPage(){
                     {leaveRequestsHistory.map(leaveRequest => {
                         if (filter == -1 || filter == leaveRequest.categoryId){
                             return(
-                                <div class="flex colum">
+                                <div class="flex">
                                     <LeaveRequest name={leaveRequest.userName} id={leaveRequest.userId}/>
                                 </div>
                             )
@@ -116,7 +116,7 @@ function InboxPage(){
                 {leaveRequestsMain.map(leaveRequest => {
                     if (search == "" || leaveRequest.userName.toLowerCase().includes(search.toLocaleLowerCase())){
                         return(
-                            <div class="flex colum">
+                            <div class="flex">
                                 <LeaveRequest name={leaveRequest.userName} id={leaveRequest.userId}/>
                             </div>
                         )
