@@ -2,6 +2,7 @@ import CalanderRow from "./CalanderRow";
 import React, { useState } from 'react';
 import moment from 'moment';
 import HeaderNormal from './HeaderNormal'
+import HeaderManager from './HeaderManager'
 import { Link } from "react-router-dom";
 import schedule_white from "../images/icons/schedule_white.png"
 
@@ -17,24 +18,24 @@ function FrontPage() {
     const [hideOrShowProjectsTab, setHideOrShowProjectsTab] = useState("0px");
   
     const PickDate = (event) => {
-      const selectedDate = new Date(event.target.value);
-      setDate(selectedDate);
-      setWeekNumber(moment(selectedDate).isoWeek());
-      getSelectedWeekDates(selectedDate);
+        const selectedDate = new Date(event.target.value);
+        setDate(selectedDate);
+        setWeekNumber(moment(selectedDate).isoWeek());
+        getSelectedWeekDates(selectedDate);
     };
   
     const NextWeek = () => {
-      const newDate = moment(date).add(7, 'days').toDate();
-      setDate(newDate);
-      setWeekNumber(moment(newDate).isoWeek());
-      getSelectedWeekDates(newDate);
+        const newDate = moment(date).add(7, 'days').toDate();
+        setDate(newDate);
+        setWeekNumber(moment(newDate).isoWeek());
+        getSelectedWeekDates(newDate);
     };
   
     const LastWeek = () => {
-      const newDate = moment(date).subtract(7, 'days').toDate();
-      setDate(newDate);
-      setWeekNumber(moment(newDate).isoWeek());
-      getSelectedWeekDates(newDate);
+        const newDate = moment(date).subtract(7, 'days').toDate();
+        setDate(newDate);
+        setWeekNumber(moment(newDate).isoWeek());
+        getSelectedWeekDates(newDate);
     };
 
     const getSelectedWeekDates = (selectedDate) => {
@@ -70,9 +71,9 @@ function FrontPage() {
             setHideOrShowDepartmentsTab("0px")
             return;
         }
-      };
+    };
 
-      const HandleSectionsTab = () => {
+    const HandleSectionsTab = () => {
         if(hideOrShowSectionsTab == "0px"){
             setHideOrShowSectionsTab("auto")
             return;
@@ -81,9 +82,9 @@ function FrontPage() {
             setHideOrShowSectionsTab("0px")
             return;
         }
-      };
+    };
 
-      const HandleProjectsTab = () => {
+    const HandleProjectsTab = () => {
         if(hideOrShowProjectsTab == "0px"){
             setHideOrShowProjectsTab("auto")
             return;
@@ -92,12 +93,13 @@ function FrontPage() {
             setHideOrShowProjectsTab("0px")
             return;
         }
-      };
+    };
     
 
     return (
     <>
-    <HeaderNormal/>
+    <HeaderManager/>
+    {/* <HeaderNormal/> */}
     <div className="w-full h-[calc(100vh-140px)] flex">
         <div className="w-4/5 h-full">
             <div className="w-full h-[200px]">
