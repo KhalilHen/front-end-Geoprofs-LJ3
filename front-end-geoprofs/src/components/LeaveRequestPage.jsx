@@ -81,8 +81,6 @@ function LeaveRequestPage(){
         
     }
 
-    console.log(locked);
-
     return(
         <>
             <HeaderNormal/>
