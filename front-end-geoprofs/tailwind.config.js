@@ -1,14 +1,18 @@
 import daisyui from './node_modules/daisyui'
-const plugin = require('tailwindcss/plugin')
+const plugin = require('tailwindcss/plugin');
+const withMT = require("@material-tailwind/react/utils/withMT");
 /** @type {import('tailwindcss').Config} */
-export default {
+
+export default withMT({
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    extend: {},
   },
-  plugins: [daisyui, 
+  plugins: [
+    daisyui, 
     plugin(function ({ addUtilities }) {
       addUtilities({
         '.scrollbar-hide': {
@@ -23,8 +27,7 @@ export default {
             display: 'none'
           }
         }
-      }
-      )
+      });
     })
   ],
   daisyui: {
@@ -38,4 +41,4 @@ export default {
       }
     ],
   }
-}
+});
