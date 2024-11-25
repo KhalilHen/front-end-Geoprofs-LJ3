@@ -2,7 +2,6 @@ import CalanderRow from "./CalanderRow";
 import React, { useState } from 'react';
 import moment from 'moment';
 import HeaderNormal from './HeaderNormal'
-import HeaderManager from './HeaderManager'
 import { Link } from "react-router-dom";
 import schedule_white from "../images/icons/schedule_white.png"
 
@@ -18,24 +17,24 @@ function FrontPage() {
     const [hideOrShowProjectsTab, setHideOrShowProjectsTab] = useState("0px");
   
     const PickDate = (event) => {
-      const selectedDate = new Date(event.target.value);
-      setDate(selectedDate);
-      setWeekNumber(moment(selectedDate).isoWeek());
-      getSelectedWeekDates(selectedDate);
+        const selectedDate = new Date(event.target.value);
+        setDate(selectedDate);
+        setWeekNumber(moment(selectedDate).isoWeek());
+        getSelectedWeekDates(selectedDate);
     };
   
     const NextWeek = () => {
-      const newDate = moment(date).add(7, 'days').toDate();
-      setDate(newDate);
-      setWeekNumber(moment(newDate).isoWeek());
-      getSelectedWeekDates(newDate);
+        const newDate = moment(date).add(7, 'days').toDate();
+        setDate(newDate);
+        setWeekNumber(moment(newDate).isoWeek());
+        getSelectedWeekDates(newDate);
     };
   
     const LastWeek = () => {
-      const newDate = moment(date).subtract(7, 'days').toDate();
-      setDate(newDate);
-      setWeekNumber(moment(newDate).isoWeek());
-      getSelectedWeekDates(newDate);
+        const newDate = moment(date).subtract(7, 'days').toDate();
+        setDate(newDate);
+        setWeekNumber(moment(newDate).isoWeek());
+        getSelectedWeekDates(newDate);
     };
 
     const getSelectedWeekDates = (selectedDate) => {
@@ -71,9 +70,9 @@ function FrontPage() {
             setHideOrShowDepartmentsTab("0px")
             return;
         }
-      };
+    };
 
-      const HandleSectionsTab = () => {
+    const HandleSectionsTab = () => {
         if(hideOrShowSectionsTab == "0px"){
             setHideOrShowSectionsTab("auto")
             return;
@@ -82,9 +81,9 @@ function FrontPage() {
             setHideOrShowSectionsTab("0px")
             return;
         }
-      };
+    };
 
-      const HandleProjectsTab = () => {
+    const HandleProjectsTab = () => {
         if(hideOrShowProjectsTab == "0px"){
             setHideOrShowProjectsTab("auto")
             return;
@@ -93,22 +92,25 @@ function FrontPage() {
             setHideOrShowProjectsTab("0px")
             return;
         }
-      };
+    };
     
 
     return (
     <>
-        {/* <HeaderNormal/> */}
-        <HeaderManager/>
-        <div className="w-full h-[calc(100vh-140px)] flex">
-            <div className="w-4/5 h-full">
-                <div className="w-full h-[200px]">
-                    <div className="w-full h-1/2 flex">
-                        <div className="w-1/4 h-ful"></div>
-                        <div className="w-3/4 h-full flex">
-                            <div className="h-full w-[calc((100%/14)*3)]"></div>
-                            <div className="h-full w-[calc((100%/14)*3)] flex flex-col-reverse">
-                                <button onClick={LastWeek} className="w-full h-[30px] bg-[#20B5FF] rounded-tl-[15px] text-white">Vorige Week</button>
+    <HeaderNormal/>
+    <div className="w-full h-[calc(100vh-140px)] flex">
+        <div className="w-4/5 h-full">
+            <div className="w-full h-[200px]">
+                <div className="w-full h-1/2 flex">
+                    <div className="w-1/4 h-ful"></div>
+                    <div className="w-3/4 h-full flex">
+                        <div className="h-full w-[calc((100%/14)*3)]"></div>
+                        <div className="h-full w-[calc((100%/14)*3)] flex flex-col-reverse">
+                            <button onClick={LastWeek} className="w-full h-[30px] bg-[#20B5FF] rounded-tl-[15px] text-white">Vorige Week</button>
+                        </div>
+                        <div className="h-full w-[calc(100%/7)] flex flex-col">
+                            <div className="h-1/2 w-full flex flex-col-reverse ">
+                                <p className="text-2xl text-center" data-testid="week-output" >{"week " + weekNumber}</p>
                             </div>
                             <div className="h-1/2 w-full flex flex-col-reverse datepicker" >
                                 <input
@@ -254,6 +256,7 @@ function FrontPage() {
                 </div>
                 <button onClick={HandleProjectsTab}className="h-[100px] w-[100%] h-[50px] bg-[#ffffff]"></button>
             </div>
+        </div>
     </>
     )
   }
