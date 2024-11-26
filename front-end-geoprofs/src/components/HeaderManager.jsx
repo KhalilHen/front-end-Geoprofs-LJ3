@@ -19,7 +19,7 @@ function HeaderManager() {
         <Link to="/statistics-page" className="bg-[#20B5FF] w-[40px] h-[40px] rounded-full flex justify-center items-center ">
           <img className="w-[30px] h-[30px]" src={Statistics} alt="" />
         </Link>
-        <Link to="/notification-page" className="bg-[#20B5FF] w-[auto] h-[40px] rounded-full flex p-[5px] items-center">
+        <Link to="/inbox" className="bg-[#20B5FF] w-[auto] h-[40px] rounded-full flex p-[5px] items-center">
           <p className="px-[15px] text-white align-middle">Inbox</p>
           <img className="h-[35px] w-[35px]" src={Notification} alt="" />
         </Link>
