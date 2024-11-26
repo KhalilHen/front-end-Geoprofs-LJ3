@@ -22,6 +22,10 @@ function StatisticsPage() {
                         <p>Home</p>
                     </Link>
 
+                    <button className="w-[150px] h-[40px] rounded-full flex p-[5px] flex items-center justify-center bg-[#20B5FF] text-white">
+                        <p>Get Data</p>
+                    </button>
+
 
                 </div>
             
