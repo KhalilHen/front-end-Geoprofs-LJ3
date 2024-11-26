@@ -126,7 +126,6 @@ function LeaveRequestPage(){
                     <input type="checkbox" checked={paidLeave == "on"} onChange={handlePaidLeaveChange} disabled={locked}/> paid leave
                 </div>
                 <textarea cols="30" rows="10" onChange={handleChangeText} value={text} disabled={locked}></textarea>
-                {text}
                 <div className="flex flex-col">
                     {/* to do buttons should send correct data to backend (backend also should check if user has rights for what he send) */}
                     <button hidden={hiddenViewing}>submit </button>
