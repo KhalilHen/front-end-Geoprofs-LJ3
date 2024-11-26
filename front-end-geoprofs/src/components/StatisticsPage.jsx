@@ -45,6 +45,10 @@ function StatisticsPage() {
                     with sick leave days.</p>
                 </div>
                 <div className='flex flex-row justify-between items-center'>
+                    <div>
+                        <p>Datum Van:</p>
+                        <input className='border-[1px] border-[#A7A7A7] rounded-none' type="date" name="start-date" id="start-date"/>
+                    </div>
                 </div>
                 <div className='flex flex-row justify-between items-center'>
                 </div>
