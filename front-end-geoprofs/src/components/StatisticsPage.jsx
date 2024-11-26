@@ -46,8 +46,12 @@ function StatisticsPage() {
                 </div>
                 <div className='flex flex-row justify-between items-center'>
                     <div>
-                        <p>Datum Van:</p>
+                        <p className='text-black'>Datum Van:</p>
                         <input className='border-[1px] border-[#A7A7A7] rounded-none' type="date" name="start-date" id="start-date"/>
+                    </div>
+                    <div>
+                        <p className='text-black'>Datum Tot:</p>
+                        <input className='border-[1px] border-[#A7A7A7] rounded-none' type="date" name="end-date" id="end-date"/>
                     </div>
                 </div>
                 <div className='flex flex-row justify-between items-center'>
