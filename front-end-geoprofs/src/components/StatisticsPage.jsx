@@ -48,6 +48,10 @@ function StatisticsPage() {
                     <div>
                         <p className='text-black'>Datum Van:</p>
                         <input className='border-[1px] border-[#A7A7A7] rounded-none' type="date" name="start-date" id="start-date"/>
+
+                        <button onClick={handleOpen} className="my-[10px] w-full h-[35px] rounded-full flex p-[5px] flex items-center justify-center border-[#A7A7A7] border-2 bg-[#ffffff] text-black">
+                            <p>Cancel</p>
+                        </button>
                     </div>
                     <div className='w-[200px]'>
                         <p className='text-black'>Datum Tot:</p>
