@@ -53,7 +53,7 @@ function StatisticsPage() {
                         <p className='text-black'>Datum Tot:</p>
                         <input className='w-[200px] border-[1px] border-[#A7A7A7] rounded-none' type="date" name="end-date" id="end-date"/>
 
-                        <button onClick={handleOpen} className="my-[10px] w-full h-[35px] rounded-full flex p-[5px] flex items-center justify-center bg-[#20B5FF] text-white">
+                        <button className="my-[10px] w-full h-[35px] rounded-full flex p-[5px] flex items-center justify-center bg-[#20B5FF] text-white">
                             <p>Download JSON</p>
                         </button>
                     </div>
