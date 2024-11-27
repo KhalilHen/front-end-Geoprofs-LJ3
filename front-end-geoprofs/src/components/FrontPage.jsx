@@ -1,11 +1,11 @@
 import CalanderRow from "./CalanderRow";
-import React, { useState } from 'react';
+import React, { useState, useRef } from "react";
 import moment from 'moment';
 import HeaderNormal from './HeaderNormal'
 import HeaderManager from './HeaderManager'
 import { Link } from "react-router-dom";
 import schedule_white from "../images/icons/schedule_white.png"
-
+import DropdownIcon from "../images/icons/dropdown.png"
 
 function FrontPage() {
 
@@ -61,40 +61,71 @@ function FrontPage() {
         }
     };
 
-
-    const HandleDepartmentsTab = () => {
-        if(hideOrShowDepartmentsTab == "0px"){
-            setHideOrShowDepartmentsTab("auto")
-            return;
-        }
-        else{
-            setHideOrShowDepartmentsTab("0px")
-            return;
-        }
-    };
-
-    const HandleSectionsTab = () => {
-        if(hideOrShowSectionsTab == "0px"){
-            setHideOrShowSectionsTab("auto")
-            return;
-        }
-        else{
-            setHideOrShowSectionsTab("0px")
-            return;
-        }
-    };
-
-    const HandleProjectsTab = () => {
-        if(hideOrShowProjectsTab == "0px"){
-            setHideOrShowProjectsTab("auto")
-            return;
-        }
-        else{
-            setHideOrShowProjectsTab("0px")
-            return;
-        }
-    };
+    const [departmentsTabIsOpen, setDepartmentsTabIsOpen] = useState(false);
+    const DepartmentsTab = useRef(null);
+  
+    const ToggleDepartmentsTab = () => {
+        const element = DepartmentsTab.current;
     
+        if (departmentsTabIsOpen) {
+            element.style.height = `${element.scrollHeight}px`;
+            requestAnimationFrame(() => {
+            element.style.height = "0px";
+            });
+        } else {
+            element.style.height = "0px";
+            requestAnimationFrame(() => {
+            const targetHeight = `${element.scrollHeight}px`;
+            element.style.height = targetHeight;
+            });
+        }
+    
+        setDepartmentsTabIsOpen(!departmentsTabIsOpen);
+    };
+
+    const [sectionsTabIsOpen, setSectionsTabIsOpen] = useState(false);
+    const SectionsTab = useRef(null);
+  
+    const ToggleSectionsTab = () => {
+        const element = SectionsTab.current;
+    
+        if (sectionsTabIsOpen) {
+            element.style.height = `${element.scrollHeight}px`;
+            requestAnimationFrame(() => {
+            element.style.height = "0px";
+            });
+        } else {
+            element.style.height = "0px";
+            requestAnimationFrame(() => {
+            const targetHeight = `${element.scrollHeight}px`;
+            element.style.height = targetHeight;
+            });
+        }
+    
+        setSectionsTabIsOpen(!sectionsTabIsOpen);
+    };
+
+    const [projectsTabIsOpen, setProjectsTabIsOpen] = useState(false);
+    const ProjectsTab = useRef(null);
+  
+    const ToggleProjectsTab = () => {
+        const element = ProjectsTab.current;
+    
+        if (projectsTabIsOpen) {
+            element.style.height = `${element.scrollHeight}px`;
+            requestAnimationFrame(() => {
+            element.style.height = "0px";
+            });
+        } else {
+            element.style.height = "0px";
+            requestAnimationFrame(() => {
+            const targetHeight = `${element.scrollHeight}px`;
+            element.style.height = targetHeight;
+            });
+        }
+    
+        setProjectsTabIsOpen(!projectsTabIsOpen);
+    };
 
     return (
     <>
@@ -192,11 +223,12 @@ function FrontPage() {
                     <CalanderRow/>
                 </div>
             </div>
-            <div className="w-1/5 h-full bg-[#00FF00]">
-                <div className="w-full h-[100px] bg-[#FF00FF]">
+            <div className="w-1/5 h-full px-[15px]">
+                <div className="w-full h-[100px]">
                 </div>
                 <h1>Departments</h1>
-                <div style={{height: hideOrShowDepartmentsTab}} className="w-[100%] bg-[#ff0000] overflow-hidden">
+                <div className="h-0 w-[100%] overflow-hidden overflow-hidden transition-all duration-500 ease-in-out"
+                ref={DepartmentsTab}>
                     <div className="w-full h-[20px] flex">
                         <input type="checkbox" name="" id="" />
                         <p>1</p>
@@ -214,10 +246,19 @@ function FrontPage() {
                         <p>4</p>
                     </div>
                 </div>
-                <button onClick={HandleDepartmentsTab}className="h-[100px] w-[100%] h-[50px] bg-[#ffffff]"></button>
+                <button onClick={ToggleDepartmentsTab} className="h-[100px] w-[100%] h-[50px] bg-[#ffffff] border-[#A7A7A7] border-t-[1px] border-b-[1px] bg-[#ffffff] flex justify-center items-center">
+                <img
+                    className={`w-[40px] h-[40px] transition-transform ${
+                        departmentsTabIsOpen ? 'rotate-180' : 'rotate-0'
+                    }`}
+                    src={DropdownIcon}
+                    alt=""
+                />
+                </button>
                 
                 <h1>Sections</h1>
-                <div style={{height: hideOrShowSectionsTab}} className="w-[100%] bg-[#ff0000] overflow-hidden">
+                <div className="h-0 w-[100%] overflow-hidden overflow-hidden transition-all duration-500 ease-in-out"
+                ref={SectionsTab}>
                     <div className="w-full h-[20px] flex">
                         <input type="checkbox" name="" id="" />
                         <p>1</p>
@@ -235,10 +276,20 @@ function FrontPage() {
                         <p>4</p>
                     </div>
                 </div>
-                <button onClick={HandleSectionsTab}className="h-[100px] w-[100%] h-[50px] bg-[#ffffff]"></button>
+
+                <button onClick={ToggleSectionsTab} className="h-[100px] w-[100%] h-[50px] bg-[#ffffff] border-[#A7A7A7] border-t-[1px] border-b-[1px] bg-[#ffffff] flex justify-center items-center">
+                <img
+                    className={`w-[40px] h-[40px] transition-transform ${
+                        sectionsTabIsOpen ? 'rotate-180' : 'rotate-0'
+                    }`}
+                    src={DropdownIcon}
+                    alt=""
+                />
+                </button>
 
                 <h1>Projects</h1>
-                <div style={{height: hideOrShowProjectsTab}} className="w-[100%] bg-[#ff0000] overflow-hidden">
+                <div className="h-0 w-[100%] overflow-hidden overflow-hidden transition-all duration-500 ease-in-out"
+                ref={ProjectsTab}>
                     <div className="w-full h-[20px] flex">
                         <input type="checkbox" name="" id="" />
                         <p>1</p>
@@ -256,7 +307,15 @@ function FrontPage() {
                         <p>4</p>
                     </div>
                 </div>
-                <button onClick={HandleProjectsTab}className="h-[100px] w-[100%] h-[50px] bg-[#ffffff]"></button>
+                <button onClick={ToggleProjectsTab} className="h-[100px] w-[100%] h-[50px] bg-[#ffffff] border-[#A7A7A7] border-t-[1px] border-b-[1px] bg-[#ffffff] flex justify-center items-center">
+                <img
+                    className={`w-[40px] h-[40px] transition-transform ${
+                        projectsTabIsOpen ? 'rotate-180' : 'rotate-0'
+                    }`}
+                    src={DropdownIcon}
+                    alt=""
+                />
+                </button>
             </div>
         </div>
     </>
