@@ -16,7 +16,7 @@ function HeaderManager() {
     <div className="bg-[#00ff00] w-[calc(100%/3)] h-full"></div>
     <div className="bg-[#0000ff] w-[calc(100%/3)] h-full flex">
       <div className="w-[50%] h-full bg-[#ff0000] flex justify-between">
-        <Link to="/statistics-page" className="bg-[#20B5FF] w-[40px] h-[40px] rounded-full flex justify-center items-center ">
+        <Link to="/statistics" className="bg-[#20B5FF] w-[40px] h-[40px] rounded-full flex justify-center items-center ">
           <img className="w-[30px] h-[30px]" src={Statistics} alt="" />
         </Link>
         <Link to="/inbox" className="bg-[#20B5FF] w-[auto] h-[40px] rounded-full flex p-[5px] items-center">
