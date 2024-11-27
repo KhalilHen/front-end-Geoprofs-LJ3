@@ -21,7 +21,11 @@ function StatisticsPage() {
     <HeaderManager/>
     {/* <HeaderNormal/> */}
         <div className="w-full h-[calc(100vh-140px)] flex flex-col">
-            <div className='h-[10%] w-full'></div>
+            <div className='h-[10%] w-full flex justify-center items-end'>
+                <div className='w-[175px]'>
+                    <input className='w-[175px] border-[1px] border-[#A7A7A7] rounded-none' type="date" name="start-date" id="start-date"/>
+                </div>
+            </div>
             <div className='h-[70%] w-full flex justify-center'>
                 <div className='h-full w-[80%] bg-[#EBEBEB]'></div>
             </div>
