@@ -44,18 +44,18 @@ function StatisticsPage() {
                     <p className='text-center text-black'>Select first en last date to dowload a Json file
                     with sick leave days.</p>
                 </div>
-                <div className='flex flex-row justify-between items-center'>
-                    <div>
+                <div className='flex flex-row justify-between items-center p-[10px]'>
+                    <div className='w-[175px]'>
                         <p className='text-black'>Datum Van:</p>
-                        <input className='border-[1px] border-[#A7A7A7] rounded-none' type="date" name="start-date" id="start-date"/>
+                        <input className='w-[175px] border-[1px] border-[#A7A7A7] rounded-none' type="date" name="start-date" id="start-date"/>
 
                         <button onClick={handleOpen} className="my-[10px] w-full h-[35px] rounded-full flex p-[5px] flex items-center justify-center border-[#A7A7A7] border-2 bg-[#ffffff] text-black">
                             <p>Cancel</p>
                         </button>
                     </div>
-                    <div className='w-[200px]'>
+                    <div className='w-[175px]'>
                         <p className='text-black'>Datum Tot:</p>
-                        <input className='w-[200px] border-[1px] border-[#A7A7A7] rounded-none' type="date" name="end-date" id="end-date"/>
+                        <input className='w-[175px] border-[1px] border-[#A7A7A7] rounded-none' type="date" name="end-date" id="end-date"/>
 
                         <button className="my-[10px] w-full h-[35px] rounded-full flex p-[5px] flex items-center justify-center bg-[#20B5FF] text-white">
                             <p>Download JSON</p>
