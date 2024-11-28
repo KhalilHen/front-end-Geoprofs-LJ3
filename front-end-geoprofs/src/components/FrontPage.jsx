@@ -12,10 +12,6 @@ function FrontPage() {
     const [date, setDate] = useState(new Date());
     const [weekNumber, setWeekNumber] = useState(moment().isoWeek());
     const [weekDates, setWeekDates] = useState([]);
-
-    const [hideOrShowDepartmentsTab, setHideOrShowDepartmentsTab] = useState("0px");
-    const [hideOrShowSectionsTab, setHideOrShowSectionsTab] = useState("0px");
-    const [hideOrShowProjectsTab, setHideOrShowProjectsTab] = useState("0px");
   
     const PickDate = (event) => {
         const selectedDate = new Date(event.target.value);
