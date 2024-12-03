@@ -154,9 +154,9 @@ function FrontPage() {
                             <div className="h-full w-[calc((100%/14)*3)] flex flex-col-reverse">
                                 <button onClick={NextWeek} className="w-full h-[30px] bg-[#20B5FF] rounded-tr-[15px] text-white">Volgende Week</button>
                             </div>
-                            <div className="flex justify-center align-center flex h-full w-[calc((100%/14)*3)]">
-                                <Link className="justify-between rounded-full flex w-[90%] h-[40px] bg-[#20B5FF]" to="/">
-                                    <p className="align-middle text-center p-[8px] text-[#ffffff]">Verlof Aanvragen</p>
+                            <div className="flex justify-center items-center flex h-full w-[calc((100%/14)*3)]">
+                                <Link className="justify-between rounded-full flex w-[90%] h-[40px] bg-[#20B5FF]" to="/leave-request">
+                                    <p className="w-full align-middle text-center p-[8px] text-[#ffffff]">Verlof Aanvragen</p>
                                     <img src={schedule_white} alt="" />
                                 </Link>
                             </div>
