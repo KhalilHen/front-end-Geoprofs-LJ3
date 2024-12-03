@@ -7,14 +7,14 @@ import Notification from '../images/icons/notifications.png';
 function HeaderNormal() {
   return (
     <header className="flex bg-[#EBEBEB] w-full h-[140px] p-[35px]">
-    <div className="bg-[#ff0000] w-[calc(100%/3)] h-full">
+    <div className="w-[calc(100%/3)] h-full">
       <Link to="/front-page">
         <img className="h-full" src={Logo} alt="" />
       </Link>
     </div>
-    <div className="bg-[#00ff00] w-[calc(100%/3)] h-full"></div>
+    <div className="w-[calc(100%/3)] h-full"></div>
     <div className="bg-[#0000ff] w-[calc(100%/3)] h-full flex">
-      <div className="w-[50%] h-full bg-[#ff0000] flex justify-end">
+      <div className="w-[50%] h-full bg-[#ff0000] flex justify-end items-center">
         <Link to="/inbox" className="bg-[#20B5FF] w-[auto] h-[40px] rounded-full flex p-[5px] items-center">
           <p className="px-[15px] text-white align-middle">Inbox</p>
           <img className="h-[35px] w-[35px]" src={Notification} alt="" />
