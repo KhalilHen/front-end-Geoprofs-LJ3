@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Outlet, Link } from "react-router-dom";
-import HeaderNormal from './HeaderNormal'
-import HeaderManager from './HeaderManager'
+import Header from './Header'
 
 import {
   Button,
@@ -18,8 +17,7 @@ function StatisticsPage() {
 
     return (
     <>
-    <HeaderManager/>
-    {/* <HeaderNormal/> */}
+    <Header/>
         <div className="w-full h-[calc(100vh-140px)] flex flex-col">
             <div className='h-[10%] w-full flex justify-center items-end'>
                 <div className='w-[175px]'>

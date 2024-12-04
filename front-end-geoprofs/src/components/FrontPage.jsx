@@ -1,8 +1,7 @@
 import CalanderRow from "./CalanderRow";
 import React, { useState, useRef } from "react";
 import moment from 'moment';
-import HeaderNormal from './HeaderNormal'
-import HeaderManager from './HeaderManager'
+import Header from './Header'
 import { Link } from "react-router-dom";
 import schedule_white from "../images/icons/schedule_white.png"
 import DropdownIcon from "../images/icons/dropdown.png"
@@ -125,8 +124,7 @@ function FrontPage() {
 
     return (
     <>
-    <HeaderManager/>
-    {/* <HeaderNormal/> */}
+    <Header/>
     <div className="w-full h-[calc(100vh-140px)] flex">
         <div className="w-4/5 h-full">
             <div className="w-full h-[200px]">
