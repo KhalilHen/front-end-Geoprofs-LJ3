@@ -36,7 +36,8 @@ function HeaderManager() {
         <Link to="/inbox" className="bg-[#20B5FF] w-[auto] h-[40px] rounded-full flex p-[5px] items-center">
           <p className="px-[15px] text-white align-middle">Inbox</p>
           <div style={{backgroundImage: "url(" + Notification + ")"}} className="flex h-[35px] w-[35px] bg-center bg-no-repeat bg-cover background-image justify-end">
-            <div className="w-[10px] h-[10px] bg-red-500 rounded-full absolute m-[5px]"></div>
+            {/* if number of unread messages is higher than 0, true. else, false. */}
+            {true ? <div className="w-[10px] h-[10px] bg-red-500 rounded-full absolute m-[5px]"></div> : ''}
           </div>
         </Link>
       </div>
