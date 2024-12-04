@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
-import HeaderNormal from './HeaderNormal';
 import Option from './Option';
 import moment from 'moment';
+import Header from './Header';
 
 function LeaveRequestPage(){
 
@@ -83,7 +83,7 @@ function LeaveRequestPage(){
 
     return(
         <>
-            <HeaderNormal/>
+            <Header/>
             <div>
                 <select name="category" id="category" onChange={handleChangeCategory}>
                     <Option name="noChosen" id="-1"/> {/* these options are temporary */}
