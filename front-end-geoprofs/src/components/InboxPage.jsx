@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Option from './Option';
 import LeaveRequest from './LeaveRequest';
-import HeaderNormal from './HeaderNormal';
+import Header from './Header';
 
 function InboxPage(){
 
@@ -73,7 +73,7 @@ function InboxPage(){
 
     return(
     <>  
-        <HeaderNormal/>
+        <Header/>
         <div class="flex flex-row">
             <div class="flex-1">
                 Your Open Requests

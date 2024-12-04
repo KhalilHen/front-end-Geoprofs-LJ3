@@ -1,4 +1,3 @@
-// import HeaderNormal from "./components/HeaderNormal";
 import './App.css'
 import FrontPage from "./components/FrontPage";
 import InboxPage from './components/InboxPage';
