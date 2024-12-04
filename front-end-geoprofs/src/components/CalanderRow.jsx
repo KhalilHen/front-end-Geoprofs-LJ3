@@ -12,7 +12,7 @@ function CalanderRow() {
                     <div className='flex w-full justify-between items-center'>
                         <div className='flex '>
                             <div className="w-[50px] h-[50px]">
-                                <img src={User} alt="User" />
+                                <img className='rounded-full' src={User} alt="User" />
                             </div>
                             <p className='mx-[5px] items-center flex'>John Doe</p>
                         </div>
