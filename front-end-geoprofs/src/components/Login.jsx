@@ -6,21 +6,21 @@ import backgroundImage3 from '../images/backgroundImage3.jpg';
 
 import React, { useState, useEffect } from 'react';
 import { Outlet, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-function HeaderNormal() {
+function Login(props) {
+    const navigate = useNavigate();
     const [backgroundImage, setBackgroundImage] = useState(backgroundImage1);
     const colors = [backgroundImage1, backgroundImage2, backgroundImage3];
     let currentIndex = 0;
     const url = "http://127.0.0.1:8000/login";
-    const [data ,setData ] = useState();
     const [password, setPassword] = useState("");
     const [mail, setMail] = useState("");
 
-    useEffect(() => {
+    useEffect(() => {     
         const interval = setInterval(() => {
             currentIndex = (currentIndex + 1) % colors.length; // Cycle through colors
             setBackgroundImage(colors[currentIndex]);
-            
         }, 6000); // Change color every 5 seconds
 
         return () => clearInterval(interval); // Cleanup interval on component unmount
@@ -38,25 +38,30 @@ function HeaderNormal() {
         fetch('http://127.0.0.1:8000/sanctum/csrf-cookie', {
             credentials: 'include',
         })
-            .then(() => {
-                // Now send the login request
-                fetch('http://127.0.0.1:8000/login', {
-                    method: 'POST',
-                    credentials: 'include',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        emailOrId: mail,
-                        password: password,
-                    }),
-                })
-                    .then(response => response.json())
-                    .then(data => console.log(data))
-                    .catch(error => console.error('Error:', error));
-            });
+        .then(() => {
+            fetch('http://127.0.0.1:8000/login', {
+                method: 'POST',
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    emailOrId: mail,
+                    password: password,
+                }),
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                }
+            })
+            .then(async data => {
+                await(props.setUser(data));
+                navigate("/front-page");
+            })
+            .catch(error => console.error('Error:', error));
+        });
     }
-
 
     return (
       <div style={{backgroundImage: "url(" + backgroundImage + ")"}} className="bg-center bg-no-repeat bg-cover background-image duration-[2s] w-full h-full content-center flex flex-wrap justify-center">
@@ -72,13 +77,12 @@ function HeaderNormal() {
                 <h1 className="text-xl text-center">Wachtwoord</h1>
                 <input placeholder="Wachtwoord" className="w-4/5 h-[40px] border-solid border-[#A7A7A7] border-[1px] p-[10px]" type="password" onChange={handleChangePassword} value={password} />
             </div>
-            {data}
             <div className="w-full h-[150px] content-center flex flex-wrap justify-center">
                 <button className="w-4/5 h-[40px] border-solid border-[#A7A7A7] border-[1px] p-[10px] rounded-full flex justify-center" onClick={login}>Log In</button>
-            </div>
+            </div> 
         </div>
       </div>
     )
   }
   
-  export default HeaderNormal
+  export default Login
