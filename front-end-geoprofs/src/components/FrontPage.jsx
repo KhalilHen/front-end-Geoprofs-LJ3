@@ -1,20 +1,16 @@
 import CalanderRow from "./CalanderRow";
-import React, { useState } from 'react';
+import React, { useState, useRef } from "react";
 import moment from 'moment';
 import Header from './Header'
 import { Link } from "react-router-dom";
 import schedule_white from "../images/icons/schedule_white.png"
-
+import DropdownIcon from "../images/icons/dropdown.png"
 
 function FrontPage() {
 
     const [date, setDate] = useState(new Date());
     const [weekNumber, setWeekNumber] = useState(moment().isoWeek());
     const [weekDates, setWeekDates] = useState([]);
-
-    const [hideOrShowDepartmentsTab, setHideOrShowDepartmentsTab] = useState("0px");
-    const [hideOrShowSectionsTab, setHideOrShowSectionsTab] = useState("0px");
-    const [hideOrShowProjectsTab, setHideOrShowProjectsTab] = useState("0px");
   
     const PickDate = (event) => {
         const selectedDate = new Date(event.target.value);
@@ -60,40 +56,71 @@ function FrontPage() {
         }
     };
 
-
-    const HandleDepartmentsTab = () => {
-        if(hideOrShowDepartmentsTab == "0px"){
-            setHideOrShowDepartmentsTab("auto")
-            return;
-        }
-        else{
-            setHideOrShowDepartmentsTab("0px")
-            return;
-        }
-    };
-
-    const HandleSectionsTab = () => {
-        if(hideOrShowSectionsTab == "0px"){
-            setHideOrShowSectionsTab("auto")
-            return;
-        }
-        else{
-            setHideOrShowSectionsTab("0px")
-            return;
-        }
-    };
-
-    const HandleProjectsTab = () => {
-        if(hideOrShowProjectsTab == "0px"){
-            setHideOrShowProjectsTab("auto")
-            return;
-        }
-        else{
-            setHideOrShowProjectsTab("0px")
-            return;
-        }
-    };
+    const [departmentsTabIsOpen, setDepartmentsTabIsOpen] = useState(false);
+    const DepartmentsTab = useRef(null);
+  
+    const ToggleDepartmentsTab = () => {
+        const element = DepartmentsTab.current;
     
+        if (departmentsTabIsOpen) {
+            element.style.height = `${element.scrollHeight}px`;
+            requestAnimationFrame(() => {
+            element.style.height = "0px";
+            });
+        } else {
+            element.style.height = "0px";
+            requestAnimationFrame(() => {
+            const targetHeight = `${element.scrollHeight}px`;
+            element.style.height = targetHeight;
+            });
+        }
+    
+        setDepartmentsTabIsOpen(!departmentsTabIsOpen);
+    };
+
+    const [sectionsTabIsOpen, setSectionsTabIsOpen] = useState(false);
+    const SectionsTab = useRef(null);
+  
+    const ToggleSectionsTab = () => {
+        const element = SectionsTab.current;
+    
+        if (sectionsTabIsOpen) {
+            element.style.height = `${element.scrollHeight}px`;
+            requestAnimationFrame(() => {
+            element.style.height = "0px";
+            });
+        } else {
+            element.style.height = "0px";
+            requestAnimationFrame(() => {
+            const targetHeight = `${element.scrollHeight}px`;
+            element.style.height = targetHeight;
+            });
+        }
+    
+        setSectionsTabIsOpen(!sectionsTabIsOpen);
+    };
+
+    const [projectsTabIsOpen, setProjectsTabIsOpen] = useState(false);
+    const ProjectsTab = useRef(null);
+  
+    const ToggleProjectsTab = () => {
+        const element = ProjectsTab.current;
+    
+        if (projectsTabIsOpen) {
+            element.style.height = `${element.scrollHeight}px`;
+            requestAnimationFrame(() => {
+            element.style.height = "0px";
+            });
+        } else {
+            element.style.height = "0px";
+            requestAnimationFrame(() => {
+            const targetHeight = `${element.scrollHeight}px`;
+            element.style.height = targetHeight;
+            });
+        }
+    
+        setProjectsTabIsOpen(!projectsTabIsOpen);
+    };
 
     return (
     <>
@@ -125,9 +152,9 @@ function FrontPage() {
                             <div className="h-full w-[calc((100%/14)*3)] flex flex-col-reverse">
                                 <button onClick={NextWeek} className="w-full h-[30px] bg-[#20B5FF] rounded-tr-[15px] text-white">Volgende Week</button>
                             </div>
-                            <div className="flex justify-center align-center flex h-full w-[calc((100%/14)*3)]">
-                                <Link className="justify-between rounded-full flex w-[90%] h-[40px] bg-[#20B5FF]" to="/">
-                                    <p className="align-middle text-center p-[8px] text-[#ffffff]">Verlof Aanvragen</p>
+                            <div className="flex justify-center items-center flex h-full w-[calc((100%/14)*3)]">
+                                <Link className="justify-between rounded-full flex w-[90%] h-[40px] bg-[#20B5FF]" to="/leave-request">
+                                    <p className="w-full align-middle text-center p-[8px] text-[#ffffff]">Verlof Aanvragen</p>
                                     <img src={schedule_white} alt="" />
                                 </Link>
                             </div>
@@ -190,11 +217,12 @@ function FrontPage() {
                     <CalanderRow/>
                 </div>
             </div>
-            <div className="w-1/5 h-full bg-[#00FF00]">
-                <div className="w-full h-[100px] bg-[#FF00FF]">
+            <div className="w-1/5 h-full px-[15px]">
+                <div className="w-full h-[100px]">
                 </div>
                 <h1>Departments</h1>
-                <div style={{height: hideOrShowDepartmentsTab}} className="w-[100%] bg-[#ff0000] overflow-hidden">
+                <div className="h-0 w-[100%] overflow-hidden overflow-hidden transition-all duration-500 ease-in-out"
+                ref={DepartmentsTab}>
                     <div className="w-full h-[20px] flex">
                         <input type="checkbox" name="" id="" />
                         <p>1</p>
@@ -212,10 +240,19 @@ function FrontPage() {
                         <p>4</p>
                     </div>
                 </div>
-                <button onClick={HandleDepartmentsTab}className="h-[100px] w-[100%] h-[50px] bg-[#ffffff]"></button>
+                <button onClick={ToggleDepartmentsTab} className="h-[100px] w-[100%] h-[50px] bg-[#ffffff] border-[#A7A7A7] border-t-[1px] border-b-[1px] bg-[#ffffff] flex justify-center items-center">
+                <img
+                    className={`w-[40px] h-[40px] transition-transform ${
+                        departmentsTabIsOpen ? 'rotate-180' : 'rotate-0'
+                    }`}
+                    src={DropdownIcon}
+                    alt=""
+                />
+                </button>
                 
                 <h1>Sections</h1>
-                <div style={{height: hideOrShowSectionsTab}} className="w-[100%] bg-[#ff0000] overflow-hidden">
+                <div className="h-0 w-[100%] overflow-hidden overflow-hidden transition-all duration-500 ease-in-out"
+                ref={SectionsTab}>
                     <div className="w-full h-[20px] flex">
                         <input type="checkbox" name="" id="" />
                         <p>1</p>
@@ -233,10 +270,20 @@ function FrontPage() {
                         <p>4</p>
                     </div>
                 </div>
-                <button onClick={HandleSectionsTab}className="h-[100px] w-[100%] h-[50px] bg-[#ffffff]"></button>
+
+                <button onClick={ToggleSectionsTab} className="h-[100px] w-[100%] h-[50px] bg-[#ffffff] border-[#A7A7A7] border-t-[1px] border-b-[1px] bg-[#ffffff] flex justify-center items-center">
+                <img
+                    className={`w-[40px] h-[40px] transition-transform ${
+                        sectionsTabIsOpen ? 'rotate-180' : 'rotate-0'
+                    }`}
+                    src={DropdownIcon}
+                    alt=""
+                />
+                </button>
 
                 <h1>Projects</h1>
-                <div style={{height: hideOrShowProjectsTab}} className="w-[100%] bg-[#ff0000] overflow-hidden">
+                <div className="h-0 w-[100%] overflow-hidden overflow-hidden transition-all duration-500 ease-in-out"
+                ref={ProjectsTab}>
                     <div className="w-full h-[20px] flex">
                         <input type="checkbox" name="" id="" />
                         <p>1</p>
@@ -254,7 +301,15 @@ function FrontPage() {
                         <p>4</p>
                     </div>
                 </div>
-                <button onClick={HandleProjectsTab}className="h-[100px] w-[100%] h-[50px] bg-[#ffffff]"></button>
+                <button onClick={ToggleProjectsTab} className="h-[100px] w-[100%] h-[50px] bg-[#ffffff] border-[#A7A7A7] border-t-[1px] border-b-[1px] bg-[#ffffff] flex justify-center items-center">
+                <img
+                    className={`w-[40px] h-[40px] transition-transform ${
+                        projectsTabIsOpen ? 'rotate-180' : 'rotate-0'
+                    }`}
+                    src={DropdownIcon}
+                    alt=""
+                />
+                </button>
             </div>
         </div>
     </>
