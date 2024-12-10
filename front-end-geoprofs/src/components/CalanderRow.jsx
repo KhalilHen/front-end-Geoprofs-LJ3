@@ -2,6 +2,7 @@ import React from 'react';
 
 import Bookmark from '../images/icons/Bookmark.png';
 import BookmarkFilled from '../images/icons/BookmarkFilled.png';
+import User from '../images/icons/user.png';
 
 function CalanderRow() {
     return (
@@ -10,7 +11,9 @@ function CalanderRow() {
                 <div className="w-4/5 h-full border-b-[1px] border-[#A7A7A7] items-center flex">
                     <div className='flex w-full justify-between items-center'>
                         <div className='flex '>
-                            <div className="w-[50px] h-[50px] bg-[#ff0000]"></div>
+                            <div className="w-[50px] h-[50px]">
+                                <img className='rounded-full' src={User} alt="User" />
+                            </div>
                             <p className='mx-[5px] items-center flex'>John Doe</p>
                         </div>
                         <button className='w-[40px] h-[40px]'>
