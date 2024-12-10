@@ -4,6 +4,8 @@ import backgroundImage1 from '../images/backgroundImage1.jpg';
 import backgroundImage2 from '../images/backgroundImage2.jpg';
 import backgroundImage3 from '../images/backgroundImage3.jpg';
 
+import { backendUrl } from '../config/config.json';
+
 import React, { useState, useEffect } from 'react';
 import { Outlet, Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -13,7 +15,6 @@ function Login(props) {
     const [backgroundImage, setBackgroundImage] = useState(backgroundImage1);
     const colors = [backgroundImage1, backgroundImage2, backgroundImage3];
     let currentIndex = 0;
-    const url = "http://127.0.0.1:8000/login";
     const [password, setPassword] = useState("");
     const [mail, setMail] = useState("");
 
@@ -35,11 +36,11 @@ function Login(props) {
     }
 
     function login(){
-        fetch('http://127.0.0.1:8000/sanctum/csrf-cookie', {
+        fetch(backendUrl+'/sanctum/csrf-cookie', {
             credentials: 'include',
         })
         .then(() => {
-            fetch('http://127.0.0.1:8000/login', {
+            fetch(backendUrl+'/login', {
                 method: 'POST',
                 credentials: 'include',
                 headers: {
