@@ -166,11 +166,11 @@ function FrontPage() {
         },
         {
             name: "Steve",
-            pfp: '../images/profilePictures/steve1.jpg'
+            pfp: '/profilePictures/steve1.jpg'
         },
         {
             name: "Herobrine",
-            pfp: '../images/profilePictures/jessie1.jpg'
+            pfp: '/profilePictures/jessie1.jpg'
         }
     ];
 
@@ -257,7 +257,7 @@ function FrontPage() {
                 <div className="w-full h-[calc(100vh-340px)] overflow-y-scroll scrollbar-hide">
                 {Users.map(user => {            
                     return(
-                        <CalanderRow name={user.name}/>
+                        <CalanderRow user={user} />
                     )
                 })}
 

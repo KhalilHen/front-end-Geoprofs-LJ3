@@ -6,21 +6,17 @@ import User from '../images/icons/user.png';
 import { button } from '@material-tailwind/react';
 
 function CalanderRow(props) {
-
-    //test function to print pfp data
-
     return (
         
         <div className="w-full h-[100px] flex">
-            <button onClick={test} className=''>test</button>
             <div className="w-1/4 h-full justify-center flex">
                 <div className="w-4/5 h-full border-b-[1px] border-[#A7A7A7] items-center flex">
                     <div className='flex w-full justify-between items-center'>
                         <div className='flex '>
                             <div className="w-[50px] h-[50px]">
-                                <img className='rounded-full' src={props.pfp} alt="User" />
+                                <img className='rounded-full' src={props.user.pfp != null ? props.user.pfp : User} alt="User" />
                             </div>
-                            <p className='mx-[5px] items-center flex'>{props.name}</p>
+                            <p className='mx-[5px] items-center flex'>{props.user.name}</p>
                         </div>
                         <button className='w-[40px] h-[40px]'>
                             <img src={Bookmark} alt="bookmark" />
