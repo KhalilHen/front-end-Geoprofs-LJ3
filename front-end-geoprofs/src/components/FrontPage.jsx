@@ -122,6 +122,58 @@ function FrontPage() {
         setProjectsTabIsOpen(!projectsTabIsOpen);
     };
 
+
+    const Departments = [//temporary
+        {
+            title: "D1",
+        },
+        {
+            title: "D2",
+        },
+        {
+            title: "D3",
+        }
+    ];
+
+    const Sections = [//temporary
+        {
+            title: "S1",
+        },
+        {
+            title: "S2",
+        },
+        {
+            title: "S3",
+        }
+    ];
+
+    const Projects = [//temporary
+        {
+            title: "P1",
+        },
+        {
+            title: "P2",
+        },
+        {
+            title: "P3",
+        }
+    ];
+
+    const Users = [
+        {
+            name: "jessie",
+            pfp: null
+        },
+        {
+            name: "Steve",
+            pfp: '../images/profilePictures/steve1.jpg'
+        },
+        {
+            name: "Herobrine",
+            pfp: '../images/profilePictures/jessie1.jpg'
+        }
+    ];
+
     return (
     <>
     <Header/>
@@ -203,18 +255,14 @@ function FrontPage() {
                     </div>
                 </div>
                 <div className="w-full h-[calc(100vh-340px)] overflow-y-scroll scrollbar-hide">
-                    <CalanderRow/>
-                    <CalanderRow/>
-                    <CalanderRow/>
-                    <CalanderRow/>
-                    <CalanderRow/>
-                    <CalanderRow/>
-                    <CalanderRow/>
-                    <CalanderRow/>
-                    <CalanderRow/>
-                    <CalanderRow/>
-                    <CalanderRow/>
-                    <CalanderRow/>
+                {Users.map(user => {            
+                    return(
+                        <CalanderRow name={user.name}/>
+                    )
+                })}
+
+                    
+
                 </div>
             </div>
             <div className="w-1/5 h-full px-[15px]">
@@ -223,22 +271,14 @@ function FrontPage() {
                 <h1>Departments</h1>
                 <div className="h-0 w-[100%] overflow-hidden overflow-hidden transition-all duration-500 ease-in-out"
                 ref={DepartmentsTab}>
-                    <div className="w-full h-[20px] flex">
-                        <input type="checkbox" name="" id="" />
-                        <p>1</p>
-                    </div>
-                    <div className="w-full h-[20px] flex">
-                        <input type="checkbox" name="" id="" />
-                        <p>2</p>
-                    </div>
-                    <div className="w-full h-[20px] flex">
-                        <input type="checkbox" name="" id="" />
-                        <p>3</p>
-                    </div>
-                    <div className="w-full h-[20px] flex">
-                        <input type="checkbox" name="" id="" />
-                        <p>4</p>
-                    </div>
+                {Departments.map(Department => {            
+                    return(
+                        <div className="w-full h-[20px] flex">
+                            <input type="checkbox" name="" id="" />
+                            <p>{Department.title}</p>
+                        </div>
+                    )
+                })}
                 </div>
                 <button onClick={ToggleDepartmentsTab} className="h-[100px] w-[100%] h-[50px] bg-[#ffffff] border-[#A7A7A7] border-t-[1px] border-b-[1px] bg-[#ffffff] flex justify-center items-center">
                 <img
@@ -253,22 +293,14 @@ function FrontPage() {
                 <h1>Sections</h1>
                 <div className="h-0 w-[100%] overflow-hidden overflow-hidden transition-all duration-500 ease-in-out"
                 ref={SectionsTab}>
-                    <div className="w-full h-[20px] flex">
-                        <input type="checkbox" name="" id="" />
-                        <p>1</p>
-                    </div>
-                    <div className="w-full h-[20px] flex">
-                        <input type="checkbox" name="" id="" />
-                        <p>2</p>
-                    </div>
-                    <div className="w-full h-[20px] flex">
-                        <input type="checkbox" name="" id="" />
-                        <p>3</p>
-                    </div>
-                    <div className="w-full h-[20px] flex">
-                        <input type="checkbox" name="" id="" />
-                        <p>4</p>
-                    </div>
+                {Sections.map(Section => {            
+                    return(
+                        <div className="w-full h-[20px] flex">
+                            <input type="checkbox" name="" id="" />
+                            <p>{Section.title}</p>
+                        </div>
+                    )
+                })}
                 </div>
 
                 <button onClick={ToggleSectionsTab} className="h-[100px] w-[100%] h-[50px] bg-[#ffffff] border-[#A7A7A7] border-t-[1px] border-b-[1px] bg-[#ffffff] flex justify-center items-center">
@@ -284,22 +316,14 @@ function FrontPage() {
                 <h1>Projects</h1>
                 <div className="h-0 w-[100%] overflow-hidden overflow-hidden transition-all duration-500 ease-in-out"
                 ref={ProjectsTab}>
-                    <div className="w-full h-[20px] flex">
-                        <input type="checkbox" name="" id="" />
-                        <p>1</p>
-                    </div>
-                    <div className="w-full h-[20px] flex">
-                        <input type="checkbox" name="" id="" />
-                        <p>2</p>
-                    </div>
-                    <div className="w-full h-[20px] flex">
-                        <input type="checkbox" name="" id="" />
-                        <p>3</p>
-                    </div>
-                    <div className="w-full h-[20px] flex">
-                        <input type="checkbox" name="" id="" />
-                        <p>4</p>
-                    </div>
+                {Projects.map(Project => {            
+                    return(
+                        <div className="w-full h-[20px] flex">
+                            <input type="checkbox" name="" id="" />
+                            <p>{Project.title}</p>
+                        </div>
+                    )
+                })}
                 </div>
                 <button onClick={ToggleProjectsTab} className="h-[100px] w-[100%] h-[50px] bg-[#ffffff] border-[#A7A7A7] border-t-[1px] border-b-[1px] bg-[#ffffff] flex justify-center items-center">
                 <img
