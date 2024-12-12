@@ -289,7 +289,7 @@ function FrontPage() {
 
                 </div>
             </div>
-            <div className="w-1/5 h-full px-[15px]">
+            <div className="w-1/5 h-full px-[15px]" data-testid ="filter-list">
                 <div className="w-full h-[100px]">
                 </div>
                 <h1>Departments</h1>
@@ -303,8 +303,7 @@ function FrontPage() {
                         </div>
                         )
                     })}
-                </div>
-                <button onClick={ToggleDepartmentsTab} className="h-[100px] w-[100%] h-[50px] bg-[#ffffff] border-[#A7A7A7] border-t-[1px] border-b-[1px] bg-[#ffffff] flex justify-center items-center">
+                <button onClick={ToggleDepartmentsTab} className="h-[100px] w-[100%] h-[50px] bg-[#ffffff] border-[#A7A7A7] border-t-[1px] border-b-[1px] bg-[#ffffff] flex justify-center items-center" data-testid ="filter-departments">
                 <img
                     className={`w-[40px] h-[40px] transition-transform ${
                         departmentsTabIsOpen ? 'rotate-180' : 'rotate-0'
@@ -326,7 +325,7 @@ function FrontPage() {
                         )
                     })}
                 </div>
-                <button onClick={ToggleSectionsTab} className="h-[100px] w-[100%] h-[50px] bg-[#ffffff] border-[#A7A7A7] border-t-[1px] border-b-[1px] bg-[#ffffff] flex justify-center items-center">
+                <button onClick={ToggleSectionsTab} className="h-[100px] w-[100%] h-[50px] bg-[#ffffff] border-[#A7A7A7] border-t-[1px] border-b-[1px] bg-[#ffffff] flex justify-center items-center" data-testid ="filter-sections">
                 <img
                     className={`w-[40px] h-[40px] transition-transform ${
                         sectionsTabIsOpen ? 'rotate-180' : 'rotate-0'
@@ -347,8 +346,9 @@ function FrontPage() {
                             </div>
                         )
                     })}
+
                 </div>
-                <button onClick={ToggleProjectsTab} className="h-[100px] w-[100%] h-[50px] bg-[#ffffff] border-[#A7A7A7] border-t-[1px] border-b-[1px] bg-[#ffffff] flex justify-center items-center">
+                <button onClick={ToggleProjectsTab} className="h-[100px] w-[100%] h-[50px] bg-[#ffffff] border-[#A7A7A7] border-t-[1px] border-b-[1px] bg-[#ffffff] flex justify-center items-center" data-testid ="filter-projects">
                 <img
                     className={`w-[40px] h-[40px] transition-transform ${
                         projectsTabIsOpen ? 'rotate-180' : 'rotate-0'
