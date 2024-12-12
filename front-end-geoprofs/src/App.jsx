@@ -10,6 +10,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 function App() {
   return (
     <BrowserRouter
+      //gets rid of warnings
       future={{
         v7_startTransition: true,
         v7_relativeSplatPath: true,
