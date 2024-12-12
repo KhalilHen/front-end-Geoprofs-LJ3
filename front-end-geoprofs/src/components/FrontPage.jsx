@@ -217,12 +217,12 @@ function FrontPage() {
                     <CalanderRow/>
                 </div>
             </div>
-            <div className="w-1/5 h-full px-[15px]">
+            <div className="w-1/5 h-full px-[15px]" data-testid ="filter-list">
                 <div className="w-full h-[100px]">
                 </div>
                 <h1>Departments</h1>
                 <div className="h-0 w-[100%] overflow-hidden overflow-hidden transition-all duration-500 ease-in-out"
-                ref={DepartmentsTab}>
+                ref={DepartmentsTab} data-testid ="filter-departments">
                     <div className="w-full h-[20px] flex">
                         <input type="checkbox" name="" id="" />
                         <p>1</p>
@@ -252,7 +252,7 @@ function FrontPage() {
                 
                 <h1>Sections</h1>
                 <div className="h-0 w-[100%] overflow-hidden overflow-hidden transition-all duration-500 ease-in-out"
-                ref={SectionsTab}>
+                ref={SectionsTab} data-testid ="filter-sections">
                     <div className="w-full h-[20px] flex">
                         <input type="checkbox" name="" id="" />
                         <p>1</p>
@@ -283,7 +283,7 @@ function FrontPage() {
 
                 <h1>Projects</h1>
                 <div className="h-0 w-[100%] overflow-hidden overflow-hidden transition-all duration-500 ease-in-out"
-                ref={ProjectsTab}>
+                ref={ProjectsTab} data-testid ="filter-projects">
                     <div className="w-full h-[20px] flex">
                         <input type="checkbox" name="" id="" />
                         <p>1</p>
