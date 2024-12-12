@@ -14,7 +14,7 @@ function CalanderRow(props) {
                     <div className='flex w-full justify-between items-center'>
                         <div className='flex '>
                             <div className="w-[50px] h-[50px]">
-                                <img className='rounded-full' src={props.user.pfp != null ? props.user.pfp : User} alt="User" />
+                                <img className='rounded-full h-[50px] w-[50px] object-cover' src={props.user.pfp != null ? props.user.pfp : User} alt="User" />
                             </div>
                             <p className='mx-[5px] items-center flex'>{props.user.name}</p>
                         </div>

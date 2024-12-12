@@ -1,5 +1,5 @@
 import CalanderRow from "./CalanderRow";
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import moment from 'moment';
 import Header from './Header'
 import { Link } from "react-router-dom";
@@ -7,6 +7,80 @@ import schedule_white from "../images/icons/schedule_white.png"
 import DropdownIcon from "../images/icons/dropdown.png"
 
 function FrontPage() {
+
+    const Departments = [//temporary
+        {
+            id: "1",
+            title: "D1",
+        },
+        {
+            id: "2",
+            title: "D2",
+        },
+        {
+            id: "3",
+            title: "D3",
+        }
+    ];
+
+    const Sections = [//temporary
+        {
+            id: "1",
+            title: "S1",
+        },
+        {
+            id: "2",
+            title: "S2",
+        },
+        {
+            id: "3",
+            title: "S3",
+        }
+    ];
+
+    const Projects = [//temporary
+        {
+            id: "1",
+            title: "P1",
+        },
+        {
+            id: "2",
+            title: "P2",
+        },
+        {
+            id: "3",
+            title: "P3",
+        }
+    ];
+
+    const Users = [
+        {
+            id: "1",
+            name: "jessie",
+            pfp: null
+        },
+        {
+            id: "2",
+            name: "Steve",
+            pfp: '/profilePictures/steve1.jpg'
+        },
+        {
+            id: "3",
+            name: "Herobrine",
+            pfp: '/profilePictures/herobrine1.jpg'
+        }
+    ];
+
+    const [filteredUsers, setFilteredUsers] = useState([]);
+
+    const handleFilter = (value) => {
+        const filtered = Users.filter(user => user.name.toLowerCase().includes(value));
+        setFilteredUsers(filtered);
+    };
+
+    useEffect(() => {
+        setFilteredUsers(Users);
+    },[]);
 
     const [date, setDate] = useState(new Date());
     const [weekNumber, setWeekNumber] = useState(moment().isoWeek());
@@ -122,58 +196,6 @@ function FrontPage() {
         setProjectsTabIsOpen(!projectsTabIsOpen);
     };
 
-
-    const Departments = [//temporary
-        {
-            title: "D1",
-        },
-        {
-            title: "D2",
-        },
-        {
-            title: "D3",
-        }
-    ];
-
-    const Sections = [//temporary
-        {
-            title: "S1",
-        },
-        {
-            title: "S2",
-        },
-        {
-            title: "S3",
-        }
-    ];
-
-    const Projects = [//temporary
-        {
-            title: "P1",
-        },
-        {
-            title: "P2",
-        },
-        {
-            title: "P3",
-        }
-    ];
-
-    const Users = [
-        {
-            name: "jessie",
-            pfp: null
-        },
-        {
-            name: "Steve",
-            pfp: '/profilePictures/steve1.jpg'
-        },
-        {
-            name: "Herobrine",
-            pfp: '/profilePictures/jessie1.jpg'
-        }
-    ];
-
     return (
     <>
     <Header/>
@@ -215,12 +237,13 @@ function FrontPage() {
                     <div className="w-full h-1/2 flex">
                         <div className="w-1/4 h-full content-center">
                         <form className="justify-center flex" action="">
-                            <input className="w-4/5 h-[40px] border-solid border-[#A7A7A7] border-[1px] p-[10px]" type="text" />
+                            <input onChange={event => handleFilter(event.target.value)} className="w-4/5 h-[40px] border-solid border-[#A7A7A7] border-[1px] p-[10px]" type="text" />
                         </form>
                         </div>
                         <div className="w-3/4 h-full flex">
                             <table className="h-full w-full">
-                                <tr className="h-full w-full">
+                                <tbody>
+                                    <tr className="h-full w-full">
                                     <td className="h-full w-[calc(100%/7)] border-solid border-[#A7A7A7] border-[1px] text-center">
                                         <div className="h-1/2 w-full text-2xl flex-col-reverse flex">Maandag</div>
                                         <div className="h-1/2 w-full text-2s">{ConvertMoment(weekDates[0])}</div>
@@ -249,15 +272,16 @@ function FrontPage() {
                                         <div className="h-1/2 w-full text-2xl flex-col-reverse flex">Zondag</div>
                                         <div className="h-1/2 w-full text-2s">{ConvertMoment(weekDates[6])}</div>
                                     </td>
-                                </tr>
+                                    </tr>
+                                </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
                 <div className="w-full h-[calc(100vh-340px)] overflow-y-scroll scrollbar-hide">
-                {Users.map(user => {            
+                {filteredUsers.map(user => {            
                     return(
-                        <CalanderRow user={user} />
+                        <CalanderRow key={user.id} user={user} />
                     )
                 })}
 
@@ -273,12 +297,12 @@ function FrontPage() {
                 ref={DepartmentsTab}>
                 {Departments.map(Department => {            
                     return(
-                        <div className="w-full h-[20px] flex">
+                        <div key={Department.id} className="w-full h-[20px] flex">
                             <input type="checkbox" name="" id="" />
                             <p>{Department.title}</p>
                         </div>
-                    )
-                })}
+                        )
+                    })}
                 </div>
                 <button onClick={ToggleDepartmentsTab} className="h-[100px] w-[100%] h-[50px] bg-[#ffffff] border-[#A7A7A7] border-t-[1px] border-b-[1px] bg-[#ffffff] flex justify-center items-center">
                 <img
@@ -293,16 +317,15 @@ function FrontPage() {
                 <h1>Sections</h1>
                 <div className="h-0 w-[100%] overflow-hidden overflow-hidden transition-all duration-500 ease-in-out"
                 ref={SectionsTab}>
-                {Sections.map(Section => {            
-                    return(
-                        <div className="w-full h-[20px] flex">
-                            <input type="checkbox" name="" id="" />
-                            <p>{Section.title}</p>
-                        </div>
-                    )
-                })}
+                    {Sections.map(Section => {            
+                        return(
+                            <div key={Section.id} className="w-full h-[20px] flex">
+                                <input type="checkbox" name="" id="" />
+                                <p>{Section.title}</p>
+                            </div>
+                        )
+                    })}
                 </div>
-
                 <button onClick={ToggleSectionsTab} className="h-[100px] w-[100%] h-[50px] bg-[#ffffff] border-[#A7A7A7] border-t-[1px] border-b-[1px] bg-[#ffffff] flex justify-center items-center">
                 <img
                     className={`w-[40px] h-[40px] transition-transform ${
@@ -312,18 +335,18 @@ function FrontPage() {
                     alt=""
                 />
                 </button>
-
+                
                 <h1>Projects</h1>
                 <div className="h-0 w-[100%] overflow-hidden overflow-hidden transition-all duration-500 ease-in-out"
                 ref={ProjectsTab}>
-                {Projects.map(Project => {            
-                    return(
-                        <div className="w-full h-[20px] flex">
-                            <input type="checkbox" name="" id="" />
-                            <p>{Project.title}</p>
-                        </div>
-                    )
-                })}
+                    {Projects.map(Project => {            
+                        return(
+                            <div key={Project.id} className="w-full h-[20px] flex">
+                                <input type="checkbox" name="" id="" />
+                                <p>{Project.title}</p>
+                            </div>
+                        )
+                    })}
                 </div>
                 <button onClick={ToggleProjectsTab} className="h-[100px] w-[100%] h-[50px] bg-[#ffffff] border-[#A7A7A7] border-t-[1px] border-b-[1px] bg-[#ffffff] flex justify-center items-center">
                 <img
