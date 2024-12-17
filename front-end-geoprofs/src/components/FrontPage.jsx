@@ -244,34 +244,34 @@ function FrontPage() {
                             <table className="h-full w-full">
                                 <tbody>
                                     <tr className="h-full w-full">
-                                    <td className="h-full w-[calc(100%/7)] border-solid border-[#A7A7A7] border-[1px] text-center">
-                                        <div className="h-1/2 w-full text-2xl flex-col-reverse flex">Maandag</div>
-                                        <div className="h-1/2 w-full text-2s">{ConvertMoment(weekDates[0])}</div>
-                                    </td>
-                                    <td className="h-full w-[calc(100%/7)] border-solid border-[#A7A7A7] border-[1px] text-center">
-                                        <div className="h-1/2 w-full text-2xl flex-col-reverse flex">Dinsdag</div>
-                                        <div className="h-1/2 w-full text-2s">{ConvertMoment(weekDates[1])}</div>
-                                    </td>
-                                    <td className="h-full w-[calc(100%/7)] border-solid border-[#A7A7A7] border-[1px] text-center">
-                                        <div className="h-1/2 w-full text-2xl flex-col-reverse flex">Woensdag</div>
-                                        <div className="h-1/2 w-full text-2s">{ConvertMoment(weekDates[2])}</div>
-                                    </td>
-                                    <td className="h-full w-[calc(100%/7)] border-solid border-[#A7A7A7] border-[1px] text-center">
-                                        <div className="h-1/2 w-full text-2xl flex-col-reverse flex">Donderdag</div>
-                                        <div className="h-1/2 w-full text-2s">{ConvertMoment(weekDates[3])}</div>
-                                    </td>
-                                    <td className="h-full w-[calc(100%/7)] border-solid border-[#A7A7A7] border-[1px] text-center">
-                                        <div className="h-1/2 w-full text-2xl flex-col-reverse flex">Vrijdag</div>
-                                        <div className="h-1/2 w-full text-2s">{ConvertMoment(weekDates[4])}</div>
-                                    </td>
-                                    <td className="h-full w-[calc(100%/7)] border-solid border-[#A7A7A7] border-[1px] text-center">
-                                        <div className="h-1/2 w-full text-2xl flex-col-reverse flex">Zaterdag</div>
-                                        <div className="h-1/2 w-full text-2s">{ConvertMoment(weekDates[5])}</div>
-                                    </td>
-                                    <td className="h-full w-[calc(100%/7)] border-solid border-[#A7A7A7] border-[1px] text-center">
-                                        <div className="h-1/2 w-full text-2xl flex-col-reverse flex">Zondag</div>
-                                        <div className="h-1/2 w-full text-2s">{ConvertMoment(weekDates[6])}</div>
-                                    </td>
+                                        <td className="h-full w-[calc(100%/7)] border-solid border-[#A7A7A7] border-[1px] text-center">
+                                            <div className="h-1/2 w-full text-2xl flex-col-reverse flex">Maandag</div>
+                                            <div className="h-1/2 w-full text-2s">{ConvertMoment(weekDates[0])}</div>
+                                        </td>
+                                        <td className="h-full w-[calc(100%/7)] border-solid border-[#A7A7A7] border-[1px] text-center">
+                                            <div className="h-1/2 w-full text-2xl flex-col-reverse flex">Dinsdag</div>
+                                            <div className="h-1/2 w-full text-2s">{ConvertMoment(weekDates[1])}</div>
+                                        </td>
+                                        <td className="h-full w-[calc(100%/7)] border-solid border-[#A7A7A7] border-[1px] text-center">
+                                            <div className="h-1/2 w-full text-2xl flex-col-reverse flex">Woensdag</div>
+                                            <div className="h-1/2 w-full text-2s">{ConvertMoment(weekDates[2])}</div>
+                                        </td>
+                                        <td className="h-full w-[calc(100%/7)] border-solid border-[#A7A7A7] border-[1px] text-center">
+                                            <div className="h-1/2 w-full text-2xl flex-col-reverse flex">Donderdag</div>
+                                            <div className="h-1/2 w-full text-2s">{ConvertMoment(weekDates[3])}</div>
+                                        </td>
+                                        <td className="h-full w-[calc(100%/7)] border-solid border-[#A7A7A7] border-[1px] text-center">
+                                            <div className="h-1/2 w-full text-2xl flex-col-reverse flex">Vrijdag</div>
+                                            <div className="h-1/2 w-full text-2s">{ConvertMoment(weekDates[4])}</div>
+                                        </td>
+                                        <td className="h-full w-[calc(100%/7)] border-solid border-[#A7A7A7] border-[1px] text-center">
+                                            <div className="h-1/2 w-full text-2xl flex-col-reverse flex">Zaterdag</div>
+                                            <div className="h-1/2 w-full text-2s">{ConvertMoment(weekDates[5])}</div>
+                                        </td>
+                                        <td className="h-full w-[calc(100%/7)] border-solid border-[#A7A7A7] border-[1px] text-center">
+                                            <div className="h-1/2 w-full text-2xl flex-col-reverse flex">Zondag</div>
+                                            <div className="h-1/2 w-full text-2s">{ConvertMoment(weekDates[6])}</div>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -284,14 +284,10 @@ function FrontPage() {
                         <CalanderRow key={user.id} user={user} />
                     )
                 })}
-
-                    
-
                 </div>
             </div>
             <div className="w-1/5 h-full px-[15px]" data-testid ="filter-list">
-                <div className="w-full h-[100px]">
-                </div>
+                <div className="w-full h-[100px]"></div>
                 <h1>Departments</h1>
                 <div className="h-0 w-[100%] overflow-hidden overflow-hidden transition-all duration-500 ease-in-out"
                 ref={DepartmentsTab}>
@@ -303,6 +299,7 @@ function FrontPage() {
                         </div>
                         )
                     })}
+                </div>
                 <button onClick={ToggleDepartmentsTab} className="h-[100px] w-[100%] h-[50px] bg-[#ffffff] border-[#A7A7A7] border-t-[1px] border-b-[1px] bg-[#ffffff] flex justify-center items-center" data-testid ="filter-departments">
                 <img
                     className={`w-[40px] h-[40px] transition-transform ${
@@ -312,7 +309,6 @@ function FrontPage() {
                     alt=""
                 />
                 </button>
-                
                 <h1>Sections</h1>
                 <div className="h-0 w-[100%] overflow-hidden overflow-hidden transition-all duration-500 ease-in-out"
                 ref={SectionsTab}>
@@ -346,7 +342,6 @@ function FrontPage() {
                             </div>
                         )
                     })}
-
                 </div>
                 <button onClick={ToggleProjectsTab} className="h-[100px] w-[100%] h-[50px] bg-[#ffffff] border-[#A7A7A7] border-t-[1px] border-b-[1px] bg-[#ffffff] flex justify-center items-center" data-testid ="filter-projects">
                 <img
@@ -358,7 +353,6 @@ function FrontPage() {
                 />
                 </button>
             </div>
-        </div>
         </div>
     </>
     )
