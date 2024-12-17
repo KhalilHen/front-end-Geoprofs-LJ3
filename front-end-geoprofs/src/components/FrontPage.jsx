@@ -359,6 +359,7 @@ function FrontPage() {
                 </button>
             </div>
         </div>
+        </div>
     </>
     )
   }
