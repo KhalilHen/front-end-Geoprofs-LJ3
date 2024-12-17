@@ -71,6 +71,59 @@ function FrontPage() {
         }
     ];
 
+    const UsersToDepartments = [
+        {
+            idUser: "1",
+            idDepartment: "1"
+        },
+        { 
+            idUser: "2",
+            idDepartment: "1"
+        },
+        {
+            idUser: "3",
+            idDepartment: "2"
+        }
+    ];
+
+    const UsersToSections = [
+        {
+            idUser: "1",
+            idSection: "1"
+        },
+        {
+            idUser: "1",
+            idSection: "3"
+        },
+        { 
+            idUser: "2",
+            idSection: "1"
+        },
+        {
+            idUser: "3",
+            idSection: "2"
+        }
+    ];
+
+    const UsersToProjects = [
+        {
+            idUser: "1",
+            idProject: "1"
+        },
+        {
+            idUser: "1",
+            idProject: "2"
+        },
+        { 
+            idUser: "2",
+            idProject: "1"
+        },
+        {
+            idUser: "3",
+            idProject: "2"
+        }
+    ];
+
     const [filteredUsers, setFilteredUsers] = useState([]);
 
     const handleFilter = (value) => {
@@ -294,7 +347,7 @@ function FrontPage() {
                 {Departments.map(Department => {            
                     return(
                         <div key={Department.id} className="w-full h-[20px] flex">
-                            <input type="checkbox" name="" id="" />
+                            <input defaultChecked={true} type="checkbox" name="" id="" />
                             <p>{Department.title}</p>
                         </div>
                         )
@@ -315,7 +368,7 @@ function FrontPage() {
                     {Sections.map(Section => {            
                         return(
                             <div key={Section.id} className="w-full h-[20px] flex">
-                                <input type="checkbox" name="" id="" />
+                                <input defaultChecked={true} type="checkbox" name="" id="" />
                                 <p>{Section.title}</p>
                             </div>
                         )
@@ -337,7 +390,7 @@ function FrontPage() {
                     {Projects.map(Project => {            
                         return(
                             <div key={Project.id} className="w-full h-[20px] flex">
-                                <input type="checkbox" name="" id="" />
+                                <input defaultChecked={true} type="checkbox" name="" id="" />
                                 <p>{Project.title}</p>
                             </div>
                         )
