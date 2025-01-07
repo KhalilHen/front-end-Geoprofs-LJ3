@@ -294,7 +294,7 @@ function FrontPage() {
                     <div className="w-full h-1/2 flex">
                         <div className="w-1/4 h-full content-center">
                         <form className="justify-center flex" action="">
-                            <input onChange={event => handleFilter(event.target.value)} className="w-4/5 h-[40px] border-solid border-[#A7A7A7] border-[1px] p-[10px]" type="text" />
+                            <input placeholder="Zoek Medewerkers...placehol" onChange={event => handleFilter(event.target.value)} className="w-4/5 h-[40px] border-solid border-[#A7A7A7] border-[1px] p-[10px]" type="text" />
                         </form>
                         </div>
                         <div className="w-3/4 h-full flex">
