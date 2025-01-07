@@ -7,7 +7,6 @@ import schedule_white from "../images/icons/schedule_white.png"
 import DropdownIcon from "../images/icons/dropdown.png"
 
 function FrontPage() {
-
     const Departments = [//temporary
         {
             id: "1",
@@ -126,19 +125,31 @@ function FrontPage() {
 
     const [filteredUsers, setFilteredUsers] = useState([]);
 
-    const handleFilter = (value) => {
-        const filtered = Users.filter(user => user.name.toLowerCase().includes(value));
-        setFilteredUsers(filtered);
-    };
-
-    useEffect(() => {
-        setFilteredUsers(Users);
-    },[]);
-
     const [date, setDate] = useState(new Date());
     const [weekNumber, setWeekNumber] = useState(moment().isoWeek());
     const [weekDates, setWeekDates] = useState([]);
-  
+
+    const [departmentsTabIsOpen, setDepartmentsTabIsOpen] = useState(false);
+    const DepartmentsTab = useRef(null);
+    
+    const [sectionsTabIsOpen, setSectionsTabIsOpen] = useState(false);
+    const SectionsTab = useRef(null);
+
+    const [projectsTabIsOpen, setProjectsTabIsOpen] = useState(false);
+    const ProjectsTab = useRef(null);
+
+    const [visibleUserList, setVisibleUserList] = useState([]);
+
+    useEffect(()=>{
+        setFilteredUsers(Users); // change to visibleUserList later
+    }, []);
+
+    const handleFilter = (value) => {
+        const filtered = Users.filter(user => user.name.toLowerCase().includes(value)); // change to visibleUserList later
+        setFilteredUsers(filtered);
+        console.log(value);
+    };
+
     const PickDate = (event) => {
         const selectedDate = new Date(event.target.value);
         setDate(selectedDate);
@@ -182,9 +193,6 @@ function FrontPage() {
             getSelectedWeekDates(moment());
         }
     };
-
-    const [departmentsTabIsOpen, setDepartmentsTabIsOpen] = useState(false);
-    const DepartmentsTab = useRef(null);
   
     const ToggleDepartmentsTab = () => {
         const element = DepartmentsTab.current;
@@ -204,9 +212,6 @@ function FrontPage() {
     
         setDepartmentsTabIsOpen(!departmentsTabIsOpen);
     };
-
-    const [sectionsTabIsOpen, setSectionsTabIsOpen] = useState(false);
-    const SectionsTab = useRef(null);
   
     const ToggleSectionsTab = () => {
         const element = SectionsTab.current;
@@ -226,9 +231,6 @@ function FrontPage() {
     
         setSectionsTabIsOpen(!sectionsTabIsOpen);
     };
-
-    const [projectsTabIsOpen, setProjectsTabIsOpen] = useState(false);
-    const ProjectsTab = useRef(null);
   
     const ToggleProjectsTab = () => {
         const element = ProjectsTab.current;
@@ -248,6 +250,8 @@ function FrontPage() {
     
         setProjectsTabIsOpen(!projectsTabIsOpen);
     };
+
+    
 
     return (
     <>
@@ -332,7 +336,10 @@ function FrontPage() {
                     </div>
                 </div>
                 <div className="w-full h-[calc(100vh-340px)] overflow-y-scroll scrollbar-hide">
-                {filteredUsers.map(user => {            
+                {filteredUsers == 0 ?
+                    <p>No Data found</p>
+                :
+                filteredUsers.map(user => {            
                     return(
                         <CalanderRow key={user.id} user={user} />
                     )
@@ -354,13 +361,13 @@ function FrontPage() {
                     })}
                 </div>
                 <button onClick={ToggleDepartmentsTab} className="h-[100px] w-[100%] h-[50px] bg-[#ffffff] border-[#A7A7A7] border-t-[1px] border-b-[1px] bg-[#ffffff] flex justify-center items-center" data-testid ="filter-departments">
-                <img
-                    className={`w-[40px] h-[40px] transition-transform ${
-                        departmentsTabIsOpen ? 'rotate-180' : 'rotate-0'
-                    }`}
-                    src={DropdownIcon}
-                    alt=""
-                />
+                    <img
+                        className={`w-[40px] h-[40px] transition-transform ${
+                            departmentsTabIsOpen ? 'rotate-180' : 'rotate-0'
+                        }`}
+                        src={DropdownIcon}
+                        alt=""
+                    />
                 </button>
                 <h1>Sections</h1>
                 <div className="h-0 w-[100%] overflow-hidden overflow-hidden transition-all duration-500 ease-in-out"
