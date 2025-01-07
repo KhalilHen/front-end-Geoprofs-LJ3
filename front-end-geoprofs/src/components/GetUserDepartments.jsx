@@ -24,7 +24,7 @@ function GetUserDepartment(){
           }
         }
         return "";
-      }
+    }
 
     function GetDepartment(){
         console.log("backendUrl: " + backendUrl);
@@ -33,18 +33,12 @@ function GetUserDepartment(){
             credentials: 'include',
         })
         .then(() => {
-            fetch(backendUrl+'/getUsersFromDepartment', {
-                method: 'POST',
+            fetch(backendUrl+'/getUsersDepartment?idUser='+temp.userId+'&userToken='+temp.userToken+'&cacheId='+temp.cacheId+"&idDepartment="+1, {
+                method: 'GET',
                 credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({
-                    idUser: temp.userId,
-                    userToken: temp.userToken,
-                    cacheId: temp.cacheId,
-                    idDepartment: 1,
-                }),
             })
             .then(response => {
                 if (response.ok) {
