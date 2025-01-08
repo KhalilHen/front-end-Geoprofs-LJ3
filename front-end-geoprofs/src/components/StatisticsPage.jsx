@@ -2,13 +2,6 @@ import React, { useState } from 'react';
 import { Outlet, Link } from "react-router-dom";
 import Header from './Header'
 
-import {
-  Button,
-  Dialog,
-  DialogHeader,
-  DialogBody,
-  DialogFooter,
-} from "@material-tailwind/react";
 
 function StatisticsPage() {    
     const [open, setOpen] = React.useState(false);
@@ -40,7 +33,7 @@ function StatisticsPage() {
             </div>
         </div>
 
-        <Dialog size="xs" open={open} handler={handleOpen} className="rounded-none">
+        {/* <Dialog size="xs" open={open} handler={handleOpen} className="rounded-none">
             <DialogBody>
                 <div className='h-auto'>
                     <p className='text-center text-black'>Select first en last date to dowload a Json file
@@ -65,7 +58,7 @@ function StatisticsPage() {
                     </div>
                 </div>
             </DialogBody>
-        </Dialog>
+        </Dialog> */}
     </>
     )
   }

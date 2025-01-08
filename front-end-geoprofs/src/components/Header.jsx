@@ -1,4 +1,3 @@
-import { Popover, PopoverHandler, PopoverContent, Button, Input, Typography,} from "@material-tailwind/react";
 import { Outlet, Link } from "react-router-dom";
 import Logo from '../images/GeoprofsLogo.png';
 import User from '../images/icons/user.png';
@@ -44,7 +43,7 @@ function HeaderManager() {
     }
 
       <div className="flex w-[50%] h-full justify-end">
-        <Popover placement="bottom">
+        {/* <Popover placement="bottom">
           <PopoverHandler>
             <button className="w-auto h-full flex items-center">
               <p className="p-[10px] text-center text-xl">John Doe</p>
@@ -67,7 +66,7 @@ function HeaderManager() {
               </div>
             </div>
           </PopoverContent>
-        </Popover>
+        </Popover> */}
       </div>
     </div>
   </header>

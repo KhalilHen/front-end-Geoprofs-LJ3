@@ -6,10 +6,10 @@ import { Link } from "react-router-dom";
 import schedule_white from "../images/icons/schedule_white.png"
 import DropdownIcon from './DropdownIcon'
 
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import Typography from '@material-ui/core/Typography';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import Accordion from '@mui/material/Accordion';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import AccordionSummary from '@mui/material/AccordionSummary';
+
 
 function FrontPage() {
     const Departments = [//temporary
@@ -346,7 +346,7 @@ function FrontPage() {
                         </div>
                     </div>
                 </div>
-                <div className="w-full h-[calc(100vh-340px)] overflow-y-scroll scrollbar-hide">
+                <div className="w-full h-[calc(100vh-340px)] overflow-y">
                 {filteredUsers == 0 ?
                     <p>No Data found</p>
                 :
@@ -361,18 +361,18 @@ function FrontPage() {
             <div className="w-full h-[100px]"></div>
 
             
+            <style>{`::-webkit-scrollbar {width: 0px;}`}</style>
             
-            <style>{`.MuiExpansionPanel-rounded { border-radius: 0; box-shadow: none; } `}</style>
-            <style>{`.MuiExpansionPanel-root.Mui-expanded {margin: 0px 0px !important;}`}</style>
-            <style>{`.MuiExpansionPanel-rounded:last-child {border-radius: 0;}`}</style>
+            <style>{`.css-1808mag-MuiPaper-root-MuiAccordion-root.Mui-expanded { border-radius: 0; box-shadow: none; margin: 0px; } `}</style>
+            <style>{`.css-1808mag-MuiPaper-root-MuiAccordion-root { border-radius: 0; box-shadow: none; }`}</style>
+            <style>{`.css-1808mag-MuiPaper-root-MuiAccordion-root:last-of-type { border-radius: 0; }`}</style>
             
 
-            <ExpansionPanel className="border-[#A7A7A7] border-t-[1px] border-b-[1px] border-r-[0px] border-l-[0px] mb-[10px]">
-                <ExpansionPanelSummary expandIcon={<DropdownIcon/>}>
-                    <Typography>Departments</Typography>
-                </ExpansionPanelSummary>
-                <ExpansionPanelDetails className="shadow-none">
-                    <Typography className="shadow-none dontMove">
+            <Accordion className="border-[#A7A7A7] border-t-[1px] border-b-[1px] border-r-[0px] border-l-[0px] mb-[10px]">
+                <AccordionSummary expandIcon={<DropdownIcon/>}>
+                    Departments
+                </AccordionSummary>
+                <AccordionDetails className="shadow-none">
                     {Departments.map(Department => {            
                     return(
                         <div key={Department.id} className="w-full h-[20px] flex">
@@ -381,15 +381,13 @@ function FrontPage() {
                         </div>
                         )
                     })}
-                    </Typography>
-                </ExpansionPanelDetails>
-            </ExpansionPanel>
-            <ExpansionPanel className="border-[#A7A7A7] border-t-[1px] border-b-[1px] border-r-[0px] border-l-[0px] my-[10px]">
-                <ExpansionPanelSummary expandIcon={<DropdownIcon/>}>
-                    <Typography>Sections</Typography>
-                </ExpansionPanelSummary>
-                <ExpansionPanelDetails>
-                    <Typography>
+                </AccordionDetails>
+            </Accordion>
+            <Accordion  className="border-[#A7A7A7] border-t-[1px] border-b-[1px] border-r-[0px] border-l-[0px] my-[10px]">
+                <AccordionSummary expandIcon={<DropdownIcon/>}>
+                    sections
+                </AccordionSummary>
+                <AccordionDetails className="shadow-none">
                     {Sections.map(Section => {            
                         return(
                             <div key={Section.id} className="w-full h-[20px] flex">
@@ -398,15 +396,13 @@ function FrontPage() {
                             </div>
                         )
                     })}
-                    </Typography>
-                </ExpansionPanelDetails>
-            </ExpansionPanel>
-            <ExpansionPanel className="border-[#A7A7A7] border-t-[1px] border-b-[1px] border-r-[0px] border-l-[0px] my-[10px]">
-                <ExpansionPanelSummary expandIcon={<DropdownIcon/>}>
-                    <Typography>Projects</Typography>
-                </ExpansionPanelSummary>
-                <ExpansionPanelDetails>
-                    <Typography>
+                </AccordionDetails>
+            </Accordion>
+            <Accordion  className="border-[#A7A7A7] border-t-[1px] border-b-[1px] border-r-[0px] border-l-[0px] my-[10px]">
+                <AccordionSummary expandIcon={<DropdownIcon/>}>
+                    Projects
+                </AccordionSummary>
+                <AccordionDetails className="shadow-none">
                     {Projects.map(Project => {            
                         return(
                             <div key={Project.id} className="w-full h-[20px] flex">
@@ -415,9 +411,8 @@ function FrontPage() {
                             </div>
                         )
                     })}
-                    </Typography>
-                </ExpansionPanelDetails>
-            </ExpansionPanel>
+                </AccordionDetails>
+            </Accordion>
             </div>
         </div>
     </>
