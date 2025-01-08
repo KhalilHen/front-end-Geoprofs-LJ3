@@ -359,9 +359,12 @@ function FrontPage() {
             </div>
             <div className="w-1/5 h-full px-[15px]" data-testid ="filter-list">
             <div className="w-full h-[100px]"></div>
+
+            
             
             <style>{`.MuiExpansionPanel-rounded { border-radius: 0; box-shadow: none; } `}</style>
             <style>{`.MuiExpansionPanel-root.Mui-expanded {margin: 0px 0px !important;}`}</style>
+            <style>{`.MuiExpansionPanel-rounded:last-child {border-radius: 0;}`}</style>
             
 
             <ExpansionPanel className="border-[#A7A7A7] border-t-[1px] border-b-[1px] border-r-[0px] border-l-[0px] mb-[10px]">
