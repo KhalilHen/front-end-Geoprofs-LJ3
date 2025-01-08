@@ -4,7 +4,12 @@ import moment from 'moment';
 import Header from './Header'
 import { Link } from "react-router-dom";
 import schedule_white from "../images/icons/schedule_white.png"
-import DropdownIcon from "../images/icons/dropdown.png"
+import DropdownIcon from './DropdownIcon'
+
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import Typography from '@material-ui/core/Typography';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 
 function FrontPage() {
     const Departments = [//temporary
@@ -138,14 +143,20 @@ function FrontPage() {
     const [projectsTabIsOpen, setProjectsTabIsOpen] = useState(false);
     const ProjectsTab = useRef(null);
 
-    const [visibleUserList, setVisibleUserList] = useState([]);
-
     useEffect(()=>{
-        setFilteredUsers(Users); // change to visibleUserList later
+
+        const visibleUserList = Users; //users = function to filter on checked
+
+        setFilteredUsers(visibleUserList);
     }, []);
 
+    const FilterVisibleUsers = () => {
+        console.log(":3");
+    }
+
     const handleFilter = (value) => {
-        const filtered = Users.filter(user => user.name.toLowerCase().includes(value)); // change to visibleUserList later
+        const visibleUserList = Users; //users = function to filter on checked
+        const filtered = visibleUserList.filter(user => user.name.toLowerCase().includes(value));
         setFilteredUsers(filtered);
         console.log(value);
     };
@@ -347,11 +358,19 @@ function FrontPage() {
                 </div>
             </div>
             <div className="w-1/5 h-full px-[15px]" data-testid ="filter-list">
-                <div className="w-full h-[100px]"></div>
-                <h1>Departments</h1>
-                <div className="h-0 w-[100%] overflow-hidden overflow-hidden transition-all duration-500 ease-in-out"
-                ref={DepartmentsTab}>
-                {Departments.map(Department => {            
+            <div className="w-full h-[100px]"></div>
+            
+            <style>{`.MuiExpansionPanel-rounded { border-radius: 0; box-shadow: none; } `}</style>
+            <style>{`.MuiExpansionPanel-root.Mui-expanded {margin: 0px 0px !important;}`}</style>
+            
+
+            <ExpansionPanel className="border-[#A7A7A7] border-t-[1px] border-b-[1px] border-r-[0px] border-l-[0px] mb-[10px]">
+                <ExpansionPanelSummary expandIcon={<DropdownIcon/>}>
+                    <Typography>Departments</Typography>
+                </ExpansionPanelSummary>
+                <ExpansionPanelDetails className="shadow-none">
+                    <Typography className="shadow-none dontMove">
+                    {Departments.map(Department => {            
                     return(
                         <div key={Department.id} className="w-full h-[20px] flex">
                             <input defaultChecked={true} type="checkbox" name="" id="" />
@@ -359,19 +378,15 @@ function FrontPage() {
                         </div>
                         )
                     })}
-                </div>
-                <button onClick={ToggleDepartmentsTab} className="h-[100px] w-[100%] h-[50px] bg-[#ffffff] border-[#A7A7A7] border-t-[1px] border-b-[1px] bg-[#ffffff] flex justify-center items-center" data-testid ="filter-departments">
-                    <img
-                        className={`w-[40px] h-[40px] transition-transform ${
-                            departmentsTabIsOpen ? 'rotate-180' : 'rotate-0'
-                        }`}
-                        src={DropdownIcon}
-                        alt=""
-                    />
-                </button>
-                <h1>Sections</h1>
-                <div className="h-0 w-[100%] overflow-hidden overflow-hidden transition-all duration-500 ease-in-out"
-                ref={SectionsTab}>
+                    </Typography>
+                </ExpansionPanelDetails>
+            </ExpansionPanel>
+            <ExpansionPanel className="border-[#A7A7A7] border-t-[1px] border-b-[1px] border-r-[0px] border-l-[0px] my-[10px]">
+                <ExpansionPanelSummary expandIcon={<DropdownIcon/>}>
+                    <Typography>Sections</Typography>
+                </ExpansionPanelSummary>
+                <ExpansionPanelDetails>
+                    <Typography>
                     {Sections.map(Section => {            
                         return(
                             <div key={Section.id} className="w-full h-[20px] flex">
@@ -380,38 +395,26 @@ function FrontPage() {
                             </div>
                         )
                     })}
-                </div>
-                <button onClick={ToggleSectionsTab} className="h-[100px] w-[100%] h-[50px] bg-[#ffffff] border-[#A7A7A7] border-t-[1px] border-b-[1px] bg-[#ffffff] flex justify-center items-center" data-testid ="filter-sections">
-                <img
-                    className={`w-[40px] h-[40px] transition-transform ${
-                        sectionsTabIsOpen ? 'rotate-180' : 'rotate-0'
-                    }`}
-                    src={DropdownIcon}
-                    alt=""
-                />
-                </button>
-                
-                <h1>Projects</h1>
-                <div className="h-0 w-[100%] overflow-hidden overflow-hidden transition-all duration-500 ease-in-out"
-                ref={ProjectsTab}>
+                    </Typography>
+                </ExpansionPanelDetails>
+            </ExpansionPanel>
+            <ExpansionPanel className="border-[#A7A7A7] border-t-[1px] border-b-[1px] border-r-[0px] border-l-[0px] my-[10px]">
+                <ExpansionPanelSummary expandIcon={<DropdownIcon/>}>
+                    <Typography>Projects</Typography>
+                </ExpansionPanelSummary>
+                <ExpansionPanelDetails>
+                    <Typography>
                     {Projects.map(Project => {            
                         return(
                             <div key={Project.id} className="w-full h-[20px] flex">
-                                <input defaultChecked={true} type="checkbox" name="" id="" />
+                                <input onClick={FilterVisibleUsers(Project.id)} defaultChecked={true} type="checkbox" name="" id={Project.id} />
                                 <p>{Project.title}</p>
                             </div>
                         )
                     })}
-                </div>
-                <button onClick={ToggleProjectsTab} className="h-[100px] w-[100%] h-[50px] bg-[#ffffff] border-[#A7A7A7] border-t-[1px] border-b-[1px] bg-[#ffffff] flex justify-center items-center" data-testid ="filter-projects">
-                <img
-                    className={`w-[40px] h-[40px] transition-transform ${
-                        projectsTabIsOpen ? 'rotate-180' : 'rotate-0'
-                    }`}
-                    src={DropdownIcon}
-                    alt=""
-                />
-                </button>
+                    </Typography>
+                </ExpansionPanelDetails>
+            </ExpansionPanel>
             </div>
         </div>
     </>
