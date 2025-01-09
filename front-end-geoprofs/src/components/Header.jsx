@@ -3,7 +3,6 @@ import Logo from '../images/GeoprofsLogo.png';
 import User from '../images/icons/user.png';
 import Notification from '../images/icons/notifications.png';
 import Statistics from '../images/icons/statistics.png';
-
 import * as React from 'react';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';

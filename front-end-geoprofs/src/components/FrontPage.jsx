@@ -5,7 +5,6 @@ import Header from './Header'
 import { Link } from "react-router-dom";
 import schedule_white from "../images/icons/schedule_white.png"
 import DropdownIcon from './DropdownIcon'
-
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
