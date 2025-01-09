@@ -30,7 +30,6 @@ function App() {
           <Route path="/inbox" element={<InboxPage/>}/>
           <Route path="/leave-request" element={<LeaveRequestPage/>}/>
           <Route path="/Statistics" element={<StatisticsPage/>}/>
-          <Route path="/get-users" element={<GetUserDepartment/>}/>
         </Routes>
     </BrowserRouter>
   )

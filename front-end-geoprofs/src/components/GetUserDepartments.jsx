@@ -48,19 +48,6 @@ function GetUserDepartment(){
             .catch(error => console.error('Error:', error));
         });
     }
-    
-    const [_departmentId, _setDepartmentId] = useState(1);
-
-    function handleChangeDepartmentId(e){
-        _setDepartmentId(e.target.value);
-    }
-
-    return (
-        <>
-            <input type='number' onChange={handleChangeDepartmentId} value={_departmentId}/>
-            <button onClick={()=> GetDepartment(_departmentId)}>Get Department</button>
-        </>
-    )
 }
 
 export default GetUserDepartment
