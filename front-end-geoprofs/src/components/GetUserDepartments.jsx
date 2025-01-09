@@ -5,9 +5,9 @@ function GetUserDepartment(){
 
     var temp = JSON.parse(getCookie("user"));
 
-    console.log(temp.userToken);
-    console.log(temp.userId);
-    console.log(temp.cacheId);
+    // console.log(temp.userToken);
+    // console.log(temp.userId);
+    // console.log(temp.cacheId);
 
     function getCookie(cname) {
         let name = cname + "=";
@@ -25,15 +25,7 @@ function GetUserDepartment(){
         return "";
     }
 
-    const [departmentId, setDepartmentId] = useState(1);
-
-    function handleChangeDepartmentId(e){
-        setDepartmentId(e.target.value);
-    }
-
-    function GetDepartment(){
-        console.log("backendUrl: " + backendUrl);
-
+    function GetDepartment(departmentId){
         fetch(backendUrl+'/sanctum/csrf-cookie', {
             credentials: 'include',
         })
@@ -56,11 +48,17 @@ function GetUserDepartment(){
             .catch(error => console.error('Error:', error));
         });
     }
+    
+    const [_departmentId, _setDepartmentId] = useState(1);
+
+    function handleChangeDepartmentId(e){
+        _setDepartmentId(e.target.value);
+    }
 
     return (
         <>
-            <input type='number' onChange={handleChangeDepartmentId} value={departmentId}/>
-            <button onClick={GetDepartment}>Get Department</button>
+            <input type='number' onChange={handleChangeDepartmentId} value={_departmentId}/>
+            <button onClick={()=> GetDepartment(_departmentId)}>Get Department</button>
         </>
     )
 }
