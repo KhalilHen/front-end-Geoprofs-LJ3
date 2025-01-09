@@ -51,14 +51,12 @@ function StatisticsPage() {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">
-          {"Use Google's location service?"}
+        <DialogTitle className='text-center text-black' id="alert-dialog-title">
+          {"Select first en last date to dowload a Json filewith sick leave days."}
         </DialogTitle>
         <DialogContent>
-          {/* <DialogContentText id="alert-dialog-description"> */}
           <div className='h-auto'>
-                    <p className='text-center text-black'>Select first en last date to dowload a Json file
-                    with sick leave days.</p>
+                    <p className=''></p>
                 </div>
                 <div className='flex flex-row justify-between items-center p-[10px]'>
                     <div className='w-[175px]'>
