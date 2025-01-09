@@ -4,7 +4,26 @@ import User from '../images/icons/user.png';
 import Notification from '../images/icons/notifications.png';
 import Statistics from '../images/icons/statistics.png';
 
+import * as React from 'react';
+import Popover from '@mui/material/Popover';
+import Typography from '@mui/material/Typography';
+
 function HeaderManager() {
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? 'simple-popover' : undefined;
+
+
   return (
     <header className="flex bg-[#EBEBEB] w-full h-[140px] p-[35px]">
     <div className="w-[calc(100%/3)] h-full">
@@ -43,15 +62,22 @@ function HeaderManager() {
     }
 
       <div className="flex w-[50%] h-full justify-end">
-        {/* <Popover placement="bottom">
-          <PopoverHandler>
-            <button className="w-auto h-full flex items-center">
-              <p className="p-[10px] text-center text-xl">John Doe</p>
-              <img src={User} alt="" className="w-[70px] h-[70px] rounded-full border-solid border-[#A7A7A7] border-[1px]" />
-            </button>
-          </PopoverHandler >
-          <PopoverContent className="p-0">
-            <div className="p-0 border-solid border-2 border-[#A7A7A7] h-auto w-[350px]">
+        <button aria-describedby={id} variant="contained" onClick={handleClick} className="w-auto h-full flex items-center">
+          <p className="p-[10px] text-center text-xl">John Doe</p>
+          <img src={User} alt="" className="w-[70px] h-[70px] rounded-full border-solid border-[#A7A7A7] border-[1px]" />
+        </button>
+      <Popover
+        id={id}
+        open={open}
+        anchorEl={anchorEl}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'left',
+        }}
+      >
+        <Typography >
+        <div className="p-0 border-solid border-2 border-[#A7A7A7] h-auto w-[350px]">
               <div className="w-full h-[70%] p-[10px] flex">
                 <div className="h-[100px] w-auto aspect-square border-solid border-[#A7A7A7] border-[1px]">
                   <img src={User} alt="" className="h-full w-full"/>
@@ -65,8 +91,8 @@ function HeaderManager() {
                 <button className="bg-[#ff0000] text-white w-[100px] h-[30px] rounded-full">Log Uit</button>
               </div>
             </div>
-          </PopoverContent>
-        </Popover> */}
+        </Typography>
+      </Popover>
       </div>
     </div>
   </header>

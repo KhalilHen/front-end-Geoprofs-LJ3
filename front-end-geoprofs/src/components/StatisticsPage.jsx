@@ -2,11 +2,23 @@ import React, { useState } from 'react';
 import { Outlet, Link } from "react-router-dom";
 import Header from './Header'
 
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 
-function StatisticsPage() {    
+
+function StatisticsPage() { 
     const [open, setOpen] = React.useState(false);
- 
-    const handleOpen = () => setOpen(!open);
+
+    const handleClickOpen = () => {
+      setOpen(true);
+    };
+  
+    const handleClose = () => {
+      setOpen(false);
+    };
 
     return (
     <>
@@ -26,16 +38,25 @@ function StatisticsPage() {
                         <p>Home</p>
                     </Link>
 
-                    <button onClick={handleOpen} className="w-[150px] h-[40px] rounded-full flex p-[5px] flex items-center justify-center bg-[#20B5FF] text-white">
+                    <button variant="outlined" onClick={handleClickOpen} className="w-[150px] h-[40px] rounded-full flex p-[5px] flex items-center justify-center bg-[#20B5FF] text-white">
                         <p>Get Data</p>
                     </button>
                 </div>
             </div>
         </div>
 
-        {/* <Dialog size="xs" open={open} handler={handleOpen} className="rounded-none">
-            <DialogBody>
-                <div className='h-auto'>
+        <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Use Google's location service?"}
+        </DialogTitle>
+        <DialogContent>
+          {/* <DialogContentText id="alert-dialog-description"> */}
+          <div className='h-auto'>
                     <p className='text-center text-black'>Select first en last date to dowload a Json file
                     with sick leave days.</p>
                 </div>
@@ -44,7 +65,7 @@ function StatisticsPage() {
                         <p className='text-black'>Datum Van:</p>
                         <input className='w-[175px] border-[1px] border-[#A7A7A7] rounded-none' type="date" name="start-date" id="start-date"/>
 
-                        <button onClick={handleOpen} className="my-[10px] w-full h-[35px] rounded-full flex p-[5px] flex items-center justify-center border-[#A7A7A7] border-2 bg-[#ffffff] text-black">
+                        <button onClick={handleClose} className="my-[10px] w-full h-[35px] rounded-full flex p-[5px] flex items-center justify-center border-[#A7A7A7] border-2 bg-[#ffffff] text-black">
                             <p>Cancel</p>
                         </button>
                     </div>
@@ -52,13 +73,13 @@ function StatisticsPage() {
                         <p className='text-black'>Datum Tot:</p>
                         <input className='w-[175px] border-[1px] border-[#A7A7A7] rounded-none' type="date" name="end-date" id="end-date"/>
 
-                        <button className="my-[10px] w-full h-[35px] rounded-full flex p-[5px] flex items-center justify-center bg-[#20B5FF] text-white">
+                        <button onClick={handleClose /*change to download data function*/} className="my-[10px] w-full h-[35px] rounded-full flex p-[5px] flex items-center justify-center bg-[#20B5FF] text-white">
                             <p>Download JSON</p>
                         </button>
                     </div>
                 </div>
-            </DialogBody>
-        </Dialog> */}
+            </DialogContent>
+      </Dialog>
     </>
     )
   }
