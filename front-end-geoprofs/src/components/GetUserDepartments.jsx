@@ -1,9 +1,8 @@
-import React from 'react';
 import { backendUrl } from '../config/config.json';
+import React, { useState, useEffect } from 'react';
 
 function GetUserDepartment(){
 
-    var id = 1;
     var temp = JSON.parse(getCookie("user"));
 
     console.log(temp.userToken);
@@ -26,6 +25,12 @@ function GetUserDepartment(){
         return "";
     }
 
+    const [departmentId, setDepartmentId] = useState(1);
+
+    function handleChangeDepartmentId(e){
+        setDepartmentId(e.target.value);
+    }
+
     function GetDepartment(){
         console.log("backendUrl: " + backendUrl);
 
@@ -33,7 +38,7 @@ function GetUserDepartment(){
             credentials: 'include',
         })
         .then(() => {
-            fetch(backendUrl+'/getUsersDepartment?idUser='+temp.userId+'&userToken='+temp.userToken+'&cacheId='+temp.cacheId+"&idDepartment="+1, {
+            fetch(backendUrl+'/getUsersDepartment?idUser='+temp.userId+'&userToken='+temp.userToken+'&cacheId='+temp.cacheId+"&idDepartment="+departmentId, {
                 method: 'GET',
                 credentials: 'include',
                 headers: {
@@ -54,6 +59,7 @@ function GetUserDepartment(){
 
     return (
         <>
+            <input type='number' onChange={handleChangeDepartmentId} value={departmentId}/>
             <button onClick={GetDepartment}>Get Department</button>
         </>
     )
