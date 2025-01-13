@@ -8,6 +8,7 @@ import Login from "./components/Login";
 import React, { useState, useEffect } from 'react';
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import GetUserDepartment from './components/GetUserDepartments';
 
 function App() {
