@@ -358,15 +358,15 @@ function FrontPage() {
             </div>
             <div className="w-1/5 h-full px-[15px]" data-testid ="filter-list">
             <div className="w-full h-[100px]"></div>
-
             
-            <style>{`::-webkit-scrollbar {width: 0px;}`}</style>
             
-            <style>{`.css-1808mag-MuiPaper-root-MuiAccordion-root.Mui-expanded { border-radius: 0; box-shadow: none; margin: 0px; } `}</style>
-            <style>{`.css-1808mag-MuiPaper-root-MuiAccordion-root { border-radius: 0; box-shadow: none; }`}</style>
-            <style>{`.css-1808mag-MuiPaper-root-MuiAccordion-root:last-of-type { border-radius: 0; }`}</style>
+            <style>
+                {`::-webkit-scrollbar {width: 0px;}
+                .css-1808mag-MuiPaper-root-MuiAccordion-root.Mui-expanded { border-radius: 0; box-shadow: none; margin: 0px; }
+                .css-1808mag-MuiPaper-root-MuiAccordion-root { border-radius: 0; box-shadow: none; }
+                .css-1808mag-MuiPaper-root-MuiAccordion-root:last-of-type { border-radius: 0; }`}
+            </style>
             
-
             <Accordion className="border-[#A7A7A7] border-t-[1px] border-b-[1px] border-r-[0px] border-l-[0px] mb-[10px]">
                 <AccordionSummary expandIcon={<DropdownIcon/>}>
                     Departments
