@@ -7,7 +7,7 @@ describe('Link Click Test', () => {
     cy.get('#email-input').click().type('khalil@hotmail.com');
     cy.get('#password-input').click().type('test');
 
-    cy.get('#my-button').click();
+    cy.get('#login-button').click();
 
     cy.url().should('include', '/front-page');
   });
