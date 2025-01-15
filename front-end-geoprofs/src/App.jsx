@@ -5,8 +5,6 @@ import LeaveRequestPage from './components/LeaveRequestPage';
 import StatisticsPage from './components/StatisticsPage';
 import Login from "./components/Login";
 
-import GetUserData from "./components/GetUserData";
-
 import React, { useState, useEffect } from 'react';
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -31,8 +29,6 @@ function App() {
           <Route path="/inbox" element={<InboxPage/>}/>
           <Route path="/leave-request" element={<LeaveRequestPage/>}/>
           <Route path="/Statistics" element={<StatisticsPage/>}/>
-
-          <Route path="/test" element={<GetUserData/>}/>
         </Routes>
     </BrowserRouter>
   )
