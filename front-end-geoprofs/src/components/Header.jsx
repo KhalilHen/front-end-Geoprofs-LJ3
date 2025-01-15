@@ -46,7 +46,7 @@ function HeaderManager() {
       <div className="flex w-[50%] h-full justify-end">
         <Popover placement="bottom">
           <PopoverHandler>
-            <button className="w-auto h-full flex items-center">
+            <button id="profileButton" className="w-auto h-full flex items-center">
               <p className="p-[10px] text-center text-xl">John Doe</p>
               <img src={User} alt="" className="w-[70px] h-[70px] rounded-full border-solid border-[#A7A7A7] border-[1px]" />
             </button>
@@ -63,8 +63,13 @@ function HeaderManager() {
                 </div>
               </div>
               <div className="w-full h-[30%] p-[10px] justify-end items-center flex">
-                <button className="bg-[#ff0000] text-white w-[100px] h-[30px] rounded-full">Log Uit</button>
+                <button id="logoutButton" className="bg-[#ff0000] text-white w-[100px] h-[30px] rounded-full"
+                onClick={() => {
+                  window.location.href = '/';
+                }} 
+                >Log Uit</button>
               </div>
+          
             </div>
           </PopoverContent>
         </Popover>

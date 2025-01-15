@@ -3,6 +3,7 @@ import globals from 'globals'
 import react from 'eslint-plugin-react'
 import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
+import cypress from 'eslint-plugin-cypress'; // Add the Cypress plugin
 
 export default [
   { ignores: ['dist'] },

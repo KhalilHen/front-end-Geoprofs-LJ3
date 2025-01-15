@@ -133,7 +133,11 @@ function FrontPage() {
                     <div className="w-3/4 h-full flex">
                         <div className="h-full w-[calc((100%/14)*3)]"></div>
                         <div className="h-full w-[calc((100%/14)*3)] flex flex-col-reverse">
-                            <button onClick={LastWeek} className="w-full h-[30px] bg-[#20B5FF] rounded-tl-[15px] text-white">Vorige Week</button>
+                            <button  id="lastWeekButton"    value={moment(date).subtract(7, 'days').format('YYYY-MM-DD')}
+  
+                            
+                            
+                            onClick={LastWeek} className="w-full h-[30px] bg-[#20B5FF] rounded-tl-[15px] text-white">Vorige Week</button>
                         </div>
                         <div className="h-full w-[calc(100%/7)] flex flex-col">
                             <div className="h-1/2 w-full flex flex-col-reverse ">
@@ -150,7 +154,8 @@ function FrontPage() {
                                 </div>
                             </div>
                             <div className="h-full w-[calc((100%/14)*3)] flex flex-col-reverse">
-                                <button onClick={NextWeek} className="w-full h-[30px] bg-[#20B5FF] rounded-tr-[15px] text-white">Volgende Week</button>
+      cy.get('#nextWeekButton').click();
+                                <button id= "nextWeekButton" onClick={NextWeek} className="w-full h-[30px] bg-[#20B5FF] rounded-tr-[15px] text-white">Volgende Week</button>
                             </div>
                             <div className="flex justify-center items-center flex h-full w-[calc((100%/14)*3)]">
                                 <Link className="justify-between rounded-full flex w-[90%] h-[40px] bg-[#20B5FF]" to="/leave-request">
