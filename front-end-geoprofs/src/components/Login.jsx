@@ -38,7 +38,6 @@ function Login(props) {
     function login(){
         fetch(backendUrl+'/login', {
             method: 'POST',
-            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
             },
