@@ -86,13 +86,13 @@ function LeaveRequestPage(){
             <Header/>
             <div>
                 <select name="category" id="category" onChange={handleChangeCategory}>
-                    <Option name="noChosen" id="-1"/> {/* these options are temporary */}
+                    <Option name="geen gekozen" id="-1"/> {/* these options are temporary */}
                     <Option name="0" id="0"/>
                     <Option name="1" id="1"/>
                     <Option name="2" id="2"/>
                 </select>
                 <br/>
-                start date
+                start datum
                 <div className="h-1/2 w-full flex flex-col-reverse datepicker" >
                     <input 
                         className="w-full h-[30px] border-solid border-[#A7A7A7] border-[0px] border-t-[1px] text-center" 
@@ -102,7 +102,7 @@ function LeaveRequestPage(){
                         disabled={locked}
                     />
                 </div>
-                end date
+                eind datum
                 <div className="h-1/2 w-full flex flex-col-reverse datepicker" >
                     <input 
                         className="w-full h-[30px] border-solid border-[#A7A7A7] border-[0px] border-t-[1px] text-center" 
@@ -112,26 +112,26 @@ function LeaveRequestPage(){
                         disabled={locked}
                     />
                 </div>
-                start time
+                start tijd
                 <div>
                     <input type="time" onChange={changeStartTime} value={startDate.format('HH:mm')} disabled={locked}/>
                     {/* to do should be in intervals of 30 min */}
                 </div>
-                end time
+                eind tijd
                 <div>
                     <input type="time" onChange={changeEndTime} value={endDate.format('HH:mm')} disabled={locked}/>
                     {/* to do should be in intervals of 30 min */} 
                 </div>
                 <div>
-                    <input type="checkbox" checked={paidLeave == "on"} onChange={handlePaidLeaveChange} disabled={locked}/> paid leave
+                    <input type="checkbox" checked={paidLeave == "on"} onChange={handlePaidLeaveChange} disabled={locked}/> betaalt Verlof
                 </div>
                 <textarea cols="30" rows="10" onChange={handleChangeText} value={text} disabled={locked}></textarea>
                 <div className="flex flex-col">
                     {/* to do buttons should send correct data to backend (backend also should check if user has rights for what he send) */}
-                    <button hidden={hiddenViewing}>submit </button>
-                    <button hidden={hiddenNonManger}>accept</button>
-                    <button hidden={hiddenNonManger}>decline</button>
-                    <button onClick={home}>leave</button>
+                    <button hidden={hiddenViewing}>dien in</button>
+                    <button hidden={hiddenNonManger}>accepteer</button>
+                    <button hidden={hiddenNonManger}>afwijzen</button>
+                    <button onClick={home}>terug</button>
                 </div>
             </div>
         </>
