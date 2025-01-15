@@ -40,19 +40,41 @@ function InboxPage(){
             Title: "AAA",
             start_date: "2020-01-01, 10:30",
             end_date: "2020-01-05, 16:30",
-            leave_requests_category_id: "sick",
-            leave_status: "pending",
-            employee_id: 0,
-            categoryId: 0
+            leave_requests_category_id: "Ziek",
+            leave_status: "Pending",
+            employee_id: 2,
+            categoryId: 0,
+            Name: "John",
         },
         {
-            Title: "BBB",
+            Title: "AAA",
             start_date: "2020-01-01, 10:30",
             end_date: "2020-01-05, 16:30",
-            leave_requests_category_id: "sick",
+            leave_requests_category_id: "Ziek",
+            leave_status: "Pending",
+            employee_id: 1,
+            categoryId: 0,
+            Name: "Woud",
+        },
+        {
+            Title: "AAA",
+            start_date: "2020-01-01, 10:30",
+            end_date: "2020-01-05, 16:30",
+            leave_requests_category_id: "Ziek",
             leave_status: "Accepted",
             employee_id: 1,
-            categoryId: 0
+            categoryId: 0,
+            Name: "Woud",
+        },
+        {
+            Title: "AAA",
+            start_date: "2020-01-01, 10:30",
+            end_date: "2020-01-05, 16:30",
+            leave_requests_category_id: "Ziek",
+            leave_status: "Denied",
+            employee_id: 1,
+            categoryId: 0,
+            Name: "Woud",
         },
     ];
 
@@ -101,7 +123,7 @@ function InboxPage(){
                 <div className='h-full w-[80%]'>
                 <div>
                 {leaveOpenRequests.map(leaveRequest => {       
-                    if(leaveRequest.leave_status == "pending" && employee_id == temp.userId){
+                    if(leaveRequest.leave_status == "Pending" && leaveRequest.employee_id == temp.userId){
                         return(
                             <div class="flex">
                                 <LeaveRequest title={"Leave Request"} timeframe={leaveRequest.start_date +  " - " + leaveRequest.end_date} catagory={leaveRequest.leave_requests_category_id} status={leaveRequest.leave_status} id={leaveRequest.userId}/>
@@ -117,18 +139,20 @@ function InboxPage(){
                 <p className='text-lg'>Geschidenis</p>
                 <div className='h-full w-[80%]'>
                     <select placeholder='Catagorie' className='w-full h-[30px] border-solid border-[#A7A7A7] border-[1px] mb-[5px]' name="category" id="category" onChange={handleChangeCategory}>
-                    <option value="" disabled selected hidden>Catagorie</option>
-                    <option>Ziek</option>
-                    <option>Vakantie</option>
+                        <option value="" disabled selected hidden>Catagorie</option>
+                        <option>Ziek</option>
+                        <option>Vakantie</option>
                     </select>
                     <div>
                     {leaveRequestsHistory.map(leaveRequest => {
-                        if (filter == -1 || filter == leaveRequest.categoryId){
-                            return(
-                                <div class="flex">
-                                    <LeaveRequest name={leaveRequest.userName} id={leaveRequest.userId}/>
-                                </div>
-                            )
+                        if((leaveRequest.leave_status == "Accepted" || leaveRequest.leave_status == "Denied") && leaveRequest.employee_id == temp.userId){
+                            // if (filter == -1 || filter == leaveRequest.leave_requests_category_id){
+                                return(
+                                    <div class="flex">
+                                        <LeaveRequest title={"Leave Request"} timeframe={leaveRequest.start_date +  " - " + leaveRequest.end_date} catagory={leaveRequest.leave_requests_category_id} status={leaveRequest.leave_status} id={leaveRequest.userId}/>
+                                    </div>
+                                )
+                            // }
                         }
                     })}
                     </div>
@@ -140,15 +164,18 @@ function InboxPage(){
                 <div className='h-full w-[80%]'>
                 <input placeholder='Name' className='w-full h-[30px] border-solid border-[#A7A7A7] border-[1px] mb-[5px]' type="text" id="search" name="search" onChange={handleChangeName}></input>
                 <div>
-                {leaveRequestsMain.map(leaveRequest => {
-                    if (search == "" || leaveRequest.userName.toLowerCase().includes(search.toLocaleLowerCase())){
-                        return(
-                            <div class="flex">
-                                <LeaveRequest name={leaveRequest.userName} id={leaveRequest.userId}/>
-                            </div>
-                        )
+
+                {leaveOpenRequests.map(leaveRequest => {     
+                    if(leaveRequest.leave_status == "Pending" && leaveRequest.employee_id != temp.userId){ //kom er later op terug
+                        if (search == "" || leaveRequest.Name.toString().toLowerCase().includes(search.toString().toLowerCase())){
+                            return(
+                                <div class="flex">
+                                    <LeaveRequest title={leaveRequest.Name + " Requested Leave"} timeframe={leaveRequest.start_date + " - " + leaveRequest.end_date} catagory={leaveRequest.leave_requests_category_id} status={leaveRequest.leave_status} id={leaveRequest.userId}/>
+                                </div>
+                            )
+                        }
                     }
-                })}
+                    })}
                 </div>
                 </div>
             </div>
