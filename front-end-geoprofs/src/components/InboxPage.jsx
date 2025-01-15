@@ -16,23 +16,44 @@ function InboxPage(){
         setSearch(e.target.value);
     }
 
+    var temp = JSON.parse(getCookie("user"));
+
+    function getCookie(cname) {
+        let name = cname + "=";
+        let decodedCookie = decodeURIComponent(document.cookie);
+        let ca = decodedCookie.split(';');
+        for(let i = 0; i <ca.length; i++) {
+          let c = ca[i];
+          while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+          }
+          if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+          }
+        }
+        return "";
+    }
+
 
     const leaveOpenRequests = [//temporary
         {
-            userName: "AAA",
-            userId: 0,
+            Title: "AAA",
+            start_date: "2020-01-01, 10:30",
+            end_date: "2020-01-05, 16:30",
+            leave_requests_category_id: "sick",
+            leave_status: "pending",
+            employee_id: 0,
             categoryId: 0
         },
         {
-            userName: "BBB",
-            userId: 1,
-            categoryId: 1
+            Title: "BBB",
+            start_date: "2020-01-01, 10:30",
+            end_date: "2020-01-05, 16:30",
+            leave_requests_category_id: "sick",
+            leave_status: "Accepted",
+            employee_id: 1,
+            categoryId: 0
         },
-        {
-            userName: "CCC",
-            userId: 2,
-            categoryId: 2
-        }
     ];
 
     const leaveRequestsHistory = [//temporary
@@ -79,12 +100,14 @@ function InboxPage(){
                 <p className='text-lg'>Uw open verlof aanvragen</p>
                 <div className='h-full w-[80%]'>
                 <div>
-                {leaveOpenRequests.map(leaveRequest => {            
+                {leaveOpenRequests.map(leaveRequest => {       
+                    if(leaveRequest.leave_status == "pending" && employee_id == temp.userId){
                         return(
                             <div class="flex">
-                                <LeaveRequest name={leaveRequest.userName} id={leaveRequest.userId}/>
+                                <LeaveRequest title={"Leave Request"} timeframe={leaveRequest.start_date +  " - " + leaveRequest.end_date} catagory={leaveRequest.leave_requests_category_id} status={leaveRequest.leave_status} id={leaveRequest.userId}/>
                             </div>
                         )
+                    }
                     })}
                 </div>
                 </div>
