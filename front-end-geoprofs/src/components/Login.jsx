@@ -36,32 +36,26 @@ function Login(props) {
     }
 
     function login(){
-        fetch(backendUrl+'/sanctum/csrf-cookie', {
-            credentials: 'include',
+        fetch(backendUrl+'/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                emailOrId: mail,
+                password: password,
+            }),
         })
-        .then(() => {
-            fetch(backendUrl+'/login', {
-                method: 'POST',
-                credentials: 'include',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    emailOrId: mail,
-                    password: password,
-                }),
-            })
-            .then(response => {
-                if (response.ok) {
-                    return response.json();
-                }
-            })
-            .then(async data => {
-                await(props.setUser(data));
-                navigate("/front-page");
-            })
-            .catch(error => console.error('Error:', error));
-        });
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+        })
+        .then(async data => {
+            await(props.setUser(data));
+            navigate("/front-page");
+        })
+        .catch(error => console.error('Error:', error));
     }
 
     return (

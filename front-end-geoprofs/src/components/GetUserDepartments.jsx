@@ -26,27 +26,21 @@ function GetUserDepartment(){
     }
 
     function GetDepartment(departmentId){
-        fetch(backendUrl+'/sanctum/csrf-cookie', {
-            credentials: 'include',
+        fetch(backendUrl+'/getUsersDepartment?idUser='+temp.userId+'&userToken='+temp.userToken+'&cacheId='+temp.cacheId+"&idDepartment="+departmentId, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
         })
-        .then(() => {
-            fetch(backendUrl+'/getUsersDepartment?idUser='+temp.userId+'&userToken='+temp.userToken+'&cacheId='+temp.cacheId+"&idDepartment="+departmentId, {
-                method: 'GET',
-                credentials: 'include',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            })
-            .then(response => {
-                if (response.ok) {
-                    return response.json();
-                }
-            })
-            .then(async data => {
-                console.log(data);
-            })
-            .catch(error => console.error('Error:', error));
-        });
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+        })
+        .then(async data => {
+            console.log(data);
+        })
+        .catch(error => console.error('Error:', error));
     }
 }
 
