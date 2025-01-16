@@ -35,8 +35,9 @@ function InboxPage(){
     }
 
 
-    const leaveOpenRequests = [//temporary
+    const leaveRequests = [//temporary
         {
+            id: 1,
             Title: "AAA",
             start_date: "2020-01-01, 10:30",
             end_date: "2020-01-05, 16:30",
@@ -47,6 +48,7 @@ function InboxPage(){
             Name: "John",
         },
         {
+            id: 2,
             Title: "AAA",
             start_date: "2020-01-01, 10:30",
             end_date: "2020-01-05, 16:30",
@@ -57,6 +59,7 @@ function InboxPage(){
             Name: "Woud",
         },
         {
+            id: 3,
             Title: "AAA",
             start_date: "2020-01-01, 10:30",
             end_date: "2020-01-05, 16:30",
@@ -67,6 +70,7 @@ function InboxPage(){
             Name: "Woud",
         },
         {
+            id: 4,
             Title: "AAA",
             start_date: "2020-01-01, 10:30",
             end_date: "2020-01-05, 16:30",
@@ -78,42 +82,6 @@ function InboxPage(){
         },
     ];
 
-    const leaveRequestsHistory = [//temporary
-        {
-            userName: "DDD",
-            userId: 3,
-            categoryId: 0
-        },
-        {
-            userName: "EEE",
-            userId: 4,
-            categoryId: 1
-        },
-        {
-            userName: "FFF",
-            userId: 5,
-            categoryId: 2
-        }
-    ];
-
-    const leaveRequestsMain = [//temporary
-        {
-            userName: "GGG",
-            userId: 6,
-            categoryId: 0
-        },
-        {
-            userName: "HHH",
-            userId: 7,
-            categoryId: 1
-        },
-        {
-            userName: "III",
-            userId: 8,
-            categoryId: 2
-        }
-    ];
-
     return(
     <>  
         <Header/>
@@ -122,7 +90,7 @@ function InboxPage(){
                 <p className='text-lg'>Uw open verlof aanvragen</p>
                 <div className='h-full w-[80%]'>
                 <div>
-                {leaveOpenRequests.map(leaveRequest => {       
+                {leaveRequests.map(leaveRequest => {       
                     if(leaveRequest.leave_status == "Pending" && leaveRequest.employee_id == temp.userId){
                         return(
                             <div class="flex">
@@ -144,16 +112,20 @@ function InboxPage(){
                         <option>Vakantie</option>
                     </select>
                     <div>
-                    {leaveRequestsHistory.map(leaveRequest => {
+                    {leaveRequests.map(leaveRequest => {
                         if((leaveRequest.leave_status == "Accepted" || leaveRequest.leave_status == "Denied") && leaveRequest.employee_id == temp.userId){
                             // if (filter == -1 || filter == leaveRequest.leave_requests_category_id){
                                 return(
                                     <div class="flex">
-                                        <LeaveRequest title={"Leave Request"} timeframe={leaveRequest.start_date +  " - " + leaveRequest.end_date} catagory={leaveRequest.leave_requests_category_id} status={leaveRequest.leave_status} id={leaveRequest.userId}/>
+                                        <LeaveRequest title={"Leave Request"} 
+                                        timeframe={leaveRequest.start_date +  " - " + leaveRequest.end_date} 
+                                        catagory={leaveRequest.leave_requests_category_id}
+                                        status={leaveRequest.leave_status} 
+                                        id={leaveRequest.id}/>
                                     </div>
                                 )
-                            // }
-                        }
+                            }
+                        // }
                     })}
                     </div>
                 </div>
@@ -165,12 +137,12 @@ function InboxPage(){
                 <input placeholder='Name' className='w-full h-[30px] border-solid border-[#A7A7A7] border-[1px] mb-[5px]' type="text" id="search" name="search" onChange={handleChangeName}></input>
                 <div>
 
-                {leaveOpenRequests.map(leaveRequest => {     
+                {leaveRequests.map(leaveRequest => {     
                     if(leaveRequest.leave_status == "Pending" && leaveRequest.employee_id != temp.userId){ //kom er later op terug
                         if (search == "" || leaveRequest.Name.toString().toLowerCase().includes(search.toString().toLowerCase())){
                             return(
                                 <div class="flex">
-                                    <LeaveRequest title={leaveRequest.Name + " Requested Leave"} timeframe={leaveRequest.start_date + " - " + leaveRequest.end_date} catagory={leaveRequest.leave_requests_category_id} status={leaveRequest.leave_status} id={leaveRequest.userId}/>
+                                    <LeaveRequest title={leaveRequest.Name + " Requested Leave"} timeframe={leaveRequest.start_date + " - " + leaveRequest.end_date} catagory={leaveRequest.leave_requests_category_id} status={leaveRequest.leave_status} id={leaveRequest.id}/>
                                 </div>
                             )
                         }
