@@ -55,11 +55,18 @@ function LeaveRequestPage(){
         },
     ];
 
+    
+
     const [searchParams] = useSearchParams();
     const [todos, setTodos] = useState([]);
 
     const queryParams = new URLSearchParams(location.search);
     const id = Number(queryParams.get('id')); //id of leaverequest in data base should not be 0 or lower
+
+    currentRequest = leaveRequests.find(leaveRequest => leaveRequest.id == id);
+
+
+
     //id prop should be used if viewing a leave request, NOT while making one than it will be 0
   
     // useEffect(() => {
@@ -68,16 +75,10 @@ function LeaveRequestPage(){
     //     .then((json) => setTodos(json.actual.stationmeasurements));
     // }, []);
   
-    const leaveRequestData = todos.find((station) => station.$id == id);
-
-
+    // const leaveRequestData = todos.find((station) => station.$id == id);
 
 
     //todo: when entering page, check if user is a manager/has perms to be here.
-
-
-    
-    var test = "disabled";
 
     const [Category, setCategory] = useState(-1); //Category id
     const [startDate, setStartDate] = useState(moment().startOf("day"));
@@ -130,74 +131,130 @@ function LeaveRequestPage(){
     };
 
     var locked = "";
-    var hiddenNonManger = "hidden";
-    var hiddenViewing = "";
+    var reviewingRequest;
+
+    var temp = JSON.parse(getCookie("user"));
+
+    function getCookie(cname) {
+        let name = cname + "=";
+        let decodedCookie = decodeURIComponent(document.cookie);
+        let ca = decodedCookie.split(';');
+        for(let i = 0; i <ca.length; i++) {
+          let c = ca[i];
+          while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+          }
+          if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+          }
+        }
+        return "";
+    }
 
     if(id > 0){
         locked = "disabled";
-        
-        hiddenViewing = "hidden";
+        reviewingRequest = true;
 
         //to do get data and setCategory(), setStartDate(), setEndDate. (check if user has rights to view data in backend)
         //if user doesn't have rights do window.location.href = "/front-page";
 
-        if(true){//to do check if leave request is viewed by correct manger that can accept/decline and leave request is not already accepted or declined 
-            hiddenNonManger = "";
+        if(true){
+            //to do check if leave request is viewed by correct manger that can accept/decline and leave request is not already accepted or declined 
         }
     }
+
+    const buttons = () =>{
+        if(id > 0 && employee_id == temp.userId){
+            return(
+                <div className='mt-[20px] w-[500px] justify-left h-auto flex'>
+                    <button className='w-[150px] h-[40px] border-solid border-[#A7A7A7] border-[1px] rounded-full' onClick={home}>terug</button>
+                </div>
+            )
+        }
+        else if(id > 0 && employee_id != temp.userId){
+            return(
+                <div className='mt-[20px] w-[500px] justify-between h-auto flex'>
+                    <button className='w-[150px] h-[40px] border-solid border-[#A7A7A7] border-[1px] rounded-full'>afwijzen</button>
+                    <button className='w-[150px] h-[40px] rounded-full bg-[#ff0000] text-white'>Cancel</button>
+                    <button className='w-[150px] h-[40px] rounded-full bg-[#20B5FF] text-white'>accepteer</button>
+                </div>
+            )
+        }
+        else{
+            return(
+                <div className='mt-[20px] w-[500px] justify-between h-auto flex'>
+                    <button className='w-[150px] h-[40px] border-solid border-[#A7A7A7] border-[1px] rounded-full' onClick={home}>terug</button>
+                    <button className='w-[150px] h-[40px] rounded-full bg-[#20B5FF] text-white'>dien in</button>
+                </div>
+            )
+        }
+    };
 
     return(
         <>
             <Header/>
-            <div>
-                <select name="category" id="category" onChange={handleChangeCategory}>
-                    <Option name="geen gekozen" id="-1"/> {/* these options are temporary */}
-                    <Option name="0" id="0"/>
-                    <Option name="1" id="1"/>
-                    <Option name="2" id="2"/>
-                </select>
-                <br/>
-                start datum
-                <div className="h-1/2 w-full flex flex-col-reverse datepicker" >
-                    <input 
-                        className="w-full h-[30px] border-solid border-[#A7A7A7] border-[0px] border-t-[1px] text-center" 
-                        type="date" 
-                        value={moment(startDate).format('YYYY-MM-DD')}
-                        onChange={startPickDate}
-                        disabled={locked}
-                    />
-                </div>
-                eind datum
-                <div className="h-1/2 w-full flex flex-col-reverse datepicker" >
-                    <input 
-                        className="w-full h-[30px] border-solid border-[#A7A7A7] border-[0px] border-t-[1px] text-center" 
-                        type="date" 
-                        value={moment(endDate).format('YYYY-MM-DD')}
-                        onChange={endPickDate}
-                        disabled={locked}
-                    />
-                </div>
-                start tijd
+            <div className='w-full h-[calc(100vh-140px)] p-[50px] flex-col flex'>
                 <div>
-                    <input type="time" onChange={changeStartTime} value={startDate.format('HH:mm')} disabled={locked}/>
-                    {/* to do should be in intervals of 30 min */}
+                    <p>Catagorie</p>
+                    <select className='h-[40px] w-[500px] border-solid border-[#A7A7A7] border-[1px]' name="category" id="category" onChange={handleChangeCategory} disabled={locked}>
+                        <Option name="geen gekozen" id="-1"/> {/* these options are temporary */}
+                        <Option name="0" id="0"/>
+                        <Option name="1" id="1"/>
+                        <Option name="2" id="2"/>
+                    </select>
                 </div>
-                eind tijd
+                <div className='h-auto w-[600px] mt-[20px] flex'>
+                    <div className='h-[50px] w-full'>
+                        <p>start datum</p>
+                        <div className="h-1/2 w-full flex flex-col-reverse datepicker" >
+                            <input 
+                                className="w-[200px] h-[30px] border-solid border-[#A7A7A7] border-[1px] text-center " 
+                                type="date" 
+                                value={moment(startDate).format('YYYY-MM-DD')}
+                                onChange={startPickDate}
+                                disabled={locked}
+                            />
+                        </div>
+                    </div>
+                    <div className='h-[50px] w-full'>
+                        <p>eind datum</p>
+                        <div className="h-1/2 w-full flex flex-col-reverse datepicker" >
+                        <input 
+                            className="w-[200px] h-[30px] border-solid border-[#A7A7A7] border-[1px] text-center " 
+                            type="date" 
+                            value={moment(endDate).format('YYYY-MM-DD')}
+                            onChange={endPickDate}
+                            disabled={locked}
+                        />
+                        </div>
+                    </div>
+                </div>
+
+                <div className='h-auto w-[600px] mt-[20px] flex'>
+                    <div className='h-[50px] w-full'>
+                        <p>start tijd</p>
+                        <div className="h-1/2 w-full flex flex-col-reverse datepicker" >
+                            <input className="w-[200px] h-[30px] border-solid border-[#A7A7A7] border-[1px] text-center "  type="time" onChange={changeStartTime} value={startDate.format('HH:mm')} disabled={locked}/>
+                            {/* to do should be in intervals of 30 min */}
+                        </div>
+                    </div>
+                    <div className='h-[50px] w-full'>
+                        <p>eind tijd</p>
+                        <div className="h-1/2 w-full flex flex-col-reverse datepicker" >
+                        <input className="w-[200px] h-[30px] border-solid border-[#A7A7A7] border-[1px] text-center " type="time" onChange={changeEndTime} value={endDate.format('HH:mm')} disabled={locked}/>
+                        {/* to do should be in intervals of 30 min */} 
+                        </div>
+                    </div>
+                </div>
+
                 <div>
-                    <input type="time" onChange={changeEndTime} value={endDate.format('HH:mm')} disabled={locked}/>
-                    {/* to do should be in intervals of 30 min */} 
+                    <input className='mt-[20px]' type="checkbox" checked={paidLeave == "on"} onChange={handlePaidLeaveChange} disabled={locked}/> betaalt Verlof
                 </div>
-                <div>
-                    <input type="checkbox" checked={paidLeave == "on"} onChange={handlePaidLeaveChange} disabled={locked}/> betaalt Verlof
-                </div>
-                <textarea cols="30" rows="10" onChange={handleChangeText} value={text} disabled={locked}></textarea>
-                <div className="flex flex-col">
-                    {/* to do buttons should send correct data to backend (backend also should check if user has rights for what he send) */}
-                    <button hidden={hiddenViewing}>dien in</button>
-                    <button hidden={hiddenNonManger}>accepteer</button>
-                    <button hidden={hiddenNonManger}>afwijzen</button>
-                    <button onClick={home}>terug</button>
-                </div>
+
+                <textarea placeholder='placeholder' className="mt-[20px] p-[5px] w-[500px] h-[300px] border-solid border-[#A7A7A7] border-[1px] " cols="30" rows="10" onChange={handleChangeText} value={text} disabled={locked}></textarea>
+
+                {/* to do buttons should send correct data to backend (backend also should check if user has rights for what he send) */}
+                {buttons()}
             </div>
         </>
     )

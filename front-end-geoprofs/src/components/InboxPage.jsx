@@ -94,7 +94,12 @@ function InboxPage(){
                     if(leaveRequest.leave_status == "Pending" && leaveRequest.employee_id == temp.userId){
                         return(
                             <div class="flex">
-                                <LeaveRequest title={"Leave Request"} timeframe={leaveRequest.start_date +  " - " + leaveRequest.end_date} catagory={leaveRequest.leave_requests_category_id} status={leaveRequest.leave_status} id={leaveRequest.userId}/>
+                                <LeaveRequest
+                                title={"Leave Request"}
+                                timeframe={leaveRequest.start_date +  " - " + leaveRequest.end_date}
+                                catagory={leaveRequest.leave_requests_category_id}
+                                status={leaveRequest.leave_status}
+                                id={leaveRequest.userId}/>
                             </div>
                         )
                     }
@@ -117,7 +122,8 @@ function InboxPage(){
                             // if (filter == -1 || filter == leaveRequest.leave_requests_category_id){
                                 return(
                                     <div class="flex">
-                                        <LeaveRequest title={"Leave Request"} 
+                                        <LeaveRequest
+                                        title={"Leave Request"}
                                         timeframe={leaveRequest.start_date +  " - " + leaveRequest.end_date} 
                                         catagory={leaveRequest.leave_requests_category_id}
                                         status={leaveRequest.leave_status} 
@@ -142,7 +148,12 @@ function InboxPage(){
                         if (search == "" || leaveRequest.Name.toString().toLowerCase().includes(search.toString().toLowerCase())){
                             return(
                                 <div class="flex">
-                                    <LeaveRequest title={leaveRequest.Name + " Requested Leave"} timeframe={leaveRequest.start_date + " - " + leaveRequest.end_date} catagory={leaveRequest.leave_requests_category_id} status={leaveRequest.leave_status} id={leaveRequest.id}/>
+                                    <LeaveRequest
+                                    title={leaveRequest.Name + " Requested Leave"}
+                                    timeframe={leaveRequest.start_date + " - " + leaveRequest.end_date}
+                                    catagory={leaveRequest.leave_requests_category_id}
+                                    status={leaveRequest.leave_status}
+                                    id={leaveRequest.id}/>
                                 </div>
                             )
                         }
