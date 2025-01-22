@@ -11,6 +11,7 @@ function LeaveRequestPage(){
     const leaveRequests = [//temporary
         {
             id: 1,
+            description: "Test Leave Request 1",
             Title: "AAA",
             start_date: "2020-01-01, 10:30",
             end_date: "2020-01-05, 16:30",
@@ -19,9 +20,11 @@ function LeaveRequestPage(){
             employee_id: 2,
             categoryId: 0,
             Name: "John",
+            is_paid: true,
         },
         {
             id: 2,
+            description: "Test Leave Request 2",
             Title: "AAA",
             start_date: "2020-01-01, 10:30",
             end_date: "2020-01-05, 16:30",
@@ -30,9 +33,11 @@ function LeaveRequestPage(){
             employee_id: 1,
             categoryId: 0,
             Name: "Woud",
+            is_paid: true,
         },
         {
             id: 3,
+            description: "Test Leave Request 3",
             Title: "AAA",
             start_date: "2020-01-01, 10:30",
             end_date: "2020-01-05, 16:30",
@@ -41,9 +46,11 @@ function LeaveRequestPage(){
             employee_id: 1,
             categoryId: 0,
             Name: "Woud",
+            is_paid: false,
         },
         {
             id: 4,
+            description: "Test Leave Request 4",
             Title: "AAA",
             start_date: "2020-01-01, 10:30",
             end_date: "2020-01-05, 16:30",
@@ -52,6 +59,7 @@ function LeaveRequestPage(){
             employee_id: 1,
             categoryId: 0,
             Name: "Woud",
+            is_paid: false,
         },
     ];
 
@@ -81,7 +89,7 @@ function LeaveRequestPage(){
     const [Category, setCategory] = useState(-1); //Category id
     const [startDate, setStartDate] = useState(moment().startOf("day"));
     const [endDate, setEndDate] = useState(moment().startOf("day"));
-    const [paidLeave, setPaidLeave] = useState("off");
+    const [paidLeave, setPaidLeave] = useState(true);
     const [text, setText] = useState("");
 
     function handleChangeCategory(e){
@@ -92,12 +100,16 @@ function LeaveRequestPage(){
         window.location.href = "/front-page";
     }
 
+    function back(){
+        window.location.href = "/inbox";
+    }
+    
     function handleChangeText(e){
         setText(e.target.value);
     };
 
     function handlePaidLeaveChange(e){
-        setPaidLeave(e.target.checked ? "on" : "off");
+        setPaidLeave(e.target.checked ? true : false);
     };
 
     const startPickDate = (e) => {
@@ -128,33 +140,49 @@ function LeaveRequestPage(){
         setEndDate(tempDate);
     };
 
-    const startDateValue = () => {
+    const dateOrTimeValue = (startOrEnd, format) => {
         if (id > 0) {
-            var timeAndDate = currentRequest.start_date;
-  
+            var timeAndDate;
+            if(startOrEnd == "start"){
+                timeAndDate = currentRequest.start_date;
+            }
+            else{
+                timeAndDate = currentRequest.end_date;
+            }
             const timeAndDateArray = timeAndDate.toString().split(", ");
-
-            const myMomentObject = moment(timeAndDateArray[0], 'YYYY-MM-DD')
-    
-            return myMomentObject.format('YYYY-MM-DD')
+            var dateOrTime;
+            if(format == "HH:mm"){
+                dateOrTime = 1;
+            }
+            else{
+                dateOrTime = 0;
+            }
+            const myMomentObject = moment(timeAndDateArray[dateOrTime], format)
+            return myMomentObject.format(format)
         } else {
-            return moment(startDate).format('YYYY-MM-DD');
+            return moment(startDate).format(format);
         }
     };
 
-    const endDateValue = () => {
+    const isPaidLeaveChecked = () => {
         if (id > 0) {
-            var timeAndDate = currentRequest.end_date;
-    
-            const timeAndDateArray = timeAndDate.toString().split(", ");
-    
-            const myMomentObject = moment(timeAndDateArray[0], 'YYYY-MM-DD')
-
-            return myMomentObject.format('YYYY-MM-DD')
-        } else {
-            return moment(endDate).format('YYYY-MM-DD');
+            return currentRequest.is_paid;
         }
-    };
+        else{
+            return paidLeave;
+        }
+    }
+
+    const isTextSet = () => {
+        if (id > 0) {
+            return currentRequest.description;
+        }
+        else{
+            return text;
+        }
+    }
+
+    
 
     var locked = "";
 
@@ -191,31 +219,28 @@ function LeaveRequestPage(){
         if(id > 0 && currentRequest.employee_id == temp.userId){
             return(
                 <div className='mt-[20px] w-[500px] justify-left h-auto flex'>
-                    <button className='w-[150px] h-[40px] border-solid border-[#A7A7A7] border-[1px] rounded-full' onClick={home}>terug</button>
+                    <button className='w-[150px] h-[40px] border-solid border-[#A7A7A7] border-[1px] rounded-full' onClick={back}>Terug</button>
                 </div>
             )
         }
         else if(id > 0 && currentRequest.employee_id != temp.userId){
             return(
                 <div className='mt-[20px] w-[500px] justify-between h-auto flex'>
-                    <button className='w-[150px] h-[40px] border-solid border-[#A7A7A7] border-[1px] rounded-full'>afwijzen</button>
-                    <button className='w-[150px] h-[40px] rounded-full bg-[#ff0000] text-white'>Cancel</button>
-                    <button className='w-[150px] h-[40px] rounded-full bg-[#20B5FF] text-white'>accepteer</button>
+                    <button className='w-[150px] h-[40px] border-solid border-[#A7A7A7] border-[1px] rounded-full' onClick={back}>Terug</button>
+                    <button className='w-[150px] h-[40px] rounded-full bg-[#ff0000] text-white'>Afwijzen</button>
+                    <button className='w-[150px] h-[40px] rounded-full bg-[#20B5FF] text-white'>Accepteer</button>
                 </div>
             )
         }
         else{
             return(
                 <div className='mt-[20px] w-[500px] justify-between h-auto flex'>
-                    <button className='w-[150px] h-[40px] border-solid border-[#A7A7A7] border-[1px] rounded-full' onClick={home}>terug</button>
-                    <button className='w-[150px] h-[40px] rounded-full bg-[#20B5FF] text-white'>dien in</button>
+                    <button className='w-[150px] h-[40px] border-solid border-[#A7A7A7] border-[1px] rounded-full' onClick={home}>Terug</button>
+                    <button className='w-[150px] h-[40px] rounded-full bg-[#20B5FF] text-white'>Dien in</button>
                 </div>
             )
         }
     };
-
-    console.log(currentRequest);
-
     return(
         <>
             <Header/>
@@ -241,7 +266,7 @@ function LeaveRequestPage(){
                             <input 
                                 className="w-[200px] h-[30px] border-solid border-[#A7A7A7] border-[1px] text-center " 
                                 type="date" 
-                                value={startDateValue()}
+                                value={dateOrTimeValue("start", "YYYY-MM-DD")}
                                 onChange={startPickDate}
                                 disabled={locked}
                             />
@@ -253,7 +278,7 @@ function LeaveRequestPage(){
                         <input 
                             className="w-[200px] h-[30px] border-solid border-[#A7A7A7] border-[1px] text-center " 
                             type="date" 
-                            value={endDateValue()}
+                            value={dateOrTimeValue("end", "YYYY-MM-DD")}
                             onChange={endPickDate}
                             disabled={locked}
                         />
@@ -265,24 +290,24 @@ function LeaveRequestPage(){
                     <div className='h-[50px] w-full'>
                         <p>start tijd</p>
                         <div className="h-1/2 w-full flex flex-col-reverse datepicker" >
-                            <input className="w-[200px] h-[30px] border-solid border-[#A7A7A7] border-[1px] text-center "  type="time" onChange={changeStartTime} value={startDate.format('HH:mm')} disabled={locked}/>
+                            <input className="w-[200px] h-[30px] border-solid border-[#A7A7A7] border-[1px] text-center "  type="time" onChange={changeStartTime} value={dateOrTimeValue("start", "HH:mm")} disabled={locked}/>
                             {/* to do should be in intervals of 30 min */}
                         </div>
                     </div>
                     <div className='h-[50px] w-full'>
                         <p>eind tijd</p>
                         <div className="h-1/2 w-full flex flex-col-reverse datepicker" >
-                        <input className="w-[200px] h-[30px] border-solid border-[#A7A7A7] border-[1px] text-center " type="time" onChange={changeEndTime} value={endDate.format('HH:mm')} disabled={locked}/>
+                        <input className="w-[200px] h-[30px] border-solid border-[#A7A7A7] border-[1px] text-center " type="time" onChange={changeEndTime} value={dateOrTimeValue("end", "HH:mm")} disabled={locked}/>
                         {/* to do should be in intervals of 30 min */} 
                         </div>
                     </div>
                 </div>
 
                 <div>
-                    <input className='mt-[20px]' type="checkbox" checked={paidLeave == "on"} onChange={handlePaidLeaveChange} disabled={locked}/> betaalt Verlof
+                    <input className='mt-[20px]' type="checkbox" checked={isPaidLeaveChecked()} onChange={handlePaidLeaveChange} disabled={locked}/> betaalt Verlof
                 </div>
 
-                <textarea placeholder='placeholder' className="mt-[20px] p-[5px] w-[500px] h-[300px] border-solid border-[#A7A7A7] border-[1px] " cols="30" rows="10" onChange={handleChangeText} value={text} disabled={locked}></textarea>
+                <textarea placeholder='placeholder' className="mt-[20px] p-[5px] w-[500px] h-[300px] border-solid border-[#A7A7A7] border-[1px] " cols="30" rows="10" onChange={handleChangeText} value={isTextSet()} disabled={locked}></textarea>
 
                 {/* to do buttons should send correct data to backend (backend also should check if user has rights for what he send) */}
                 {buttons()}
