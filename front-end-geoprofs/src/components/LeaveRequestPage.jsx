@@ -63,9 +63,7 @@ function LeaveRequestPage(){
     const queryParams = new URLSearchParams(location.search);
     const id = Number(queryParams.get('id')); //id of leaverequest in data base should not be 0 or lower
 
-    currentRequest = leaveRequests.find(leaveRequest => leaveRequest.id == id);
-
-
+    var currentRequest = leaveRequests.find(leaveRequest => leaveRequest.id == id);
 
     //id prop should be used if viewing a leave request, NOT while making one than it will be 0
   
@@ -130,8 +128,35 @@ function LeaveRequestPage(){
         setEndDate(tempDate);
     };
 
+    const startDateValue = () => {
+        if (id > 0) {
+            var timeAndDate = currentRequest.start_date;
+  
+            const timeAndDateArray = timeAndDate.toString().split(", ");
+
+            const myMomentObject = moment(timeAndDateArray[0], 'YYYY-MM-DD')
+    
+            return myMomentObject.format('YYYY-MM-DD')
+        } else {
+            return moment(startDate).format('YYYY-MM-DD');
+        }
+    };
+
+    const endDateValue = () => {
+        if (id > 0) {
+            var timeAndDate = currentRequest.end_date;
+    
+            const timeAndDateArray = timeAndDate.toString().split(", ");
+    
+            const myMomentObject = moment(timeAndDateArray[0], 'YYYY-MM-DD')
+
+            return myMomentObject.format('YYYY-MM-DD')
+        } else {
+            return moment(endDate).format('YYYY-MM-DD');
+        }
+    };
+
     var locked = "";
-    var reviewingRequest;
 
     var temp = JSON.parse(getCookie("user"));
 
@@ -153,7 +178,6 @@ function LeaveRequestPage(){
 
     if(id > 0){
         locked = "disabled";
-        reviewingRequest = true;
 
         //to do get data and setCategory(), setStartDate(), setEndDate. (check if user has rights to view data in backend)
         //if user doesn't have rights do window.location.href = "/front-page";
@@ -164,14 +188,14 @@ function LeaveRequestPage(){
     }
 
     const buttons = () =>{
-        if(id > 0 && employee_id == temp.userId){
+        if(id > 0 && currentRequest.employee_id == temp.userId){
             return(
                 <div className='mt-[20px] w-[500px] justify-left h-auto flex'>
                     <button className='w-[150px] h-[40px] border-solid border-[#A7A7A7] border-[1px] rounded-full' onClick={home}>terug</button>
                 </div>
             )
         }
-        else if(id > 0 && employee_id != temp.userId){
+        else if(id > 0 && currentRequest.employee_id != temp.userId){
             return(
                 <div className='mt-[20px] w-[500px] justify-between h-auto flex'>
                     <button className='w-[150px] h-[40px] border-solid border-[#A7A7A7] border-[1px] rounded-full'>afwijzen</button>
@@ -190,18 +214,25 @@ function LeaveRequestPage(){
         }
     };
 
+    console.log(currentRequest);
+
     return(
         <>
             <Header/>
             <div className='w-full h-[calc(100vh-140px)] p-[50px] flex-col flex'>
                 <div>
                     <p>Catagorie</p>
-                    <select className='h-[40px] w-[500px] border-solid border-[#A7A7A7] border-[1px]' name="category" id="category" onChange={handleChangeCategory} disabled={locked}>
-                        <Option name="geen gekozen" id="-1"/> {/* these options are temporary */}
-                        <Option name="0" id="0"/>
-                        <Option name="1" id="1"/>
-                        <Option name="2" id="2"/>
-                    </select>
+                    {id > 0 ?
+                        <select className='h-[40px] w-[500px] border-solid border-[#A7A7A7] border-[1px]' name="category" id="category" onChange={handleChangeCategory} disabled={locked}>
+                            <option value="">{currentRequest.leave_requests_category_id}</option>
+                        </select>
+                        :
+                        <select className='h-[40px] w-[500px] border-solid border-[#A7A7A7] border-[1px]' name="category" id="category" onChange={handleChangeCategory} disabled={locked}>
+                            <option value="" disabled selected hidden>Kies een Catagorie</option>
+                            <option>Ziek</option>
+                            <option>Vakantie</option>
+                        </select>
+                    }
                 </div>
                 <div className='h-auto w-[600px] mt-[20px] flex'>
                     <div className='h-[50px] w-full'>
@@ -210,7 +241,7 @@ function LeaveRequestPage(){
                             <input 
                                 className="w-[200px] h-[30px] border-solid border-[#A7A7A7] border-[1px] text-center " 
                                 type="date" 
-                                value={moment(startDate).format('YYYY-MM-DD')}
+                                value={startDateValue()}
                                 onChange={startPickDate}
                                 disabled={locked}
                             />
@@ -222,7 +253,7 @@ function LeaveRequestPage(){
                         <input 
                             className="w-[200px] h-[30px] border-solid border-[#A7A7A7] border-[1px] text-center " 
                             type="date" 
-                            value={moment(endDate).format('YYYY-MM-DD')}
+                            value={endDateValue()}
                             onChange={endPickDate}
                             disabled={locked}
                         />

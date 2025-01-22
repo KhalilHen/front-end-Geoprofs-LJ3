@@ -89,22 +89,23 @@ function InboxPage(){
             <div class="h-full flex-1 flex items-center flex-col">
                 <p className='text-lg'>Uw open verlof aanvragen</p>
                 <div className='h-full w-[80%]'>
-                <div>
-                {leaveRequests.map(leaveRequest => {       
-                    if(leaveRequest.leave_status == "Pending" && leaveRequest.employee_id == temp.userId){
-                        return(
-                            <div class="flex">
-                                <LeaveRequest
-                                title={"Leave Request"}
-                                timeframe={leaveRequest.start_date +  " - " + leaveRequest.end_date}
-                                catagory={leaveRequest.leave_requests_category_id}
-                                status={leaveRequest.leave_status}
-                                id={leaveRequest.userId}/>
-                            </div>
-                        )
-                    }
-                    })}
-                </div>
+                    <div>
+                    {leaveRequests.map(leaveRequest => {       
+                        if(leaveRequest.leave_status == "Pending" && leaveRequest.employee_id == temp.userId){
+                            // console.log(leaveRequest.id);
+                            return(
+                                <div className="flex">
+                                    <LeaveRequest
+                                    title={"Leave Request"}
+                                    timeframe={leaveRequest.start_date + " - " + leaveRequest.end_date}
+                                    catagory={leaveRequest.leave_requests_category_id}
+                                    status={leaveRequest.leave_status}
+                                    id={leaveRequest.id}/>
+                                </div>
+                            )
+                        }
+                        })}
+                    </div>
                 </div>
             </div>
 
@@ -121,12 +122,12 @@ function InboxPage(){
                         if((leaveRequest.leave_status == "Accepted" || leaveRequest.leave_status == "Denied") && leaveRequest.employee_id == temp.userId){
                             // if (filter == -1 || filter == leaveRequest.leave_requests_category_id){
                                 return(
-                                    <div class="flex">
-                                        <LeaveRequest
+                                    <div className="flex">
+                                    <LeaveRequest
                                         title={"Leave Request"}
-                                        timeframe={leaveRequest.start_date +  " - " + leaveRequest.end_date} 
+                                        timeframe={leaveRequest.start_date + " - " + leaveRequest.end_date}
                                         catagory={leaveRequest.leave_requests_category_id}
-                                        status={leaveRequest.leave_status} 
+                                        status={leaveRequest.leave_status}
                                         id={leaveRequest.id}/>
                                     </div>
                                 )
@@ -147,7 +148,7 @@ function InboxPage(){
                     if(leaveRequest.leave_status == "Pending" && leaveRequest.employee_id != temp.userId){ //kom er later op terug
                         if (search == "" || leaveRequest.Name.toString().toLowerCase().includes(search.toString().toLowerCase())){
                             return(
-                                <div class="flex">
+                                <div className="flex">
                                     <LeaveRequest
                                     title={leaveRequest.Name + " Requested Leave"}
                                     timeframe={leaveRequest.start_date + " - " + leaveRequest.end_date}
