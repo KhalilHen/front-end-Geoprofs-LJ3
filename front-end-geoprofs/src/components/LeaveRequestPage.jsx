@@ -1,15 +1,81 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
+import { useSearchParams } from "react-router-dom";
 import Option from './Option';
 import moment from 'moment';
 import Header from './Header';
 
 function LeaveRequestPage(){
 
-    const queryParams = new URLSearchParams(location.search);
+    //temp
+    const leaveRequests = [//temporary
+        {
+            id: 1,
+            Title: "AAA",
+            start_date: "2020-01-01, 10:30",
+            end_date: "2020-01-05, 16:30",
+            leave_requests_category_id: "Ziek",
+            leave_status: "Pending",
+            employee_id: 2,
+            categoryId: 0,
+            Name: "John",
+        },
+        {
+            id: 2,
+            Title: "AAA",
+            start_date: "2020-01-01, 10:30",
+            end_date: "2020-01-05, 16:30",
+            leave_requests_category_id: "Ziek",
+            leave_status: "Pending",
+            employee_id: 1,
+            categoryId: 0,
+            Name: "Woud",
+        },
+        {
+            id: 3,
+            Title: "AAA",
+            start_date: "2020-01-01, 10:30",
+            end_date: "2020-01-05, 16:30",
+            leave_requests_category_id: "Ziek",
+            leave_status: "Accepted",
+            employee_id: 1,
+            categoryId: 0,
+            Name: "Woud",
+        },
+        {
+            id: 4,
+            Title: "AAA",
+            start_date: "2020-01-01, 10:30",
+            end_date: "2020-01-05, 16:30",
+            leave_requests_category_id: "Ziek",
+            leave_status: "Denied",
+            employee_id: 1,
+            categoryId: 0,
+            Name: "Woud",
+        },
+    ];
 
+    const [searchParams] = useSearchParams();
+    const [todos, setTodos] = useState([]);
+
+    const queryParams = new URLSearchParams(location.search);
     const id = Number(queryParams.get('id')); //id of leaverequest in data base should not be 0 or lower
     //id prop should be used if viewing a leave request, NOT while making one than it will be 0
+  
+    // useEffect(() => {
+    //   fetch("")
+    //     .then((response) => response.json())
+    //     .then((json) => setTodos(json.actual.stationmeasurements));
+    // }, []);
+  
+    const leaveRequestData = todos.find((station) => station.$id == id);
+
+
+
+
+    //todo: when entering page, check if user is a manager/has perms to be here.
+
+
     
     var test = "disabled";
 
@@ -78,7 +144,6 @@ function LeaveRequestPage(){
         if(true){//to do check if leave request is viewed by correct manger that can accept/decline and leave request is not already accepted or declined 
             hiddenNonManger = "";
         }
-        
     }
 
     return(
