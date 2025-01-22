@@ -19,7 +19,7 @@ function Login(mail, password, setUser, setResponse = null) {
       setResponse(response.status);
     }
     if (response.ok) {
-        return response.json();
+      return response.json();
     }
     })
     .then(async (data) => {
