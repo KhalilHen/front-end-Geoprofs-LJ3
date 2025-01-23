@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
-import { useEffect } from 'react';
 import { useSearchParams } from "react-router-dom";
-import Option from './Option';
 import moment from 'moment';
 import Header from './Header';
 
 function LeaveRequestPage(){
 
-    //temp
     const leaveRequests = [//temporary
         {
             id: 1,
@@ -63,34 +60,47 @@ function LeaveRequestPage(){
         },
     ];
 
-    
-
-    const [searchParams] = useSearchParams();
-    const [todos, setTodos] = useState([]);
-
     const queryParams = new URLSearchParams(location.search);
     const id = Number(queryParams.get('id')); //id of leaverequest in data base should not be 0 or lower
-
-    var currentRequest = leaveRequests.find(leaveRequest => leaveRequest.id == id);
-
     //id prop should be used if viewing a leave request, NOT while making one than it will be 0
-  
-    // useEffect(() => {
-    //   fetch("")
-    //     .then((response) => response.json())
-    //     .then((json) => setTodos(json.actual.stationmeasurements));
-    // }, []);
-  
-    // const leaveRequestData = todos.find((station) => station.$id == id);
-
 
     //todo: when entering page, check if user is a manager/has perms to be here.
+
+    // const [todos, setTodos] = useState([]);
+  
+    // useEffect(() => {
+    //   fetch("link to backend")
+    //     .then((response) => response.json())
+    //     .then((json) => setTodos(set the path in the json of the data you want));
+    // }, []);
+  
+    // const leaveRequests = todos.find((leaveRequest) => leaveRequest.id == id);
+    var currentRequest = leaveRequests.find(leaveRequest => leaveRequest.id == id);
+
+    var temp = JSON.parse(getCookie("user"));
+    function getCookie(cname) {
+        let name = cname + "=";
+        let decodedCookie = decodeURIComponent(document.cookie);
+        let ca = decodedCookie.split(';');
+        for(let i = 0; i <ca.length; i++) {
+          let c = ca[i];
+          while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+          }
+          if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+          }
+        }
+        return "";
+    }
 
     const [Category, setCategory] = useState(-1); //Category id
     const [startDate, setStartDate] = useState(moment().startOf("day"));
     const [endDate, setEndDate] = useState(moment().startOf("day"));
     const [paidLeave, setPaidLeave] = useState(true);
     const [text, setText] = useState("");
+
+    var locked = "";
 
     function handleChangeCategory(e){
         setCategory(e.target.value);
@@ -182,40 +192,8 @@ function LeaveRequestPage(){
         }
     }
 
-    
-
-    var locked = "";
-
-    var temp = JSON.parse(getCookie("user"));
-
-    function getCookie(cname) {
-        let name = cname + "=";
-        let decodedCookie = decodeURIComponent(document.cookie);
-        let ca = decodedCookie.split(';');
-        for(let i = 0; i <ca.length; i++) {
-          let c = ca[i];
-          while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-          }
-          if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-          }
-        }
-        return "";
-    }
-
-    if(id > 0){
-        locked = "disabled";
-
-        //to do get data and setCategory(), setStartDate(), setEndDate. (check if user has rights to view data in backend)
-        //if user doesn't have rights do window.location.href = "/front-page";
-
-        if(true){
-            //to do check if leave request is viewed by correct manger that can accept/decline and leave request is not already accepted or declined 
-        }
-    }
-
     const buttons = () =>{
+        //to do buttons should send correct data to backend (backend also should check if user has rights for what he send)
         if(id > 0 && currentRequest.employee_id == temp.userId){
             return(
                 <div className='mt-[20px] w-[500px] justify-left h-auto flex'>
@@ -241,6 +219,18 @@ function LeaveRequestPage(){
             )
         }
     };
+
+    if(id > 0){
+        locked = "disabled";
+
+        //to do: check if user has rights to view data in backend
+        //if user doesn't have rights do window.location.href = "/front-page";
+
+        if(true){
+            //to do check if leave request is viewed by correct manger that can accept/decline and leave request is not already accepted or declined 
+        }
+    }
+
     return(
         <>
             <Header/>
@@ -309,7 +299,6 @@ function LeaveRequestPage(){
 
                 <textarea placeholder='placeholder' className="mt-[20px] p-[5px] w-[500px] h-[300px] border-solid border-[#A7A7A7] border-[1px] " cols="30" rows="10" onChange={handleChangeText} value={isTextSet()} disabled={locked}></textarea>
 
-                {/* to do buttons should send correct data to backend (backend also should check if user has rights for what he send) */}
                 {buttons()}
             </div>
         </>
