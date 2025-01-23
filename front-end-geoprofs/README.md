@@ -9,3 +9,5 @@ Currently, two official plugins are available:
 
 installation - branch:header
 npm i @material-tailwind/react
+
+For testing login with LoginTest.test.js you need to have the backend running, data base running, made a fresh migration and seeded the database.

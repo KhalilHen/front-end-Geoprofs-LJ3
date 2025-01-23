@@ -17,7 +17,7 @@ function App() {
     console.log(user);
     console.log(user?.access_token);
     if(user?.access_token != null && user?.expire_date != null && user?.user_id && user?.cache_id != null){
-      document.cookie = ("user="+JSON.stringify({userToken:user?.access_token , userId:user?.user_id , cacheId:user?.cache_id})+"; expires="+user?.expire_date);
+      document.cookie = ("user="+JSON.stringify({access_token:user?.access_token , user_id:user?.user_id , cache_id:user?.cache_id})+"; expires="+user?.expire_date);
     }
   }, [user]);
 
