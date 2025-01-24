@@ -16,7 +16,7 @@ jest.mock('react-router-dom', () => ({
 var timeOut = 20000;
 
 describe('Employee requests users ids from same department from self', () => {
-    test('Employee with id 4 in department 1 requests users ids from department 1', async () => {
+    test('receives correct users ids of users in requested department', async () => {
     const mockSetUser = jest.fn();
     const mockNavigate = jest.fn();
     const mockSetResponse = jest.fn();
@@ -39,7 +39,7 @@ describe('Employee requests users ids from same department from self', () => {
 });
 
 describe('Employee requests users ids from different department from self', () => {
-  test('Employee with id 4 in department 1 requests users ids from department 2', async () => {
+  test('receives no data but instead response error 403', async () => {
   const mockSetUser = jest.fn();
   const mockNavigate = jest.fn();
   const mockSetResponse = jest.fn();
@@ -56,13 +56,13 @@ describe('Employee requests users ids from different department from self', () =
   const usersArg = mockSetUsers.mock.calls[0]?.[0];
 
   expect(responseArg).toBe(403);
-  expect(usersArg).toBeUndefined();;
+  expect(usersArg).toBeUndefined();
 
   } , timeOut);
 });
 
 describe('Employee requests users ids from different department from self while using other users id', () => {
-  test('Employee with id 4 in department 1 requests users ids from department 2', async () => {
+  test('receives no data but instead response error 401', async () => {
   const mockSetUser = jest.fn();
   const mockNavigate = jest.fn();
   const mockSetResponse = jest.fn();
@@ -80,13 +80,13 @@ describe('Employee requests users ids from different department from self while 
   const usersArg = mockSetUsers.mock.calls[0]?.[0];
 
   expect(responseArg).toBe(401);
-  expect(usersArg).toBeUndefined();;
+  expect(usersArg).toBeUndefined();
 
   } , timeOut);
 });
 
 describe('Section manger requests users ids from department that is in the section manger is managing', () => {
-  test('Section manger with id 1 managing section 1 witch contains department 1 requests users ids from department 1', async () => {
+  test('receives correct users ids of users in requested department', async () => {
   const mockSetUser = jest.fn();
   const mockNavigate = jest.fn();
   const mockSetResponse = jest.fn();
@@ -104,6 +104,29 @@ describe('Section manger requests users ids from department that is in the secti
 
   expect(responseArg).toBe(200);
   expect(usersArg.user_ids).toEqual([2, 3, 4, 5, 6]);
+
+  } , timeOut);
+});
+
+describe('Section manger requests users ids from department that is not in the section manger is managing', () => {
+  test('receives no data but instead response error 403', async () => {
+  const mockSetUser = jest.fn();
+  const mockNavigate = jest.fn();
+  const mockSetResponse = jest.fn();
+  const mockSetUsers = jest.fn();
+  jest.mocked(useNavigate).mockReturnValue(mockNavigate);
+
+  await Login('GeoprofsSectionManger1@example.com', 'password1', mockSetUser);
+
+  const userArg = mockSetUser.mock.calls[0]?.[0];
+
+  await GetUserDepartment(4, mockSetUsers, userArg, mockSetResponse);
+
+  const responseArg = mockSetResponse.mock.calls[0]?.[0];
+  const usersArg = mockSetUsers.mock.calls[0]?.[0];
+
+  expect(responseArg).toBe(403);
+  expect(usersArg).toBeUndefined();
 
   } , timeOut);
 });

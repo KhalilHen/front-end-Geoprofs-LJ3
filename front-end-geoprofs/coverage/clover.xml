@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1737741518017" clover="3.2.0">
-  <project timestamp="1737741518018" name="All files">
+<coverage generated="1737742125287" clover="3.2.0">
+  <project timestamp="1737742125288" name="All files">
     <metrics statements="49" coveredstatements="24" conditionals="31" coveredconditionals="15" methods="14" coveredmethods="9" elements="94" coveredelements="48" complexity="0" loc="49" ncloc="49" packages="1" files="3" classes="3"/>
     <file name="GetMangerDepartment.jsx" path="C:\Users\karst\git-protjects\geoprof\frontend\front-end-Geoprofs-LJ3\front-end-geoprofs\src\components\GetMangerDepartment.jsx">
       <metrics statements="20" coveredstatements="8" conditionals="13" coveredconditionals="5" methods="5" coveredmethods="3"/>
@@ -37,27 +37,27 @@
       <line num="15" count="0" type="cond" truecount="0" falsecount="2"/>
       <line num="16" count="0" type="stmt"/>
       <line num="19" count="0" type="stmt"/>
-      <line num="22" count="4" type="cond" truecount="1" falsecount="1"/>
+      <line num="22" count="5" type="cond" truecount="1" falsecount="1"/>
       <line num="23" count="0" type="stmt"/>
-      <line num="26" count="4" type="stmt"/>
-      <line num="33" count="4" type="cond" truecount="1" falsecount="1"/>
-      <line num="34" count="4" type="stmt"/>
-      <line num="36" count="4" type="cond" truecount="2" falsecount="0"/>
+      <line num="26" count="5" type="stmt"/>
+      <line num="33" count="5" type="cond" truecount="1" falsecount="1"/>
+      <line num="34" count="5" type="stmt"/>
+      <line num="36" count="5" type="cond" truecount="2" falsecount="0"/>
       <line num="37" count="2" type="stmt"/>
-      <line num="41" count="4" type="cond" truecount="1" falsecount="1"/>
-      <line num="42" count="4" type="stmt"/>
+      <line num="41" count="5" type="cond" truecount="1" falsecount="1"/>
+      <line num="42" count="5" type="stmt"/>
       <line num="45" count="0" type="stmt"/>
     </file>
     <file name="Login.jsx" path="C:\Users\karst\git-protjects\geoprof\frontend\front-end-Geoprofs-LJ3\front-end-geoprofs\src\components\Login.jsx">
       <metrics statements="9" coveredstatements="8" conditionals="5" coveredconditionals="5" methods="4" coveredmethods="3"/>
-      <line num="6" count="12" type="stmt"/>
-      <line num="7" count="12" type="stmt"/>
-      <line num="18" count="12" type="cond" truecount="2" falsecount="0"/>
+      <line num="6" count="13" type="stmt"/>
+      <line num="7" count="13" type="stmt"/>
+      <line num="18" count="13" type="cond" truecount="2" falsecount="0"/>
       <line num="19" count="3" type="stmt"/>
-      <line num="21" count="12" type="cond" truecount="2" falsecount="0"/>
-      <line num="22" count="11" type="stmt"/>
-      <line num="26" count="12" type="stmt"/>
-      <line num="27" count="12" type="stmt"/>
+      <line num="21" count="13" type="cond" truecount="2" falsecount="0"/>
+      <line num="22" count="12" type="stmt"/>
+      <line num="26" count="13" type="stmt"/>
+      <line num="27" count="13" type="stmt"/>
       <line num="29" count="0" type="stmt"/>
     </file>
   </project>

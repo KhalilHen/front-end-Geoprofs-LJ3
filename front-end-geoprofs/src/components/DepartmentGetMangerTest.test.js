@@ -85,7 +85,7 @@ describe('Employee requests manger user id from different department from self w
   } , timeOut);
 });
 
-describe('Section manger requests users ids from department that is in the section manger is managing', () => {
+describe('Section manger requests manger user id from department that is in the section manger is managing', () => {
   test('receives correct user id that is from manger of requested department', async () => {
   const mockSetUser = jest.fn();
   const mockNavigate = jest.fn();
@@ -108,7 +108,7 @@ describe('Section manger requests users ids from department that is in the secti
   } , timeOut);
 });
 
-describe('Section manger requests users ids from department that is not in the section manger is managing', () => {
+describe('Section manger requests manger user id from department that is not in the section manger is managing', () => {
   test('receives no data but instead response error 403', async () => {
   const mockSetUser = jest.fn();
   const mockNavigate = jest.fn();

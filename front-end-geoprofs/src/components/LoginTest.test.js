@@ -17,7 +17,7 @@ var timeOut = 20000; //time out is high because it needs fetch from the backend
 
 //employee login tests
 describe('Login employee with mail', () => {
-  test('Login employee with mail that has id 4', async () => {
+  test('Logins in user successfully and receives token', async () => {
     const mockSetUser = jest.fn();
     const mockSetResponse = jest.fn();
     const mockNavigate = jest.fn();
@@ -37,7 +37,7 @@ describe('Login employee with mail', () => {
 });
 
 describe('Login employee with id', () => {
-  test('Login employee with id that has id 6', async () => {
+  test('Logins in user successfully and receives token', async () => {
     const mockSetUser = jest.fn();
     const mockSetResponse = jest.fn();
     const mockNavigate = jest.fn();
@@ -57,7 +57,7 @@ describe('Login employee with id', () => {
 });
 
 describe('Login employee with id using wrong password', () => {
-  test('Login employee with id that has id 6', async () => {
+  test('get no data back but receive response error 401', async () => {
     const mockSetUser = jest.fn();
     const mockSetResponse = jest.fn();
     const mockNavigate = jest.fn();
