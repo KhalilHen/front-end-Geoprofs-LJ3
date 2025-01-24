@@ -1,52 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1737742125287" clover="3.2.0">
-  <project timestamp="1737742125288" name="All files">
-    <metrics statements="49" coveredstatements="24" conditionals="31" coveredconditionals="15" methods="14" coveredmethods="9" elements="94" coveredelements="48" complexity="0" loc="49" ncloc="49" packages="1" files="3" classes="3"/>
-    <file name="GetMangerDepartment.jsx" path="C:\Users\karst\git-protjects\geoprof\frontend\front-end-Geoprofs-LJ3\front-end-geoprofs\src\components\GetMangerDepartment.jsx">
-      <metrics statements="20" coveredstatements="8" conditionals="13" coveredconditionals="5" methods="5" coveredmethods="3"/>
+<coverage generated="1737742523881" clover="3.2.0">
+  <project timestamp="1737742523882" name="All files">
+    <metrics statements="39" coveredstatements="24" conditionals="29" coveredconditionals="15" methods="13" coveredmethods="9" elements="81" coveredelements="48" complexity="0" loc="39" ncloc="39" packages="1" files="4" classes="4"/>
+    <file name="GetCookie.jsx" path="C:\Users\karst\git-protjects\geoprof\frontend\front-end-Geoprofs-LJ3\front-end-geoprofs\src\components\GetCookie.jsx">
+      <metrics statements="10" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <line num="2" count="0" type="stmt"/>
+      <line num="3" count="0" type="stmt"/>
+      <line num="4" count="0" type="stmt"/>
+      <line num="5" count="0" type="stmt"/>
+      <line num="6" count="0" type="stmt"/>
       <line num="7" count="0" type="stmt"/>
       <line num="8" count="0" type="stmt"/>
-      <line num="9" count="0" type="stmt"/>
-      <line num="10" count="0" type="stmt"/>
+      <line num="10" count="0" type="cond" truecount="0" falsecount="2"/>
       <line num="11" count="0" type="stmt"/>
-      <line num="12" count="0" type="stmt"/>
-      <line num="13" count="0" type="stmt"/>
-      <line num="15" count="0" type="cond" truecount="0" falsecount="2"/>
-      <line num="16" count="0" type="stmt"/>
-      <line num="19" count="0" type="stmt"/>
-      <line num="22" count="5" type="cond" truecount="1" falsecount="1"/>
-      <line num="23" count="0" type="stmt"/>
-      <line num="26" count="5" type="stmt"/>
-      <line num="34" count="5" type="cond" truecount="1" falsecount="1"/>
-      <line num="35" count="5" type="stmt"/>
-      <line num="37" count="5" type="cond" truecount="2" falsecount="0"/>
-      <line num="38" count="2" type="stmt"/>
-      <line num="42" count="5" type="cond" truecount="1" falsecount="1"/>
-      <line num="43" count="5" type="stmt"/>
-      <line num="46" count="0" type="stmt"/>
+      <line num="14" count="0" type="stmt"/>
+    </file>
+    <file name="GetMangerDepartment.jsx" path="C:\Users\karst\git-protjects\geoprof\frontend\front-end-Geoprofs-LJ3\front-end-geoprofs\src\components\GetMangerDepartment.jsx">
+      <metrics statements="10" coveredstatements="8" conditionals="11" coveredconditionals="5" methods="4" coveredmethods="3"/>
+      <line num="7" count="5" type="cond" truecount="1" falsecount="1"/>
+      <line num="8" count="0" type="stmt"/>
+      <line num="11" count="5" type="stmt"/>
+      <line num="19" count="5" type="cond" truecount="1" falsecount="1"/>
+      <line num="20" count="5" type="stmt"/>
+      <line num="22" count="5" type="cond" truecount="2" falsecount="0"/>
+      <line num="23" count="2" type="stmt"/>
+      <line num="27" count="5" type="cond" truecount="1" falsecount="1"/>
+      <line num="28" count="5" type="stmt"/>
+      <line num="31" count="0" type="stmt"/>
     </file>
     <file name="GetUserDepartments.jsx" path="C:\Users\karst\git-protjects\geoprof\frontend\front-end-Geoprofs-LJ3\front-end-geoprofs\src\components\GetUserDepartments.jsx">
-      <metrics statements="20" coveredstatements="8" conditionals="13" coveredconditionals="5" methods="5" coveredmethods="3"/>
-      <line num="7" count="0" type="stmt"/>
+      <metrics statements="10" coveredstatements="8" conditionals="11" coveredconditionals="5" methods="4" coveredmethods="3"/>
+      <line num="7" count="5" type="cond" truecount="1" falsecount="1"/>
       <line num="8" count="0" type="stmt"/>
-      <line num="9" count="0" type="stmt"/>
-      <line num="10" count="0" type="stmt"/>
-      <line num="11" count="0" type="stmt"/>
-      <line num="12" count="0" type="stmt"/>
-      <line num="13" count="0" type="stmt"/>
-      <line num="15" count="0" type="cond" truecount="0" falsecount="2"/>
-      <line num="16" count="0" type="stmt"/>
-      <line num="19" count="0" type="stmt"/>
-      <line num="22" count="5" type="cond" truecount="1" falsecount="1"/>
-      <line num="23" count="0" type="stmt"/>
-      <line num="26" count="5" type="stmt"/>
-      <line num="33" count="5" type="cond" truecount="1" falsecount="1"/>
-      <line num="34" count="5" type="stmt"/>
-      <line num="36" count="5" type="cond" truecount="2" falsecount="0"/>
-      <line num="37" count="2" type="stmt"/>
-      <line num="41" count="5" type="cond" truecount="1" falsecount="1"/>
-      <line num="42" count="5" type="stmt"/>
-      <line num="45" count="0" type="stmt"/>
+      <line num="11" count="5" type="stmt"/>
+      <line num="18" count="5" type="cond" truecount="1" falsecount="1"/>
+      <line num="19" count="5" type="stmt"/>
+      <line num="21" count="5" type="cond" truecount="2" falsecount="0"/>
+      <line num="22" count="2" type="stmt"/>
+      <line num="26" count="5" type="cond" truecount="1" falsecount="1"/>
+      <line num="27" count="5" type="stmt"/>
+      <line num="30" count="0" type="stmt"/>
     </file>
     <file name="Login.jsx" path="C:\Users\karst\git-protjects\geoprof\frontend\front-end-Geoprofs-LJ3\front-end-geoprofs\src\components\Login.jsx">
       <metrics statements="9" coveredstatements="8" conditionals="5" coveredconditionals="5" methods="4" coveredmethods="3"/>
