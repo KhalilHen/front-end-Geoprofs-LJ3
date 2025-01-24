@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for GetUserDepartments.jsx</title>
+    <title>Code coverage report for GetMangerDepartment.jsx</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="prettify.css" />
     <link rel="stylesheet" href="base.css" />
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="index.html">All files</a> GetUserDepartments.jsx</h1>
+        <h1><a href="index.html">All files</a> GetMangerDepartment.jsx</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -110,7 +110,8 @@
 <a name='L45'></a><a href='#L45'>45</a>
 <a name='L46'></a><a href='#L46'>46</a>
 <a name='L47'></a><a href='#L47'>47</a>
-<a name='L48'></a><a href='#L48'>48</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -131,27 +132,28 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -160,7 +162,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { backendUrl } from '../config/config.json';
 import React, { useState, useEffect } from 'react';
 &nbsp;
-function GetUserDepartment(departmentId, setUsers = <span class="branch-0 cbranch-no" title="branch not covered" >null,</span> userCookie = <span class="branch-0 cbranch-no" title="branch not covered" >null,</span> setResponse = <span class="branch-0 cbranch-no" title="branch not covered" >null)</span>{
+function GetMangerDepartment(departmentId, setUser = <span class="branch-0 cbranch-no" title="branch not covered" >null,</span> userCookie = <span class="branch-0 cbranch-no" title="branch not covered" >null,</span> setResponse = <span class="branch-0 cbranch-no" title="branch not covered" >null)</span>{
 &nbsp;
     function <span class="fstat-no" title="function not covered" >getCookie(</span>cname) {
         let name = <span class="cstat-no" title="statement not covered" >cname + "=";</span>
@@ -182,8 +184,9 @@ function GetUserDepartment(departmentId, setUsers = <span class="branch-0 cbranc
         var userCookie = <span class="cstat-no" title="statement not covered" >JSON.parse(getCookie("user"));        </span>
     }
 &nbsp;
-    return fetch(backendUrl+'/getUsersDepartment?user_id='+userCookie.user_id+'&amp;access_token='+userCookie.access_token+'&amp;cache_id='+userCookie.cache_id+"&amp;id_department="+departmentId, {
+    return fetch(backendUrl+'/getMangerDepartment?user_id='+userCookie.user_id+'&amp;access_token='+userCookie.access_token+'&amp;cache_id='+userCookie.cache_id+"&amp;id_department="+departmentId, {
         method: 'GET',
+        credentials: 'include',
         headers: {
             'Content-Type': 'application/json',
         },
@@ -197,14 +200,14 @@ function GetUserDepartment(departmentId, setUsers = <span class="branch-0 cbranc
         }
     })
     .then(async data =&gt; {
-        <span class="missing-if-branch" title="else path not taken" >E</span>if (setUsers) {
-            setUsers(data);
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (setUser) {
+            setUser(data);
         }
     })
     .catch(<span class="fstat-no" title="function not covered" >er</span>ror =&gt; <span class="cstat-no" title="statement not covered" >console.error('Error:', error))</span>;
 }
 &nbsp;
-export { GetUserDepartment };</pre></td></tr></table></pre>
+export { GetMangerDepartment };</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->

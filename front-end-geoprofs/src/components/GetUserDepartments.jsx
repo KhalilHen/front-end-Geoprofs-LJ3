@@ -23,8 +23,6 @@ function GetUserDepartment(departmentId, setUsers = null, userCookie = null, set
         var userCookie = JSON.parse(getCookie("user"));        
     }
 
-
-
     return fetch(backendUrl+'/getUsersDepartment?user_id='+userCookie.user_id+'&access_token='+userCookie.access_token+'&cache_id='+userCookie.cache_id+"&id_department="+departmentId, {
         method: 'GET',
         headers: {

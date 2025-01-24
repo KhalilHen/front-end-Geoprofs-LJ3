@@ -1,13 +1,7 @@
 import { backendUrl } from '../config/config.json';
 import React, { useState, useEffect } from 'react';
 
-function GetMangerDepartment(){
-
-    var temp = JSON.parse(getCookie("user"));
-
-    // console.log(temp.userToken);
-    // console.log(temp.userId);
-    // console.log(temp.cacheId);
+function GetMangerDepartment(departmentId, setUser = null, userCookie = null, setResponse = null){
 
     function getCookie(cname) {
         let name = cname + "=";
@@ -25,24 +19,31 @@ function GetMangerDepartment(){
         return "";
     }
 
-    function GetDepartment(departmentId){
-        fetch(backendUrl+'/getMangerDepartment?idUser='+temp.userId+'&userToken='+temp.userToken+'&cacheId='+temp.cacheId+"&idDepartment="+departmentId, {
-            method: 'GET',
-            credentials: 'include',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
-        .then(response => {
-            if (response.ok) {
-                return response.json();
-            }
-        })
-        .then(async data => {
-            console.log(data);
-        })
-        .catch(error => console.error('Error:', error));
+    if(!userCookie){
+        var userCookie = JSON.parse(getCookie("user"));        
     }
+
+    return fetch(backendUrl+'/getMangerDepartment?user_id='+userCookie.user_id+'&access_token='+userCookie.access_token+'&cache_id='+userCookie.cache_id+"&id_department="+departmentId, {
+        method: 'GET',
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+    .then(response => {
+        if (setResponse){
+            setResponse(response.status);
+        }
+        if (response.ok) {
+            return response.json();
+        }
+    })
+    .then(async data => {
+        if (setUser) {
+            setUser(data);
+        }
+    })
+    .catch(error => console.error('Error:', error));
 }
 
-export default GetMangerDepartment
+export { GetMangerDepartment };
