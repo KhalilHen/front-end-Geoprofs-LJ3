@@ -277,20 +277,24 @@ function LeaveRequestPage(){
                 </div>
 
                 <div className='h-auto w-[600px] mt-[20px] flex'>
-                    <div className='h-[50px] w-full'>
+                    {/* <div className='h-[50px] w-full'>
                         <p>start tijd</p>
                         <div className="h-1/2 w-full flex flex-col-reverse datepicker" >
                             <input className="w-[200px] h-[30px] border-solid border-[#A7A7A7] border-[1px] text-center "  type="time" onChange={changeStartTime} value={dateOrTimeValue("start", "HH:mm")} disabled={locked}/>
-                            {/* to do should be in intervals of 30 min */}
+                            {
+                            //to do should be in intervals of 30 min
+                            }
                         </div>
                     </div>
                     <div className='h-[50px] w-full'>
                         <p>eind tijd</p>
                         <div className="h-1/2 w-full flex flex-col-reverse datepicker" >
-                        <input className="w-[200px] h-[30px] border-solid border-[#A7A7A7] border-[1px] text-center " type="time" onChange={changeEndTime} value={dateOrTimeValue("end", "HH:mm")} disabled={locked}/>
-                        {/* to do should be in intervals of 30 min */} 
+                            <input className="w-[200px] h-[30px] border-solid border-[#A7A7A7] border-[1px] text-center " type="time" onChange={changeEndTime} value={dateOrTimeValue("end", "HH:mm")} disabled={locked}/>
+                            {
+                            // to do should be in intervals of 30 min
+                            } 
                         </div>
-                    </div>
+                    </div> */}
                 </div>
 
                 <div>
