@@ -2,7 +2,7 @@ import { backendUrl } from '../config/config.json';
 import React, { useState, useEffect } from 'react';
 import { getCookie } from './GetCookie'
 
-function GetMangerDepartment(departmentId, setUser = null, userCookie = null, setResponse = null){
+function GetMangerDepartment(departmentId, setMangers = null, userCookie = null, setResponse = null){
 
     if(!userCookie){
         var userCookie = JSON.parse(getCookie("user"));        
@@ -24,8 +24,8 @@ function GetMangerDepartment(departmentId, setUser = null, userCookie = null, se
         }
     })
     .then(async data => {
-        if (setUser) {
-            setUser(data);
+        if (setMangers) {
+            setMangers(data);
         }
     })
     .catch(error => console.error('Error:', error));

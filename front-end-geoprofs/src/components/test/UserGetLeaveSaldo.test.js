@@ -20,20 +20,20 @@ describe('Employee requests leave saldo from self', () => {
     const mockSetUser = jest.fn();
     const mockNavigate = jest.fn();
     const mockSetResponse = jest.fn();
-    const mockSetUsers = jest.fn();
+    const mockSetData = jest.fn();
     jest.mocked(useNavigate).mockReturnValue(mockNavigate);
 
     await Login('GeoprofsEmployee2@example.com', 'password4', mockSetUser);
 
     const userArg = mockSetUser.mock.calls[0]?.[0];
 
-    await GetLeaveSaldoUser(4, mockSetUsers, userArg, mockSetResponse);
+    await GetLeaveSaldoUser(4, mockSetData, userArg, mockSetResponse);
 
     const responseArg = mockSetResponse.mock.calls[0]?.[0];
-    const usersArg = mockSetUsers.mock.calls[0]?.[0];
+    const dataArg = mockSetData.mock.calls[0]?.[0];
 
     expect(responseArg).toBe(200);
-    expect(usersArg.leave_days).toEqual(30);
+    expect(dataArg.leave_days).toEqual(30);
 
     } , timeOut);
 });

@@ -1,7 +1,7 @@
 import { backendUrl } from '../config/config.json';
 import React, { useState, useEffect } from 'react';
 
-function ApproveOrDeclineLeaveRequest(inputValues, setUser = null, userCookie = null, setResponse = null) {
+function ApproveOrDeclineLeaveRequest(inputValues, setData = null, userCookie = null, setResponse = null) {
 
     if(!userCookie){
         var userCookie = JSON.parse(getCookie("user"));        
@@ -30,7 +30,7 @@ function ApproveOrDeclineLeaveRequest(inputValues, setUser = null, userCookie = 
         }
     })
     .then(async (data) => {
-        await setUser(data);
+        await setData(data);
     })
     .catch((error) => console.error('Error:', error));
 }

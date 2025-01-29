@@ -15,29 +15,29 @@ jest.mock('react-router-dom', () => ({
 
 var timeOut = 20000;
 
-describe('Employee requests users ids from same department from self', () => {
-    test('receives correct users ids of users in requested department', async () => {
+describe('department manger approves leave request from user in department self is managing', () => {
+    test('receives message it was successful', async () => {
     const mockSetUser = jest.fn();
     const mockNavigate = jest.fn();
     const mockSetResponse = jest.fn();
-    const mockSetUsers = jest.fn();
+    const mockSetData = jest.fn();
     jest.mocked(useNavigate).mockReturnValue(mockNavigate);
 
-    await Login('GeoprofsEmployee2@example.com', 'password4', mockSetUser);
+    await Login('2', 'password2', mockSetUser);
 
     const userArg = mockSetUser.mock.calls[0]?.[0];
 
     const input = {leave_request_id: 1, value: 2};//value 2 is accept and value 1 would be decline 
 
-    await ApproveOrDeclineLeaveRequest(input , mockSetUsers, userArg, mockSetResponse);
+    await ApproveOrDeclineLeaveRequest(input , mockSetData, userArg, mockSetResponse);
 
     const responseArg = mockSetResponse.mock.calls[0]?.[0];
-    const usersArg = mockSetUsers.mock.calls[0]?.[0];
+    const dataArg = mockSetData.mock.calls[0]?.[0];
 
-    console.log(usersArg);
+    console.log(dataArg);
 
-    expect(responseArg).toBe(200);//
-    expect(usersArg.message).toEqual('Leave request successfully approved or declined');
+    expect(responseArg).toBe(200);//response 422 means test may already be run try a fresh migration and seeders before re trying test
+    expect(dataArg.message).toEqual('Leave request successfully approved or declined');
 
     //TODO test if it is actually changes leave request here for need to be GetLeaveRequest made in front end and backend
 

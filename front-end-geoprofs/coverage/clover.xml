@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1738179524287" clover="3.2.0">
-  <project timestamp="1738179524287" name="All files">
+<coverage generated="1738180602260" clover="3.2.0">
+  <project timestamp="1738180602260" name="All files">
     <metrics statements="65" coveredstatements="44" conditionals="58" coveredconditionals="25" methods="25" coveredmethods="18" elements="148" coveredelements="87" complexity="0" loc="65" ncloc="65" packages="1" files="7" classes="7"/>
     <file name="ApproveOrDeclineLeaveRequest.jsx" path="C:\Users\karst\git-protjects\geoprof\frontend\front-end-Geoprofs-LJ3\front-end-geoprofs\src\components\ApproveOrDeclineLeaveRequest.jsx">
       <metrics statements="9" coveredstatements="7" conditionals="9" coveredconditionals="3" methods="4" coveredmethods="3"/>

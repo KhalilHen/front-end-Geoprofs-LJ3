@@ -20,20 +20,20 @@ describe('Employee requests manger user id from same department from self', () =
     const mockSetUser = jest.fn();
     const mockNavigate = jest.fn();
     const mockSetResponse = jest.fn();
-    const mockSetUsers = jest.fn();
+    const mockSetMangers = jest.fn();
     jest.mocked(useNavigate).mockReturnValue(mockNavigate);
 
     await Login('GeoprofsEmployee2@example.com', 'password4', mockSetUser);
 
     const userArg = mockSetUser.mock.calls[0]?.[0];
 
-    await GetMangerDepartment(1, mockSetUsers, userArg, mockSetResponse);
+    await GetMangerDepartment(1, mockSetMangers, userArg, mockSetResponse);
 
     const responseArg = mockSetResponse.mock.calls[0]?.[0];
-    const usersArg = mockSetUsers.mock.calls[0]?.[0];
+    const mangersArg = mockSetMangers.mock.calls[0]?.[0];
 
     expect(responseArg).toBe(200);
-    expect(usersArg.user_ids).toEqual([2]);
+    expect(mangersArg.user_ids).toEqual([2]);
 
     } , timeOut);
 });
@@ -43,20 +43,20 @@ describe('Employee requests manger user id from different department from self',
   const mockSetUser = jest.fn();
   const mockNavigate = jest.fn();
   const mockSetResponse = jest.fn();
-  const mockSetUsers = jest.fn();
+  const mockSetMangers = jest.fn();
   jest.mocked(useNavigate).mockReturnValue(mockNavigate);
 
   await Login('GeoprofsEmployee2@example.com', 'password4', mockSetUser);
 
   const userArg = mockSetUser.mock.calls[0]?.[0];
 
-  await GetMangerDepartment(2, mockSetUsers, userArg, mockSetResponse);
+  await GetMangerDepartment(2, mockSetMangers, userArg, mockSetResponse);
 
   const responseArg = mockSetResponse.mock.calls[0]?.[0];
-  const usersArg = mockSetUsers.mock.calls[0]?.[0];
+  const mangersArg = mockSetMangers.mock.calls[0]?.[0];
 
   expect(responseArg).toBe(403);
-  expect(usersArg).toBeUndefined();
+  expect(mangersArg).toBeUndefined();
 
   } , timeOut);
 });
@@ -66,7 +66,7 @@ describe('Employee requests manger user id from different department from self w
   const mockSetUser = jest.fn();
   const mockNavigate = jest.fn();
   const mockSetResponse = jest.fn();
-  const mockSetUsers = jest.fn();
+  const mockSetMangers = jest.fn();
   jest.mocked(useNavigate).mockReturnValue(mockNavigate);
 
   await Login('GeoprofsEmployee2@example.com', 'password4', mockSetUser);
@@ -74,13 +74,13 @@ describe('Employee requests manger user id from different department from self w
   let userArg = mockSetUser.mock.calls[0]?.[0];
   userArg.user_id = 8;
 
-  await GetMangerDepartment(2, mockSetUsers, userArg, mockSetResponse);
+  await GetMangerDepartment(2, mockSetMangers, userArg, mockSetResponse);
 
   const responseArg = mockSetResponse.mock.calls[0]?.[0];
-  const usersArg = mockSetUsers.mock.calls[0]?.[0];
+  const mangersArg = mockSetMangers.mock.calls[0]?.[0];
 
   expect(responseArg).toBe(401);
-  expect(usersArg).toBeUndefined();
+  expect(mangersArg).toBeUndefined();
 
   } , timeOut);
 });
@@ -90,20 +90,20 @@ describe('Section manger requests manger user id from department that is in the 
   const mockSetUser = jest.fn();
   const mockNavigate = jest.fn();
   const mockSetResponse = jest.fn();
-  const mockSetUsers = jest.fn();
+  const mockSetMangers = jest.fn();
   jest.mocked(useNavigate).mockReturnValue(mockNavigate);
 
   await Login('GeoprofsSectionManger1@example.com', 'password1', mockSetUser);
 
   const userArg = mockSetUser.mock.calls[0]?.[0];
 
-  await GetMangerDepartment(1, mockSetUsers, userArg, mockSetResponse);
+  await GetMangerDepartment(1, mockSetMangers, userArg, mockSetResponse);
 
   const responseArg = mockSetResponse.mock.calls[0]?.[0];
-  const usersArg = mockSetUsers.mock.calls[0]?.[0];
+  const mangersArg = mockSetMangers.mock.calls[0]?.[0];
 
   expect(responseArg).toBe(200);
-  expect(usersArg.user_ids).toEqual([2]);
+  expect(mangersArg.user_ids).toEqual([2]);
 
   } , timeOut);
 });
@@ -113,20 +113,20 @@ describe('Section manger requests manger user id from department that is not in 
   const mockSetUser = jest.fn();
   const mockNavigate = jest.fn();
   const mockSetResponse = jest.fn();
-  const mockSetUsers = jest.fn();
+  const mockSetMangers = jest.fn();
   jest.mocked(useNavigate).mockReturnValue(mockNavigate);
 
   await Login('GeoprofsSectionManger1@example.com', 'password1', mockSetUser);
 
   const userArg = mockSetUser.mock.calls[0]?.[0];
 
-  await GetMangerDepartment(4, mockSetUsers, userArg, mockSetResponse);
+  await GetMangerDepartment(4, mockSetMangers, userArg, mockSetResponse);
 
   const responseArg = mockSetResponse.mock.calls[0]?.[0];
-  const usersArg = mockSetUsers.mock.calls[0]?.[0];
+  const mangersArg = mockSetMangers.mock.calls[0]?.[0];
 
   expect(responseArg).toBe(403);
-  expect(usersArg).toBeUndefined();
+  expect(mangersArg).toBeUndefined();
 
   } , timeOut);
 });

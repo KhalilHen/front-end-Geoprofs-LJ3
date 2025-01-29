@@ -2,7 +2,7 @@ import { backendUrl } from '../config/config.json';
 import React, { useState, useEffect } from 'react';
 import { getCookie } from './GetCookie'
 
-function GetLeaveSaldoUser(targetUserId, setUser = null, userCookie = null, setResponse = null){
+function GetLeaveSaldoUser(targetUserId, setData = null, userCookie = null, setResponse = null){
 
     if(!userCookie){
         var userCookie = JSON.parse(getCookie("user"));        
@@ -24,8 +24,8 @@ function GetLeaveSaldoUser(targetUserId, setUser = null, userCookie = null, setR
         }
     })
     .then(async data => {
-        if (setUser) {
-            setUser(data);
+        if (setData) {
+            setData(data);
         }
     })
     .catch(error => console.error('Error:', error));

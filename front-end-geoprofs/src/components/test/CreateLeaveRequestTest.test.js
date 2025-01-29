@@ -17,12 +17,12 @@ jest.mock('react-router-dom', () => ({
 
 var timeOut = 20000;
 
-describe('', () => {
-    test('', async () => {
+describe('user makes leave request', () => {
+    test('receives message it was successful', async () => {
     const mockSetUser = jest.fn();
     const mockNavigate = jest.fn();
     const mockSetResponse = jest.fn();
-    const mockSetUsers = jest.fn();
+    const mockSetData = jest.fn();
     jest.mocked(useNavigate).mockReturnValue(mockNavigate);
 
     await Login('GeoprofsEmployee2@example.com', 'password4', mockSetUser);
@@ -31,23 +31,17 @@ describe('', () => {
 
     const startDate = moment().year(2025).month(11-1).date(11);
 
-    console.log(moment(startDate).format('YYYY-MM-DD'));
-
     const endDate = moment().year(2025).month(11-1).date(12);
-
-    console.log(moment(endDate).format('YYYY-MM-DD'));
 
     const input = {description:'this leave request is create by a test by user with id 4', categoryId: 1, startDate: moment(startDate).format('YYYY-MM-DD'), endDate: moment(endDate).format('YYYY-MM-DD'), isPaid: true};
 
-    await CreateLeaveRequest(input , mockSetUsers, userArg, mockSetResponse);
+    await CreateLeaveRequest(input , mockSetData, userArg, mockSetResponse);
 
     const responseArg = mockSetResponse.mock.calls[0]?.[0];
-    const usersArg = mockSetUsers.mock.calls[0]?.[0];
-
-    console.log(usersArg)
+    const dataArg = mockSetData.mock.calls[0]?.[0];
 
     expect(responseArg).toBe(200);
-    expect(usersArg.message).toEqual('Leave request submitted successfully!');
+    expect(dataArg.message).toEqual('Leave request submitted successfully!');
 
     //TODO test if it is actually create leave request here for need to be GetLeaveRequest made in front end and backend
 
