@@ -25,7 +25,7 @@ function GetLeaveRequests(setData = null, userCookie = null, setResponse = null)
     })
     .then(async data => {
         if (setData) {
-            setMangers(data);
+            setData(data);
         }
     })
     .catch(error => console.error('Error:', error));
