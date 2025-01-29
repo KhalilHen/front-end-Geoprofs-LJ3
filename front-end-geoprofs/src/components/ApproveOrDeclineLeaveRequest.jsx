@@ -1,13 +1,13 @@
 import { backendUrl } from '../config/config.json';
 import React, { useState, useEffect } from 'react';
 
-function CreateLeaveRequest(inputValues, setData = null, userCookie = null, setResponse = null) {
+function ApproveOrDeclineLeaveRequest(inputValues, setUser = null, userCookie = null, setResponse = null) {
 
     if(!userCookie){
         var userCookie = JSON.parse(getCookie("user"));        
     }
 
-    return fetch(backendUrl + '/createLeaveRequest', {
+    return fetch(backendUrl + '/approveOrDeclineLeaveRequest', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -17,11 +17,8 @@ function CreateLeaveRequest(inputValues, setData = null, userCookie = null, setR
             access_token: userCookie.access_token,
             cache_id: userCookie.cache_id,
 
-            description: inputValues.description,
-            category: inputValues.categoryId,
-            start_date: inputValues.startDate,
-            end_date: inputValues.endDate,
-            is_paid: inputValues.isPaid,
+            leave_request_id: inputValues.leave_request_id,
+            value: inputValues.value,
         }),
     })
     .then((response) => {
@@ -33,9 +30,9 @@ function CreateLeaveRequest(inputValues, setData = null, userCookie = null, setR
         }
     })
     .then(async (data) => {
-        await setData(data);
+        await setUser(data);
     })
     .catch((error) => console.error('Error:', error));
 }
 
-export { CreateLeaveRequest };
+export { ApproveOrDeclineLeaveRequest };

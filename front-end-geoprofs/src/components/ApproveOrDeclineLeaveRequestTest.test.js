@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { Login } from "./Login";
-import { CreateLeaveRequest } from "./CreateLeaveRequest";
+import { ApproveOrDeclineLeaveRequest } from "./ApproveOrDeclineLeaveRequest";
 import { BrowserRouter as Router } from 'react-router-dom';
 
 import { useNavigate } from 'react-router-dom';
@@ -29,29 +29,19 @@ describe('Employee requests users ids from same department from self', () => {
 
     const userArg = mockSetUser.mock.calls[0]?.[0];
 
-    const startDate = moment().year(2025).month(11-1).date(11);
+    const input = {leave_request_id: 1, value: 2};
 
-    console.log(moment(startDate).format('YYYY-MM-DD'));
-
-    const endDate = moment().year(2025).month(11-1).date(12);
-
-    console.log(moment(endDate).format('YYYY-MM-DD'));
-
-    const input = {description:'this leave request is create by a test by user with id 4', categoryId: 1, startDate: moment(startDate).format('YYYY-MM-DD'), endDate: moment(endDate).format('YYYY-MM-DD'), isPaid: true};
-
-    await CreateLeaveRequest(input , mockSetUsers, userArg, mockSetResponse);
+    await ApproveOrDeclineLeaveRequest(input , mockSetUsers, userArg, mockSetResponse);
 
     const responseArg = mockSetResponse.mock.calls[0]?.[0];
     const usersArg = mockSetUsers.mock.calls[0]?.[0];
 
-    console.log(usersArg)
+    console.log(usersArg);
 
-    expect(responseArg).toBe(200);
-    expect(usersArg.message).toEqual('Leave request submitted successfully!');
+    expect(responseArg).toBe(200);//
+    expect(usersArg.message).toEqual('Leave request successfully approved or declined');
 
     //TODO test if it is actually create leave request here for need to be GetLeaveRequest made in front end and backend
 
     } , timeOut);
 });
-
-//TODO add more tests for when it should fail

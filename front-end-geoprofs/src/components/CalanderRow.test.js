@@ -23,8 +23,5 @@ describe('Calendar Component - Date Formatting', () => {
 
             dayCells.forEach(cell => expect(cell).toBeInTheDocument());
         });
-
-
-
     });
 });

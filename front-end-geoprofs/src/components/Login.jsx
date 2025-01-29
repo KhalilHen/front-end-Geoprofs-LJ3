@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 
 function Login(mail, password, setUser, setResponse = null) {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   return fetch(backendUrl + '/login', {
     method: 'POST',
     headers: {
@@ -24,7 +24,7 @@ function Login(mail, password, setUser, setResponse = null) {
   })
   .then(async (data) => {
   await setUser(data);
-  navigate('/front-page');
+  // navigate('/front-page');
   })
   .catch((error) => console.error('Error:', error));
 }
