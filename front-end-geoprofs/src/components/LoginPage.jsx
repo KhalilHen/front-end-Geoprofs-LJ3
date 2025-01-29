@@ -44,14 +44,14 @@ function LoginPage(props) {
             </div>
             <div className="w-full h-[100px] flex flex-col content-center flex-wrap">
                 <h1 className="text-xl text-center">E-mail / ID</h1>
-                <input placeholder="E-mail / ID" className="w-4/5 h-[40px] border-solid border-[#A7A7A7] border-[1px] p-[10px]" type="text" onChange={handleChangeMail} value={mail}/>
+                <input id="LoginEmail" placeholder="E-mail / ID" className="w-4/5 h-[40px] border-solid border-[#A7A7A7] border-[1px] p-[10px]" type="text" onChange={handleChangeMail} value={mail}/>
             </div>
             <div className="w-full h-[100px]  flex flex-col content-center flex-wrap">
                 <h1 className="text-xl text-center">Wachtwoord</h1>
-                <input placeholder="Wachtwoord" className="w-4/5 h-[40px] border-solid border-[#A7A7A7] border-[1px] p-[10px]" type="password" onChange={handleChangePassword} value={password} />
+                <input id="LoginPassword" placeholder="Wachtwoord" className="w-4/5 h-[40px] border-solid border-[#A7A7A7] border-[1px] p-[10px]" type="password" onChange={handleChangePassword} value={password} />
             </div>
             <div className="w-full h-[150px] content-center flex flex-wrap justify-center">
-                <button className="w-4/5 h-[40px] border-solid border-[#A7A7A7] border-[1px] p-[10px] rounded-full flex justify-center" onClick={()=> Login(mail, password , props.setUser)}>Log In</button>
+                <button id="LoginButton" className="w-4/5 h-[40px] border-solid border-[#A7A7A7] border-[1px] p-[10px] rounded-full flex justify-center" onClick={()=> Login(mail, password , props.setUser)}>Log In</button>
             </div> 
         </div>
       </div>

@@ -220,7 +220,7 @@ const dateOrTimeValue = (startOrEnd, format) => {
             return(
                 <div className='mt-[20px] w-[500px] justify-between h-auto flex'>
                     <button className='w-[150px] h-[40px] border-solid border-[#A7A7A7] border-[1px] rounded-full' onClick={home}>Terug</button>
-                    <button onClick={ActivateCreateLeaveRequest} className='w-[150px] h-[40px] rounded-full bg-[#20B5FF] text-white'>Dien in</button>
+                    <button id="SubmitLeaveRequestButton" onClick={ActivateCreateLeaveRequest} className='w-[150px] h-[40px] rounded-full bg-[#20B5FF] text-white'>Dien in</button>
                 </div>
             )
         }
