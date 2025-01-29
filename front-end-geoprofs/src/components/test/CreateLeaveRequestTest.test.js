@@ -1,8 +1,8 @@
 import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { Login } from "./Login";
-import { CreateLeaveRequest } from "./CreateLeaveRequest";
+import { Login } from "../Login";
+import { CreateLeaveRequest } from "../CreateLeaveRequest";
 import { BrowserRouter as Router } from 'react-router-dom';
 
 import { useNavigate } from 'react-router-dom';
@@ -17,8 +17,8 @@ jest.mock('react-router-dom', () => ({
 
 var timeOut = 20000;
 
-describe('Employee requests users ids from same department from self', () => {
-    test('receives correct users ids of users in requested department', async () => {
+describe('', () => {
+    test('', async () => {
     const mockSetUser = jest.fn();
     const mockNavigate = jest.fn();
     const mockSetResponse = jest.fn();

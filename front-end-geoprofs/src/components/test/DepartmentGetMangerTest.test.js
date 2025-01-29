@@ -1,8 +1,8 @@
 import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { Login } from "./Login";
-import { GetMangerDepartment } from "./GetMangerDepartment";
+import { Login } from "../Login";
+import { GetMangerDepartment } from "../GetMangerDepartment";
 import { BrowserRouter as Router } from 'react-router-dom';
 
 import { useNavigate } from 'react-router-dom';
