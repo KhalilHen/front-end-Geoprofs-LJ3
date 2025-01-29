@@ -134,7 +134,6 @@ function LeaveRequestPage(){
         const time = e.target.value;
         const [year , month , day] = time.split("-");
         const tempDate = moment(endDate).year(year).month(month-1).date(day);
-        console.log(":3 "+ tempDate);
         setEndDate(tempDate);
     };
 
@@ -152,29 +151,34 @@ function LeaveRequestPage(){
         setEndDate(tempDate);
     };
 
-    const dateOrTimeValue = (startOrEnd, format) => {
-        if (id > 0) {
-            var timeAndDate;
-            if(startOrEnd == "start"){
-                timeAndDate = currentRequest.start_date;
-            }
-            else{
-                timeAndDate = currentRequest.end_date;
-            }
-            const timeAndDateArray = timeAndDate.toString().split(", ");
-            var dateOrTime;
-            if(format == "HH:mm"){
-                dateOrTime = 1;
-            }
-            else{
-                dateOrTime = 0;
-            }
-            const myMomentObject = moment(timeAndDateArray[dateOrTime], format)
-            return myMomentObject.format(format)
-        } else {
+const dateOrTimeValue = (startOrEnd, format) => {
+    if (id > 0) {
+        var timeAndDate;
+        if(startOrEnd == "start"){
+            timeAndDate = currentRequest.start_date;
+        }
+        else{
+            timeAndDate = currentRequest.end_date;
+        }
+        const timeAndDateArray = timeAndDate.toString().split(", ");
+        var dateOrTime;
+        if(format == "HH:mm"){
+            dateOrTime = 1;
+        }
+        else{
+            dateOrTime = 0;
+        }
+        const myMomentObject = moment(timeAndDateArray[dateOrTime], format)
+        return myMomentObject.format(format)
+    } else {
+        if(startOrEnd == "start"){
             return moment(startDate).format(format);
         }
-    };
+        else{
+            return moment(endDate).format(format);
+        }
+    }
+};
 
     const isPaidLeaveChecked = () => {
         if (id > 0) {
@@ -233,16 +237,17 @@ function LeaveRequestPage(){
         }
     }
 
-    function ActivateCreateLeaveRequest(){
+    async function ActivateCreateLeaveRequest(){
         const input = {
             description: text, 
-            categoryId: Category, 
-            startDate: startDate, 
-            endDate: endDate, 
+            // categoryId: Category, 
+            categoryId: 1, 
+            startDate: moment(startDate).format('YYYY-MM-DD'),
+            endDate: moment(endDate).format('YYYY-MM-DD'), 
             isPaid: paidLeave
         };
 
-        CreateLeaveRequest(input);
+        await CreateLeaveRequest(input);
         home();
     }
 
@@ -283,7 +288,7 @@ function LeaveRequestPage(){
                         <input 
                             className="w-[200px] h-[30px] border-solid border-[#A7A7A7] border-[1px] text-center " 
                             type="date" 
-                            value={endDate}
+                            value={dateOrTimeValue("end", "YYYY-MM-DD")}
                             onChange={endPickDate}
                             disabled={locked}
                         />

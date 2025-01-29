@@ -34,7 +34,6 @@ function InboxPage(){
         return "";
     }
 
-
     const leaveRequests = [//temporary
         {
             id: 1,
@@ -42,7 +41,7 @@ function InboxPage(){
             start_date: "2020-01-01, 10:30",
             end_date: "2020-01-05, 16:30",
             leave_requests_category_id: "Ziek",
-            leave_status: "Pending",
+            leave_status: 0,
             employee_id: 2,
             categoryId: 0,
             Name: "John",
@@ -53,7 +52,7 @@ function InboxPage(){
             start_date: "2020-01-01, 10:30",
             end_date: "2020-01-05, 16:30",
             leave_requests_category_id: "Ziek",
-            leave_status: "Pending",
+            leave_status: 0,
             employee_id: 1,
             categoryId: 0,
             Name: "Woud",
@@ -64,7 +63,7 @@ function InboxPage(){
             start_date: "2020-01-01, 10:30",
             end_date: "2020-01-05, 16:30",
             leave_requests_category_id: "Ziek",
-            leave_status: "Accepted",
+            leave_status: 2,
             employee_id: 1,
             categoryId: 0,
             Name: "Woud",
@@ -75,7 +74,7 @@ function InboxPage(){
             start_date: "2020-01-01, 10:30",
             end_date: "2020-01-05, 16:30",
             leave_requests_category_id: "Ziek",
-            leave_status: "Denied",
+            leave_status: 1,
             employee_id: 1,
             categoryId: 0,
             Name: "Woud",
@@ -119,7 +118,7 @@ function InboxPage(){
                     </select>
                     <div>
                     {leaveRequests.map(leaveRequest => {
-                        if((leaveRequest.leave_status == "Accepted" || leaveRequest.leave_status == "Denied") && leaveRequest.employee_id == temp.userId){
+                        if((leaveRequest.leave_status == 2 || leaveRequest.leave_status == 1) && leaveRequest.employee_id == temp.userId){
                             // if (filter == -1 || filter == leaveRequest.leave_requests_category_id){
                                 return(
                                     <div className="flex">
@@ -145,7 +144,7 @@ function InboxPage(){
                 <div>
 
                 {leaveRequests.map(leaveRequest => {     
-                    if(leaveRequest.leave_status == "Pending" && leaveRequest.employee_id != temp.userId){ //kom er later op terug
+                    if(leaveRequest.leave_status == 0 && leaveRequest.employee_id != temp.userId){ //kom er later op terug
                         if (search == "" || leaveRequest.Name.toString().toLowerCase().includes(search.toString().toLowerCase())){
                             return(
                                 <div className="flex">
