@@ -3,7 +3,7 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react'; // Add fireEvent here
 import '@testing-library/jest-dom';
 import moment from 'moment';
-import FrontPage from './FrontPage';
+import FrontPage from '../FrontPage';
 
 describe('Calendar Component', () => {
     test('show the component with default elements', () => {
