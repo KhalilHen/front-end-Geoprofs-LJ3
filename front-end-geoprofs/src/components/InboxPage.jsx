@@ -16,113 +16,156 @@ function InboxPage(){
         setSearch(e.target.value);
     }
 
+    var temp = JSON.parse(getCookie("user"));
 
-    const leaveOpenRequests = [//temporary
-        {
-            userName: "AAA",
-            userId: 0,
-            categoryId: 0
-        },
-        {
-            userName: "BBB",
-            userId: 1,
-            categoryId: 1
-        },
-        {
-            userName: "CCC",
-            userId: 2,
-            categoryId: 2
+    function getCookie(cname) {
+        let name = cname + "=";
+        let decodedCookie = decodeURIComponent(document.cookie);
+        let ca = decodedCookie.split(';');
+        for(let i = 0; i <ca.length; i++) {
+          let c = ca[i];
+          while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+          }
+          if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+          }
         }
-    ];
+        return "";
+    }
 
-    const leaveRequestsHistory = [//temporary
-        {
-            userName: "DDD",
-            userId: 3,
-            categoryId: 0
-        },
-        {
-            userName: "EEE",
-            userId: 4,
-            categoryId: 1
-        },
-        {
-            userName: "FFF",
-            userId: 5,
-            categoryId: 2
-        }
-    ];
 
-    const leaveRequestsMain = [//temporary
+    const leaveRequests = [//temporary
         {
-            userName: "GGG",
-            userId: 6,
-            categoryId: 0
+            id: 1,
+            Title: "AAA",
+            start_date: "2020-01-01, 10:30",
+            end_date: "2020-01-05, 16:30",
+            leave_requests_category_id: "Ziek",
+            leave_status: "Pending",
+            employee_id: 2,
+            categoryId: 0,
+            Name: "John",
         },
         {
-            userName: "HHH",
-            userId: 7,
-            categoryId: 1
+            id: 2,
+            Title: "AAA",
+            start_date: "2020-01-01, 10:30",
+            end_date: "2020-01-05, 16:30",
+            leave_requests_category_id: "Ziek",
+            leave_status: "Pending",
+            employee_id: 1,
+            categoryId: 0,
+            Name: "Woud",
         },
         {
-            userName: "III",
-            userId: 8,
-            categoryId: 2
-        }
+            id: 3,
+            Title: "AAA",
+            start_date: "2020-01-01, 10:30",
+            end_date: "2020-01-05, 16:30",
+            leave_requests_category_id: "Ziek",
+            leave_status: "Accepted",
+            employee_id: 1,
+            categoryId: 0,
+            Name: "Woud",
+        },
+        {
+            id: 4,
+            Title: "AAA",
+            start_date: "2020-01-01, 10:30",
+            end_date: "2020-01-05, 16:30",
+            leave_requests_category_id: "Ziek",
+            leave_status: "Denied",
+            employee_id: 1,
+            categoryId: 0,
+            Name: "Woud",
+        },
     ];
 
     return(
     <>  
         <Header/>
-        <div class="flex flex-row">
-            <div class="flex-1">
-                Your Open Requests
-                <div>
-                    {leaveOpenRequests.map(leaveRequest => {            
-                        return(
-                            <div class="flex">
-                                <LeaveRequest name={leaveRequest.userName} id={leaveRequest.userId}/>
-                            </div>
-                        )
-                    })}
-                </div>
-            </div>
-
-            <div class="flex-1">
-                History
-                <select name="category" id="category" onChange={handleChangeCategory}>
-                    <Option name="noChosen" id="-1"/>
-                    <Option name="0" id="0"/>
-                    <Option name="1" id="1"/>
-                    <Option name="2" id="2"/>
-                </select>
-                <div>
-                    {leaveRequestsHistory.map(leaveRequest => {
-                        if (filter == -1 || filter == leaveRequest.categoryId){
+        <div className="w-full h-[calc(100vh-160px)] my-[10px] flex">
+            <div class="h-full flex-1 flex items-center flex-col">
+                <p className='text-lg'>Uw open verlof aanvragen</p>
+                <div className='h-full w-[80%]'>
+                    <div>
+                    {leaveRequests.map(leaveRequest => {       
+                        if(leaveRequest.leave_status == "Pending" && leaveRequest.employee_id == temp.userId){
+                            // console.log(leaveRequest.id);
                             return(
-                                <div class="flex">
-                                    <LeaveRequest name={leaveRequest.userName} id={leaveRequest.userId}/>
+                                <div className="flex">
+                                    <LeaveRequest
+                                    title={"Leave Request"}
+                                    timeframe={leaveRequest.start_date + " - " + leaveRequest.end_date}
+                                    catagory={leaveRequest.leave_requests_category_id}
+                                    status={leaveRequest.leave_status}
+                                    id={leaveRequest.id}/>
                                 </div>
                             )
                         }
-                    })}
+                        })}
+                    </div>
                 </div>
             </div>
 
-
-            <div class="flex-1">
-                Leave Requests
-                <input type="text" id="search" name="search" onChange={handleChangeName}></input>
-                {leaveRequestsMain.map(leaveRequest => {
-                    if (search == "" || leaveRequest.userName.toLowerCase().includes(search.toLocaleLowerCase())){
-                        return(
-                            <div class="flex">
-                                <LeaveRequest name={leaveRequest.userName} id={leaveRequest.userId}/>
-                            </div>
-                        )
-                    }
-                })}
+            <div class="h-full flex-1 flex items-center flex-col border-solid border-[#EBEBEB] border-r-[2px] border-l-[2px]">
+                <p className='text-lg'>Geschidenis</p>
+                <div className='h-full w-[80%]'>
+                    <select placeholder='Catagorie' className='w-full h-[30px] border-solid border-[#A7A7A7] border-[1px] mb-[5px]' name="category" id="category" onChange={handleChangeCategory}>
+                        <option value="" disabled selected hidden>Catagorie</option>
+                        <option>Ziek</option>
+                        <option>Vakantie</option>
+                    </select>
+                    <div>
+                    {leaveRequests.map(leaveRequest => {
+                        if((leaveRequest.leave_status == "Accepted" || leaveRequest.leave_status == "Denied") && leaveRequest.employee_id == temp.userId){
+                            // if (filter == -1 || filter == leaveRequest.leave_requests_category_id){
+                                return(
+                                    <div className="flex">
+                                    <LeaveRequest
+                                        title={"Leave Request"}
+                                        timeframe={leaveRequest.start_date + " - " + leaveRequest.end_date}
+                                        catagory={leaveRequest.leave_requests_category_id}
+                                        status={leaveRequest.leave_status}
+                                        id={leaveRequest.id}/>
+                                    </div>
+                                )
+                            }
+                        // }
+                    })}
+                    </div>
+                </div>
             </div>
+            {true? 
+            <div class="h-full flex-1 flex items-center flex-col">
+                <p className='text-lg'>Open verlog aanvragen</p>
+                <div className='h-full w-[80%]'>
+                <input placeholder='Name' className='w-full h-[30px] border-solid border-[#A7A7A7] border-[1px] mb-[5px]' type="text" id="search" name="search" onChange={handleChangeName}></input>
+                <div>
+
+                {leaveRequests.map(leaveRequest => {     
+                    if(leaveRequest.leave_status == "Pending" && leaveRequest.employee_id != temp.userId){ //kom er later op terug
+                        if (search == "" || leaveRequest.Name.toString().toLowerCase().includes(search.toString().toLowerCase())){
+                            return(
+                                <div className="flex">
+                                    <LeaveRequest
+                                    title={leaveRequest.Name + " Requested Leave"}
+                                    timeframe={leaveRequest.start_date + " - " + leaveRequest.end_date}
+                                    catagory={leaveRequest.leave_requests_category_id}
+                                    status={leaveRequest.leave_status}
+                                    id={leaveRequest.id}/>
+                                </div>
+                            )
+                        }
+                    }
+                    })}
+                </div>
+                </div>
+            </div>
+            :
+            <div class="h-full flex-1 flex items-center flex-col"></div>
+            }
         </div>
     </>
     )
