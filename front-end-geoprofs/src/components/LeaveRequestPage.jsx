@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSearchParams } from "react-router-dom";
 import moment from 'moment';
 import Header from './Header';
+import { CreateLeaveRequest } from "./CreateLeaveRequest";
 
 function LeaveRequestPage(){
 
@@ -133,6 +134,7 @@ function LeaveRequestPage(){
         const time = e.target.value;
         const [year , month , day] = time.split("-");
         const tempDate = moment(endDate).year(year).month(month-1).date(day);
+        console.log(":3 "+ tempDate);
         setEndDate(tempDate);
     };
 
@@ -214,7 +216,7 @@ function LeaveRequestPage(){
             return(
                 <div className='mt-[20px] w-[500px] justify-between h-auto flex'>
                     <button className='w-[150px] h-[40px] border-solid border-[#A7A7A7] border-[1px] rounded-full' onClick={home}>Terug</button>
-                    <button className='w-[150px] h-[40px] rounded-full bg-[#20B5FF] text-white'>Dien in</button>
+                    <button onClick={ActivateCreateLeaveRequest} className='w-[150px] h-[40px] rounded-full bg-[#20B5FF] text-white'>Dien in</button>
                 </div>
             )
         }
@@ -229,6 +231,19 @@ function LeaveRequestPage(){
         if(true){
             //to do check if leave request is viewed by correct manger that can accept/decline and leave request is not already accepted or declined 
         }
+    }
+
+    function ActivateCreateLeaveRequest(){
+        const input = {
+            description: text, 
+            categoryId: Category, 
+            startDate: startDate, 
+            endDate: endDate, 
+            isPaid: paidLeave
+        };
+
+        CreateLeaveRequest(input);
+        home();
     }
 
     return(
@@ -268,7 +283,7 @@ function LeaveRequestPage(){
                         <input 
                             className="w-[200px] h-[30px] border-solid border-[#A7A7A7] border-[1px] text-center " 
                             type="date" 
-                            value={dateOrTimeValue("end", "YYYY-MM-DD")}
+                            value={endDate}
                             onChange={endPickDate}
                             disabled={locked}
                         />

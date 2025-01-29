@@ -1,4 +1,5 @@
 import { backendUrl } from '../config/config.json';
+import { getCookie } from './GetCookie'
 import React, { useState, useEffect } from 'react';
 
 function CreateLeaveRequest(inputValues, setUser = null, userCookie = null, setResponse = null) {
@@ -17,7 +18,6 @@ function CreateLeaveRequest(inputValues, setUser = null, userCookie = null, setR
             access_token: userCookie.access_token,
             cache_id: userCookie.cache_id,
 
-            title: inputValues.title,
             description: inputValues.description,
             category: inputValues.categoryId,
             start_date: inputValues.startDate,
