@@ -1,82 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSearchParams } from "react-router-dom";
 import moment from 'moment';
 import Header from './Header';
 import { CreateLeaveRequest } from "./CreateLeaveRequest";
+import { ApproveOrDeclineLeaveRequest } from "./ApproveOrDeclineLeaveRequest";
+import { GetLeaveRequestData } from "./GetLeaveRequestData"
+
 
 function LeaveRequestPage(){
-
-    const leaveRequests = [//temporary
-        {
-            id: 1,
-            description: "Test Leave Request 1",
-            Title: "AAA",
-            start_date: "2020-01-01, 10:30",
-            end_date: "2020-01-05, 16:30",
-            leave_requests_category_id: "Ziek",
-            leave_status: "Pending",
-            employee_id: 2,
-            categoryId: 0,
-            Name: "John",
-            is_paid: true,
-        },
-        {
-            id: 2,
-            description: "Test Leave Request 2",
-            Title: "AAA",
-            start_date: "2020-01-01, 10:30",
-            end_date: "2020-01-05, 16:30",
-            leave_requests_category_id: "Ziek",
-            leave_status: "Pending",
-            employee_id: 1,
-            categoryId: 0,
-            Name: "Woud",
-            is_paid: true,
-        },
-        {
-            id: 3,
-            description: "Test Leave Request 3",
-            Title: "AAA",
-            start_date: "2020-01-01, 10:30",
-            end_date: "2020-01-05, 16:30",
-            leave_requests_category_id: "Ziek",
-            leave_status: "Accepted",
-            employee_id: 1,
-            categoryId: 0,
-            Name: "Woud",
-            is_paid: false,
-        },
-        {
-            id: 4,
-            description: "Test Leave Request 4",
-            Title: "AAA",
-            start_date: "2020-01-01, 10:30",
-            end_date: "2020-01-05, 16:30",
-            leave_requests_category_id: "Ziek",
-            leave_status: "Denied",
-            employee_id: 1,
-            categoryId: 0,
-            Name: "Woud",
-            is_paid: false,
-        },
-    ];
-
     const queryParams = new URLSearchParams(location.search);
     const id = Number(queryParams.get('id')); //id of leaverequest in data base should not be 0 or lower
-    //id prop should be used if viewing a leave request, NOT while making one than it will be 0
+    
+    const [data, setData] = useState();
+    const [response, setResponse] = useState();
 
-    //todo: when entering page, check if user is a manager/has perms to be here.
+    console.log('Component rendering');
 
-    // const [todos, setTodos] = useState([]);
-  
-    // useEffect(() => {
-    //   fetch("link to backend")
-    //     .then((response) => response.json())
-    //     .then((json) => setTodos(set the path in the json of the data you want));
-    // }, []);
-  
-    // const leaveRequests = todos.find((leaveRequest) => leaveRequest.id == id);
-    var currentRequest = leaveRequests.find(leaveRequest => leaveRequest.id == id);
+    useEffect(()=> {
+        async function fetchData() {
+            await GetLeaveRequestData(id, setData, null, setResponse);
+        }
+        fetchData();
+        setData(data);
+    }, []);
+
+    console.log(data?.leave_request);
 
     var temp = JSON.parse(getCookie("user"));
     function getCookie(cname) {
@@ -155,10 +103,10 @@ const dateOrTimeValue = (startOrEnd, format) => {
     if (id > 0) {
         var timeAndDate;
         if(startOrEnd == "start"){
-            timeAndDate = currentRequest.start_date;
+            timeAndDate = data?.leave_request.start_date;
         }
         else{
-            timeAndDate = currentRequest.end_date;
+            timeAndDate = data?.leave_request.end_date;
         }
         const timeAndDateArray = timeAndDate.toString().split(", ");
         var dateOrTime;
@@ -182,7 +130,7 @@ const dateOrTimeValue = (startOrEnd, format) => {
 
     const isPaidLeaveChecked = () => {
         if (id > 0) {
-            return currentRequest.is_paid;
+            return data?.leave_request.is_paid;
         }
         else{
             return paidLeave;
@@ -191,7 +139,7 @@ const dateOrTimeValue = (startOrEnd, format) => {
 
     const isTextSet = () => {
         if (id > 0) {
-            return currentRequest.description;
+            return data?.leave_request.description;
         }
         else{
             return text;
@@ -200,19 +148,19 @@ const dateOrTimeValue = (startOrEnd, format) => {
 
     const buttons = () =>{
         //to do buttons should send correct data to backend (backend also should check if user has rights for what he send)
-        if(id > 0 && currentRequest.employee_id == temp.userId){
+        if(id > 0 && data?.leave_request.employee_id == temp.userId){
             return(
                 <div className='mt-[20px] w-[500px] justify-left h-auto flex'>
                     <button className='w-[150px] h-[40px] border-solid border-[#A7A7A7] border-[1px] rounded-full' onClick={back}>Terug</button>
                 </div>
             )
         }
-        else if(id > 0 && currentRequest.employee_id != temp.userId){
+        else if(id > 0 && data?.leave_request.employee_id != temp.userId){
             return(
                 <div className='mt-[20px] w-[500px] justify-between h-auto flex'>
                     <button className='w-[150px] h-[40px] border-solid border-[#A7A7A7] border-[1px] rounded-full' onClick={back}>Terug</button>
-                    <button className='w-[150px] h-[40px] rounded-full bg-[#ff0000] text-white'>Afwijzen</button>
-                    <button className='w-[150px] h-[40px] rounded-full bg-[#20B5FF] text-white'>Accepteer</button>
+                    <button onClick={() => ActivateApproveOrDeclineLeaveRequest(1)} className='w-[150px] h-[40px] rounded-full bg-[#ff0000] text-white'>Afwijzen</button>
+                    <button onClick={() => ActivateApproveOrDeclineLeaveRequest(2)} className='w-[150px] h-[40px] rounded-full bg-[#20B5FF] text-white'>Accepteer</button>
                 </div>
             )
         }
@@ -251,6 +199,31 @@ const dateOrTimeValue = (startOrEnd, format) => {
         home();
     }
 
+    function setCategoryData(){
+        if (data?.leave_request.leave_requests_category_id == 1) {
+            return "Vakantie";
+        }
+    }
+
+
+
+    
+
+    async function ActivateApproveOrDeclineLeaveRequest(acceptOrDeny){
+        const input = {leave_request_id: data?.leave_request.id, value: acceptOrDeny};//value 2 is accept and value 1 would be decline 
+
+        await ApproveOrDeclineLeaveRequest(input);
+        home();
+    }
+
+    if(!data){
+        return (
+            <>
+                loading...
+            </>
+        )
+    }
+
     return(
         <>
             <Header/>
@@ -259,7 +232,7 @@ const dateOrTimeValue = (startOrEnd, format) => {
                     <p>Catagorie</p>
                     {id > 0 ?
                         <select className='h-[40px] w-[500px] border-solid border-[#A7A7A7] border-[1px]' name="category" id="category" onChange={handleChangeCategory} disabled={locked}>
-                            <option value="">{currentRequest.leave_requests_category_id}</option>
+                            <option value="">{setCategoryData()}</option>
                         </select>
                         :
                         <select className='h-[40px] w-[500px] border-solid border-[#A7A7A7] border-[1px]' name="category" id="category" onChange={handleChangeCategory} disabled={locked}>

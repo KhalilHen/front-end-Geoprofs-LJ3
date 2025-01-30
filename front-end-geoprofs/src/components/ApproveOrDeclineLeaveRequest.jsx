@@ -1,5 +1,6 @@
 import { backendUrl } from '../config/config.json';
 import React, { useState, useEffect } from 'react';
+import { getCookie } from './GetCookie'
 
 function ApproveOrDeclineLeaveRequest(inputValues, setData = null, userCookie = null, setResponse = null) {
 
