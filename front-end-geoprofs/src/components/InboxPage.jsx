@@ -1,12 +1,24 @@
-import React, { useState } from 'react';
-import Option from './Option';
+import React, { useEffect, useState } from 'react';
 import LeaveRequest from './LeaveRequest';
 import Header from './Header';
+import { GetLeaveRequests } from './GetLeaveRequests.jsx';
 
 function InboxPage(){
 
     const [filter, setFilter] = useState(-1);
     const [search, setSearch] = useState("");
+    const [data, setData] = useState("");
+
+    const leaveRequests = useEffect(()=> {
+        async function fetchData() {
+            const leaveRequests = await GetLeaveRequests(setData);
+            return leaveRequests;
+        }
+        const leaveRequests = fetchData();
+        return leaveRequests;
+    }
+        
+    );
 
     function handleChangeCategory(e){
         setFilter(e.target.value);
@@ -34,52 +46,7 @@ function InboxPage(){
         return "";
     }
 
-    const leaveRequests = [//temporary
-        {
-            id: 1,
-            Title: "AAA",
-            start_date: "2020-01-01, 10:30",
-            end_date: "2020-01-05, 16:30",
-            leave_requests_category_id: "Ziek",
-            leave_status: 0,
-            employee_id: 2,
-            categoryId: 0,
-            Name: "John",
-        },
-        {
-            id: 2,
-            Title: "AAA",
-            start_date: "2020-01-01, 10:30",
-            end_date: "2020-01-05, 16:30",
-            leave_requests_category_id: "Ziek",
-            leave_status: 0,
-            employee_id: 1,
-            categoryId: 0,
-            Name: "Woud",
-        },
-        {
-            id: 3,
-            Title: "AAA",
-            start_date: "2020-01-01, 10:30",
-            end_date: "2020-01-05, 16:30",
-            leave_requests_category_id: "Ziek",
-            leave_status: 2,
-            employee_id: 1,
-            categoryId: 0,
-            Name: "Woud",
-        },
-        {
-            id: 4,
-            Title: "AAA",
-            start_date: "2020-01-01, 10:30",
-            end_date: "2020-01-05, 16:30",
-            leave_requests_category_id: "Ziek",
-            leave_status: 1,
-            employee_id: 1,
-            categoryId: 0,
-            Name: "Woud",
-        },
-    ];
+    console.log(data);
 
     return(
     <>  
