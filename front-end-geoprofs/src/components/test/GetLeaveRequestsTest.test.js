@@ -33,7 +33,22 @@ describe('department manger get leave request allowed to see', () => {
     const dataArg = mockSetData.mock.calls[0]?.[0];
 
     expect(responseArg).toBe(200);
-    expect(dataArg.leave_request_id).toEqual(expect.arrayContaining([3, 4, 5]));
+
+    dataArg.leave_requests.forEach(leaveRequestData => {
+      expect(leaveRequestData).toEqual(
+        expect.objectContaining({
+          id: expect.any(Number),
+          description: expect.any(String),
+          employee_id: expect.any(Number),
+          leave_requests_category_id: expect.any(Number),
+          leave_days: expect.any(Number),
+          start_date: expect.any(String),
+          end_date: expect.any(String),
+          leave_status: expect.any(Number),
+          is_paid: expect.any(Number),
+        })
+      );
+    });
     //TODO check if leave requester allowed to be seen by user
     } , timeOut);
 });
