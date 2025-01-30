@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSearchParams } from "react-router-dom";
 import moment from 'moment';
 import Header from './Header';
+import { CreateLeaveRequest } from "./CreateLeaveRequest";
 
 function LeaveRequestPage(){
 
@@ -150,29 +151,34 @@ function LeaveRequestPage(){
         setEndDate(tempDate);
     };
 
-    const dateOrTimeValue = (startOrEnd, format) => {
-        if (id > 0) {
-            var timeAndDate;
-            if(startOrEnd == "start"){
-                timeAndDate = currentRequest.start_date;
-            }
-            else{
-                timeAndDate = currentRequest.end_date;
-            }
-            const timeAndDateArray = timeAndDate.toString().split(", ");
-            var dateOrTime;
-            if(format == "HH:mm"){
-                dateOrTime = 1;
-            }
-            else{
-                dateOrTime = 0;
-            }
-            const myMomentObject = moment(timeAndDateArray[dateOrTime], format)
-            return myMomentObject.format(format)
-        } else {
+const dateOrTimeValue = (startOrEnd, format) => {
+    if (id > 0) {
+        var timeAndDate;
+        if(startOrEnd == "start"){
+            timeAndDate = currentRequest.start_date;
+        }
+        else{
+            timeAndDate = currentRequest.end_date;
+        }
+        const timeAndDateArray = timeAndDate.toString().split(", ");
+        var dateOrTime;
+        if(format == "HH:mm"){
+            dateOrTime = 1;
+        }
+        else{
+            dateOrTime = 0;
+        }
+        const myMomentObject = moment(timeAndDateArray[dateOrTime], format)
+        return myMomentObject.format(format)
+    } else {
+        if(startOrEnd == "start"){
             return moment(startDate).format(format);
         }
-    };
+        else{
+            return moment(endDate).format(format);
+        }
+    }
+};
 
     const isPaidLeaveChecked = () => {
         if (id > 0) {
@@ -214,7 +220,7 @@ function LeaveRequestPage(){
             return(
                 <div className='mt-[20px] w-[500px] justify-between h-auto flex'>
                     <button className='w-[150px] h-[40px] border-solid border-[#A7A7A7] border-[1px] rounded-full' onClick={home}>Terug</button>
-                    <button className='w-[150px] h-[40px] rounded-full bg-[#20B5FF] text-white'>Dien in</button>
+                    <button onClick={ActivateCreateLeaveRequest} className='w-[150px] h-[40px] rounded-full bg-[#20B5FF] text-white'>Dien in</button>
                 </div>
             )
         }
@@ -229,6 +235,20 @@ function LeaveRequestPage(){
         if(true){
             //to do check if leave request is viewed by correct manger that can accept/decline and leave request is not already accepted or declined 
         }
+    }
+
+    async function ActivateCreateLeaveRequest(){
+        const input = {
+            description: text, 
+            // categoryId: Category, 
+            categoryId: 1, 
+            startDate: moment(startDate).format('YYYY-MM-DD'),
+            endDate: moment(endDate).format('YYYY-MM-DD'), 
+            isPaid: paidLeave
+        };
+
+        await CreateLeaveRequest(input);
+        home();
     }
 
     return(

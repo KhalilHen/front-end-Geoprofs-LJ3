@@ -3,7 +3,10 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 
 function Login(mail, password, setUser, setResponse = null) {
+<<<<<<< HEAD
   // const navigate = useNavigate();
+=======
+>>>>>>> Backend-connection
   return fetch(backendUrl + '/login', {
     method: 'POST',
     headers: {
@@ -24,7 +27,11 @@ function Login(mail, password, setUser, setResponse = null) {
   })
   .then(async (data) => {
   await setUser(data);
+<<<<<<< HEAD
   // navigate('/front-page');
+=======
+  window.location.href = "/front-page";
+>>>>>>> Backend-connection
   })
   .catch((error) => console.error('Error:', error));
 }
