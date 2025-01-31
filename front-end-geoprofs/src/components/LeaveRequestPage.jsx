@@ -216,7 +216,7 @@ const dateOrTimeValue = (startOrEnd, format) => {
         home();
     }
 
-    if(!data){
+    if(!data && id > 0){
         return (
             <>
                 loading...
