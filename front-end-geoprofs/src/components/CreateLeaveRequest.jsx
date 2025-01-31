@@ -1,4 +1,5 @@
 import { backendUrl } from '../config/config.json';
+import { getCookie } from './GetCookie'
 import React, { useState, useEffect } from 'react';
 
 function CreateLeaveRequest(inputValues, setData = null, userCookie = null, setResponse = null) {
@@ -33,7 +34,9 @@ function CreateLeaveRequest(inputValues, setData = null, userCookie = null, setR
         }
     })
     .then(async (data) => {
-        await setData(data);
+        if(setUser){
+            await setUser(data);
+        }
     })
     .catch((error) => console.error('Error:', error));
 }

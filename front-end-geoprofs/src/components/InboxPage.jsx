@@ -1,12 +1,20 @@
-import React, { useState } from 'react';
-import Option from './Option';
+import React, { useEffect, useState } from 'react';
 import LeaveRequest from './LeaveRequest';
 import Header from './Header';
+import { GetLeaveRequests } from './GetLeaveRequests.jsx';
 
 function InboxPage(){
 
     const [filter, setFilter] = useState(-1);
     const [search, setSearch] = useState("");
+    const [leaveRequests, setLeaveRequests] = useState([]);
+
+    useEffect(()=> {
+        async function fetchData() {
+            await GetLeaveRequests(setLeaveRequests);
+        }
+        fetchData();
+    }, []);
 
     function handleChangeCategory(e){
         setFilter(e.target.value);
@@ -34,54 +42,6 @@ function InboxPage(){
         return "";
     }
 
-
-    const leaveRequests = [//temporary
-        {
-            id: 1,
-            Title: "AAA",
-            start_date: "2020-01-01, 10:30",
-            end_date: "2020-01-05, 16:30",
-            leave_requests_category_id: "Ziek",
-            leave_status: "Pending",
-            employee_id: 2,
-            categoryId: 0,
-            Name: "John",
-        },
-        {
-            id: 2,
-            Title: "AAA",
-            start_date: "2020-01-01, 10:30",
-            end_date: "2020-01-05, 16:30",
-            leave_requests_category_id: "Ziek",
-            leave_status: "Pending",
-            employee_id: 1,
-            categoryId: 0,
-            Name: "Woud",
-        },
-        {
-            id: 3,
-            Title: "AAA",
-            start_date: "2020-01-01, 10:30",
-            end_date: "2020-01-05, 16:30",
-            leave_requests_category_id: "Ziek",
-            leave_status: "Accepted",
-            employee_id: 1,
-            categoryId: 0,
-            Name: "Woud",
-        },
-        {
-            id: 4,
-            Title: "AAA",
-            start_date: "2020-01-01, 10:30",
-            end_date: "2020-01-05, 16:30",
-            leave_requests_category_id: "Ziek",
-            leave_status: "Denied",
-            employee_id: 1,
-            categoryId: 0,
-            Name: "Woud",
-        },
-    ];
-
     return(
     <>  
         <Header/>
@@ -90,9 +50,8 @@ function InboxPage(){
                 <p className='text-lg'>Uw open verlof aanvragen</p>
                 <div className='h-full w-[80%]'>
                     <div>
-                    {leaveRequests.map(leaveRequest => {       
+                    {leaveRequests.leave_requests?.map(leaveRequest => {       
                         if(leaveRequest.leave_status == "Pending" && leaveRequest.employee_id == temp.userId){
-                            // console.log(leaveRequest.id);
                             return(
                                 <div className="flex">
                                     <LeaveRequest
@@ -118,8 +77,8 @@ function InboxPage(){
                         <option>Vakantie</option>
                     </select>
                     <div>
-                    {leaveRequests.map(leaveRequest => {
-                        if((leaveRequest.leave_status == "Accepted" || leaveRequest.leave_status == "Denied") && leaveRequest.employee_id == temp.userId){
+                    {leaveRequests.leave_requests?.map(leaveRequest => {
+                        if((leaveRequest.leave_status == 2 || leaveRequest.leave_status == 1) && leaveRequest.employee_id == temp.userId){
                             // if (filter == -1 || filter == leaveRequest.leave_requests_category_id){
                                 return(
                                     <div className="flex">
@@ -144,8 +103,8 @@ function InboxPage(){
                 <input placeholder='Name' className='w-full h-[30px] border-solid border-[#A7A7A7] border-[1px] mb-[5px]' type="text" id="search" name="search" onChange={handleChangeName}></input>
                 <div>
 
-                {leaveRequests.map(leaveRequest => {     
-                    if(leaveRequest.leave_status == "Pending" && leaveRequest.employee_id != temp.userId){ //kom er later op terug
+                {leaveRequests.leave_requests?.map(leaveRequest => {     
+                    if(leaveRequest.leave_status == 0 && leaveRequest.employee_id != temp.userId){ //kom er later op terug
                         if (search == "" || leaveRequest.Name.toString().toLowerCase().includes(search.toString().toLowerCase())){
                             return(
                                 <div className="flex">
