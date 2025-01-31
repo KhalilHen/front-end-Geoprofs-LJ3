@@ -22,7 +22,9 @@ function Login(mail, password, setUser, setResponse = null) {
   }
   })
   .then(async (data) => {
-  await setUser(data);
+    if (setUser) {
+      setUser(data);
+    }
   window.location.href = "/front-page";
   })
   .catch((error) => console.error('Error:', error));

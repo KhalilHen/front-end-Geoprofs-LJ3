@@ -19,7 +19,6 @@ function GetLeaveRequestData(targetLeaveRequestId, setData = null, userCookie = 
         if (setResponse){
             setResponse(response.status);
         }
-        console.log(response);
         if (response.ok) {
             return response.json();
         }

@@ -13,6 +13,9 @@ jest.mock('react-router-dom', () => ({
   useNavigate: jest.fn(),
 }));
 
+delete window.location;
+window.location = { href: jest.fn() };
+
 var timeOut = 20000;
 
 describe('Employee requests users ids from same department from self', () => {

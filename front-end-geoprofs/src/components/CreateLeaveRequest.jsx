@@ -34,8 +34,8 @@ function CreateLeaveRequest(inputValues, setData = null, userCookie = null, setR
         }
     })
     .then(async (data) => {
-        if(setUser){
-            await setUser(data);
+        if(setData){
+            await setData(data);
         }
     })
     .catch((error) => console.error('Error:', error));
