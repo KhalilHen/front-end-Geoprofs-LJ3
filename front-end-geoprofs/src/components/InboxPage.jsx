@@ -105,11 +105,11 @@ function InboxPage(){
 
                 {leaveRequests.leave_requests?.map(leaveRequest => {     
                     if(leaveRequest.leave_status == 0 && leaveRequest.employee_id != temp.userId){ //kom er later op terug
-                        if (search == "" || leaveRequest.Name.toString().toLowerCase().includes(search.toString().toLowerCase())){
+                        if (search == "" || leaveRequest.user_name.toString().toLowerCase().includes(search.toString().toLowerCase())){
                             return(
                                 <div className="flex">
                                     <LeaveRequest
-                                    title={leaveRequest.Name + " Requested Leave"}
+                                    title={leaveRequest.user_name + " Requested Leave"}
                                     timeframe={leaveRequest.start_date + " - " + leaveRequest.end_date}
                                     catagory={leaveRequest.leave_requests_category_id}
                                     status={leaveRequest.leave_status}
